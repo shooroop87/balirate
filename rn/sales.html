@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+	<title>HomePage</title>
+	<meta charset="UTF-8">
+	<meta name="format-detection" content="telephone=no">
+	<!-- <style>body{opacity: 0;}</style> -->
+	<link rel="stylesheet" href="css/style.min.css?_v=20240920150820">
+	<link rel="shortcut icon" href="favicon.ico">
+	<!-- <meta name="robots" content="noindex, nofollow"> -->
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="description" content="Рейтинг застройщиков и девелоперов на Бали">
+</head>
+
+<body>
+	<div class="wrapper">
+		<header class="header">
+			<div class="header-top">
+				<div class="header-top__container">
+					<a href="index.html" aria-label="Ссылка на главную" class="header-bottom__logo"><img src="img/logo.svg" class="ibg ibg--contain" alt="logo"></a>
+					<div class="header-top__menu menu">
+						<button type="button" aria-label="Кнопка раскрытия меню бургер" class="menu__icon icon-menu"><span></span></button>
+						<nav class="menu__body">
+							<div class="header-bottom__form search-form">
+								<form class="search-form__form" action="files/sendmail/sendmail.php" method="POST">
+									<input type="text" name="search" data-error="Error" placeholder="Поиск" class="search-form__input">
+									<button type="submit" class="search-form__button icon-search" aria-label="Кнопка поиска"></button>
+								</form>
+								<div class="search-form__content">
+									<div class="search-form__links">
+										<a href="developer.html" class="search-form__link icon-arrow-r-t-s">ILOT</a>
+										<a href="developer.html" class="search-form__link icon-arrow-r-t-s">ILOT PROPERTY</a>
+									</div>
+									<div class="search-form__bottom">
+										<div class="search-form__bottomtitle">Категории</div>
+										<div class="search-form__bottomlinks">
+											<a href="developers.html" class="search-form__bottomlink">Застройщики</a>
+											<a href="objects.html" class="search-form__bottomlink">Объекты</a>
+										</div>
+									</div>
+								</div>
+							</div>
+							<ul class="menu__list">
+								<li class="menu__item">
+									<a href="sales.html" class="menu__link">Акции</a>
+								</li>
+								<li class="menu__item">
+									<a href="news.html" class="menu__link">Новости</a>
+								</li>
+								<li class="menu__item">
+									<a href="knowledge.html" class="menu__link">Знания</a>
+								</li>
+								<li class="menu__item">
+									<a href="events.html" class="menu__link">Мероприятия</a>
+								</li>
+							</ul>
+							<ul class="menu__list menu__list--da">
+								<li class="menu__item">
+									<a href="developers.html" class="menu__link">Застройщики</a>
+								</li>
+								<li class="menu__item">
+									<a href="objects.html" class="menu__link">Объекты недвижимости</a>
+								</li>
+								<li class="menu__item">
+									<a href="agencies.html" class="menu__link">Агентства</a>
+								</li>
+								<li class="menu__item">
+									<a href="#" class="menu__link">Премия Девелопер 2024</a>
+								</li>
+							</ul>
+							<button type="button" class="header-bottom__popuplink button-login icon-login" data-popup="#popup"><span>Авторизация</span></button>
+							<div class="header-top__socs">
+								<div class="header-top__socstext">Наши мессенжеры</div>
+								<div class="header-top__socsblocks">
+									<a href="#" target="_blank" rel="nofollow" aria-label="Ссылка на Telegram" class="header-top__soclink">
+										<svg width="120" height="120" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+											<path d="M10 0C4.48 0 0 4.48 0 10C0 15.52 4.48 20 10 20C15.52 20 20 15.52 20 10C20 4.48 15.52 0 10 0ZM14.64 6.8C14.49 8.38 13.84 12.22 13.51 13.99C13.37 14.74 13.09 14.99 12.83 15.02C12.25 15.07 11.81 14.64 11.25 14.27C10.37 13.69 9.87 13.33 9.02 12.77C8.03 12.12 8.67 11.76 9.24 11.18C9.39 11.03 11.95 8.7 12 8.49C12.0069 8.45819 12.006 8.42517 11.9973 8.3938C11.9886 8.36244 11.9724 8.33367 11.95 8.31C11.89 8.26 11.81 8.28 11.74 8.29C11.65 8.31 10.25 9.24 7.52 11.08C7.12 11.35 6.76 11.49 6.44 11.48C6.08 11.47 5.4 11.28 4.89 11.11C4.26 10.91 3.77 10.8 3.81 10.45C3.83 10.27 4.08 10.09 4.55 9.9C7.47 8.63 9.41 7.79 10.38 7.39C13.16 6.23 13.73 6.03 14.11 6.03C14.19 6.03 14.38 6.05 14.5 6.15C14.6 6.23 14.63 6.34 14.64 6.42C14.63 6.48 14.65 6.66 14.64 6.8Z" fill="#577897" />
+										</svg>
+									</a>
+									<a href="#" target="_blank" rel="nofollow" aria-label="Ссылка на Whatsapp" class="header-top__soclink">
+										<svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+											<path d="M10.001 0C15.524 0 20.001 4.477 20.001 10C20.001 15.523 15.524 20 10.001 20C8.23375 20.003 6.49757 19.5353 4.97099 18.645L0.00499202 20L1.35699 15.032C0.46595 13.5049 -0.00210506 11.768 0.000991831 10C0.000991831 4.477 4.47799 0 10.001 0ZM6.59299 5.3L6.39299 5.308C6.26368 5.31691 6.13734 5.35087 6.02099 5.408C5.91257 5.46951 5.81355 5.5463 5.72699 5.636C5.60699 5.749 5.53899 5.847 5.46599 5.942C5.09611 6.4229 4.89696 7.01331 4.89999 7.62C4.90199 8.11 5.02999 8.587 5.22999 9.033C5.63899 9.935 6.31199 10.89 7.19999 11.775C7.41399 11.988 7.62399 12.202 7.84999 12.401C8.95342 13.3724 10.2683 14.073 11.69 14.447L12.258 14.534C12.443 14.544 12.628 14.53 12.814 14.521C13.1052 14.5056 13.3895 14.4268 13.647 14.29C13.7778 14.2223 13.9056 14.1489 14.03 14.07C14.03 14.07 14.0723 14.0413 14.155 13.98C14.29 13.88 14.373 13.809 14.485 13.692C14.569 13.6053 14.639 13.5047 14.695 13.39C14.773 13.227 14.851 12.916 14.883 12.657C14.907 12.459 14.9 12.351 14.897 12.284C14.893 12.177 14.804 12.066 14.707 12.019L14.125 11.758C14.125 11.758 13.255 11.379 12.723 11.137C12.6673 11.1128 12.6077 11.0989 12.547 11.096C12.4786 11.0888 12.4094 11.0965 12.3442 11.1184C12.279 11.1403 12.2192 11.176 12.169 11.223C12.164 11.221 12.097 11.278 11.374 12.154C11.3325 12.2098 11.2753 12.2519 11.2098 12.2751C11.1443 12.2982 11.0733 12.3013 11.006 12.284C10.9408 12.2666 10.877 12.2446 10.815 12.218C10.691 12.166 10.648 12.146 10.563 12.11C9.98887 11.8599 9.45743 11.5215 8.98799 11.107C8.86199 10.997 8.74499 10.877 8.62499 10.761C8.2316 10.3842 7.88874 9.95799 7.60499 9.493L7.54599 9.398C7.50425 9.3338 7.47003 9.26501 7.44399 9.193C7.40599 9.046 7.50499 8.928 7.50499 8.928C7.50499 8.928 7.74799 8.662 7.86099 8.518C7.97099 8.378 8.06399 8.242 8.12399 8.145C8.24199 7.955 8.27899 7.76 8.21699 7.609C7.93699 6.925 7.64766 6.24467 7.34899 5.568C7.28999 5.434 7.11499 5.338 6.95599 5.319C6.90199 5.31233 6.84799 5.307 6.79399 5.303C6.65972 5.2953 6.52508 5.29664 6.39099 5.307L6.59299 5.3Z" fill="#577897" />
+										</svg>
+									</a>
+									<a href="#" target="_blank" rel="nofollow" aria-label="Ссылка на Instagram" class="header-top__soclink">
+										<svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+											<path d="M11.0276 0C12.1526 0.003 12.7236 0.009 13.2166 0.023L13.4106 0.03C13.6346 0.038 13.8556 0.0479999 14.1226 0.0599999C15.1866 0.11 15.9126 0.278 16.5496 0.525C17.2096 0.779 17.7656 1.123 18.3216 1.678C18.8303 2.17773 19.2238 2.78247 19.4746 3.45C19.7216 4.087 19.8896 4.813 19.9396 5.878C19.9516 6.144 19.9616 6.365 19.9696 6.59L19.9756 6.784C19.9906 7.276 19.9966 7.847 19.9986 8.972L19.9996 9.718V11.028C20.002 11.7574 19.9944 12.4868 19.9766 13.216L19.9706 13.41C19.9626 13.635 19.9526 13.856 19.9406 14.122C19.8906 15.187 19.7206 15.912 19.4746 16.55C19.2238 17.2175 18.8303 17.8223 18.3216 18.322C17.8219 18.8307 17.2171 19.2242 16.5496 19.475C15.9126 19.722 15.1866 19.89 14.1226 19.94L13.4106 19.97L13.2166 19.976C12.7236 19.99 12.1526 19.997 11.0276 19.999L10.2816 20H8.97259C8.24285 20.0026 7.51312 19.9949 6.78359 19.977L6.58959 19.971C6.3522 19.962 6.11487 19.9517 5.87759 19.94C4.81359 19.89 4.08759 19.722 3.44959 19.475C2.78242 19.2241 2.17804 18.8306 1.67859 18.322C1.16954 17.8224 0.775701 17.2176 0.524592 16.55C0.277592 15.913 0.109592 15.187 0.0595922 14.122L0.0295922 13.41L0.0245923 13.216C0.00615837 12.4868 -0.00217586 11.7574 -0.000407766 11.028V8.972C-0.00317566 8.2426 0.00415845 7.5132 0.0215923 6.784L0.0285923 6.59C0.0365923 6.365 0.0465923 6.144 0.0585922 5.878C0.108592 4.813 0.276592 4.088 0.523592 3.45C0.775287 2.7822 1.16982 2.17744 1.67959 1.678C2.17875 1.16955 2.78278 0.776074 3.44959 0.525C4.08759 0.278 4.81259 0.11 5.87759 0.0599999C6.14359 0.0479999 6.36559 0.038 6.58959 0.03L6.78359 0.0239999C7.51278 0.00623271 8.24219 -0.0014347 8.97159 0.000999928L11.0276 0ZM9.99959 5C8.67351 5 7.40174 5.52678 6.46406 6.46447C5.52638 7.40215 4.99959 8.67392 4.99959 10C4.99959 11.3261 5.52638 12.5979 6.46406 13.5355C7.40174 14.4732 8.67351 15 9.99959 15C11.3257 15 12.5974 14.4732 13.5351 13.5355C14.4728 12.5979 14.9996 11.3261 14.9996 10C14.9996 8.67392 14.4728 7.40215 13.5351 6.46447C12.5974 5.52678 11.3257 5 9.99959 5ZM9.99959 7C10.3936 6.99993 10.7837 7.07747 11.1477 7.22817C11.5117 7.37887 11.8424 7.5998 12.1211 7.87833C12.3997 8.15686 12.6207 8.48754 12.7715 8.85149C12.9224 9.21544 13 9.60553 13.0001 9.9995C13.0002 10.3935 12.9226 10.7836 12.7719 11.1476C12.6212 11.5116 12.4003 11.8423 12.1218 12.121C11.8432 12.3996 11.5126 12.6206 11.1486 12.7714C10.7847 12.9223 10.3946 12.9999 10.0006 13C9.20494 13 8.44188 12.6839 7.87927 12.1213C7.31666 11.5587 7.00059 10.7956 7.00059 10C7.00059 9.20435 7.31666 8.44129 7.87927 7.87868C8.44188 7.31607 9.20494 7 10.0006 7M15.2506 3.5C14.9191 3.5 14.6011 3.6317 14.3667 3.86612C14.1323 4.10054 14.0006 4.41848 14.0006 4.75C14.0006 5.08152 14.1323 5.39946 14.3667 5.63388C14.6011 5.8683 14.9191 6 15.2506 6C15.5821 6 15.9001 5.8683 16.1345 5.63388C16.3689 5.39946 16.5006 5.08152 16.5006 4.75C16.5006 4.41848 16.3689 4.10054 16.1345 3.86612C15.9001 3.6317 15.5821 3.5 15.2506 3.5Z" fill="#577897" />
+										</svg>
+									</a>
+								</div>
+							</div>
+						</nav>
+					</div>
+					<div class="header-top__right">
+						<div class="header-top__socs">
+							<div class="header-top__socstext">Наши мессенжеры</div>
+							<div class="header-top__socsblocks">
+								<a href="#" target="_blank" rel="nofollow" aria-label="Ссылка на Telegram" class="header-top__soclink">
+									<svg width="120" height="120" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+										<path d="M10 0C4.48 0 0 4.48 0 10C0 15.52 4.48 20 10 20C15.52 20 20 15.52 20 10C20 4.48 15.52 0 10 0ZM14.64 6.8C14.49 8.38 13.84 12.22 13.51 13.99C13.37 14.74 13.09 14.99 12.83 15.02C12.25 15.07 11.81 14.64 11.25 14.27C10.37 13.69 9.87 13.33 9.02 12.77C8.03 12.12 8.67 11.76 9.24 11.18C9.39 11.03 11.95 8.7 12 8.49C12.0069 8.45819 12.006 8.42517 11.9973 8.3938C11.9886 8.36244 11.9724 8.33367 11.95 8.31C11.89 8.26 11.81 8.28 11.74 8.29C11.65 8.31 10.25 9.24 7.52 11.08C7.12 11.35 6.76 11.49 6.44 11.48C6.08 11.47 5.4 11.28 4.89 11.11C4.26 10.91 3.77 10.8 3.81 10.45C3.83 10.27 4.08 10.09 4.55 9.9C7.47 8.63 9.41 7.79 10.38 7.39C13.16 6.23 13.73 6.03 14.11 6.03C14.19 6.03 14.38 6.05 14.5 6.15C14.6 6.23 14.63 6.34 14.64 6.42C14.63 6.48 14.65 6.66 14.64 6.8Z" fill="#577897" />
+									</svg>
+								</a>
+								<a href="#" target="_blank" rel="nofollow" aria-label="Ссылка на Whatsapp" class="header-top__soclink">
+									<svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+										<path d="M10.001 0C15.524 0 20.001 4.477 20.001 10C20.001 15.523 15.524 20 10.001 20C8.23375 20.003 6.49757 19.5353 4.97099 18.645L0.00499202 20L1.35699 15.032C0.46595 13.5049 -0.00210506 11.768 0.000991831 10C0.000991831 4.477 4.47799 0 10.001 0ZM6.59299 5.3L6.39299 5.308C6.26368 5.31691 6.13734 5.35087 6.02099 5.408C5.91257 5.46951 5.81355 5.5463 5.72699 5.636C5.60699 5.749 5.53899 5.847 5.46599 5.942C5.09611 6.4229 4.89696 7.01331 4.89999 7.62C4.90199 8.11 5.02999 8.587 5.22999 9.033C5.63899 9.935 6.31199 10.89 7.19999 11.775C7.41399 11.988 7.62399 12.202 7.84999 12.401C8.95342 13.3724 10.2683 14.073 11.69 14.447L12.258 14.534C12.443 14.544 12.628 14.53 12.814 14.521C13.1052 14.5056 13.3895 14.4268 13.647 14.29C13.7778 14.2223 13.9056 14.1489 14.03 14.07C14.03 14.07 14.0723 14.0413 14.155 13.98C14.29 13.88 14.373 13.809 14.485 13.692C14.569 13.6053 14.639 13.5047 14.695 13.39C14.773 13.227 14.851 12.916 14.883 12.657C14.907 12.459 14.9 12.351 14.897 12.284C14.893 12.177 14.804 12.066 14.707 12.019L14.125 11.758C14.125 11.758 13.255 11.379 12.723 11.137C12.6673 11.1128 12.6077 11.0989 12.547 11.096C12.4786 11.0888 12.4094 11.0965 12.3442 11.1184C12.279 11.1403 12.2192 11.176 12.169 11.223C12.164 11.221 12.097 11.278 11.374 12.154C11.3325 12.2098 11.2753 12.2519 11.2098 12.2751C11.1443 12.2982 11.0733 12.3013 11.006 12.284C10.9408 12.2666 10.877 12.2446 10.815 12.218C10.691 12.166 10.648 12.146 10.563 12.11C9.98887 11.8599 9.45743 11.5215 8.98799 11.107C8.86199 10.997 8.74499 10.877 8.62499 10.761C8.2316 10.3842 7.88874 9.95799 7.60499 9.493L7.54599 9.398C7.50425 9.3338 7.47003 9.26501 7.44399 9.193C7.40599 9.046 7.50499 8.928 7.50499 8.928C7.50499 8.928 7.74799 8.662 7.86099 8.518C7.97099 8.378 8.06399 8.242 8.12399 8.145C8.24199 7.955 8.27899 7.76 8.21699 7.609C7.93699 6.925 7.64766 6.24467 7.34899 5.568C7.28999 5.434 7.11499 5.338 6.95599 5.319C6.90199 5.31233 6.84799 5.307 6.79399 5.303C6.65972 5.2953 6.52508 5.29664 6.39099 5.307L6.59299 5.3Z" fill="#577897" />
+									</svg>
+								</a>
+								<a href="#" target="_blank" rel="nofollow" aria-label="Ссылка на Instagram" class="header-top__soclink">
+									<svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+										<path d="M11.0276 0C12.1526 0.003 12.7236 0.009 13.2166 0.023L13.4106 0.03C13.6346 0.038 13.8556 0.0479999 14.1226 0.0599999C15.1866 0.11 15.9126 0.278 16.5496 0.525C17.2096 0.779 17.7656 1.123 18.3216 1.678C18.8303 2.17773 19.2238 2.78247 19.4746 3.45C19.7216 4.087 19.8896 4.813 19.9396 5.878C19.9516 6.144 19.9616 6.365 19.9696 6.59L19.9756 6.784C19.9906 7.276 19.9966 7.847 19.9986 8.972L19.9996 9.718V11.028C20.002 11.7574 19.9944 12.4868 19.9766 13.216L19.9706 13.41C19.9626 13.635 19.9526 13.856 19.9406 14.122C19.8906 15.187 19.7206 15.912 19.4746 16.55C19.2238 17.2175 18.8303 17.8223 18.3216 18.322C17.8219 18.8307 17.2171 19.2242 16.5496 19.475C15.9126 19.722 15.1866 19.89 14.1226 19.94L13.4106 19.97L13.2166 19.976C12.7236 19.99 12.1526 19.997 11.0276 19.999L10.2816 20H8.97259C8.24285 20.0026 7.51312 19.9949 6.78359 19.977L6.58959 19.971C6.3522 19.962 6.11487 19.9517 5.87759 19.94C4.81359 19.89 4.08759 19.722 3.44959 19.475C2.78242 19.2241 2.17804 18.8306 1.67859 18.322C1.16954 17.8224 0.775701 17.2176 0.524592 16.55C0.277592 15.913 0.109592 15.187 0.0595922 14.122L0.0295922 13.41L0.0245923 13.216C0.00615837 12.4868 -0.00217586 11.7574 -0.000407766 11.028V8.972C-0.00317566 8.2426 0.00415845 7.5132 0.0215923 6.784L0.0285923 6.59C0.0365923 6.365 0.0465923 6.144 0.0585922 5.878C0.108592 4.813 0.276592 4.088 0.523592 3.45C0.775287 2.7822 1.16982 2.17744 1.67959 1.678C2.17875 1.16955 2.78278 0.776074 3.44959 0.525C4.08759 0.278 4.81259 0.11 5.87759 0.0599999C6.14359 0.0479999 6.36559 0.038 6.58959 0.03L6.78359 0.0239999C7.51278 0.00623271 8.24219 -0.0014347 8.97159 0.000999928L11.0276 0ZM9.99959 5C8.67351 5 7.40174 5.52678 6.46406 6.46447C5.52638 7.40215 4.99959 8.67392 4.99959 10C4.99959 11.3261 5.52638 12.5979 6.46406 13.5355C7.40174 14.4732 8.67351 15 9.99959 15C11.3257 15 12.5974 14.4732 13.5351 13.5355C14.4728 12.5979 14.9996 11.3261 14.9996 10C14.9996 8.67392 14.4728 7.40215 13.5351 6.46447C12.5974 5.52678 11.3257 5 9.99959 5ZM9.99959 7C10.3936 6.99993 10.7837 7.07747 11.1477 7.22817C11.5117 7.37887 11.8424 7.5998 12.1211 7.87833C12.3997 8.15686 12.6207 8.48754 12.7715 8.85149C12.9224 9.21544 13 9.60553 13.0001 9.9995C13.0002 10.3935 12.9226 10.7836 12.7719 11.1476C12.6212 11.5116 12.4003 11.8423 12.1218 12.121C11.8432 12.3996 11.5126 12.6206 11.1486 12.7714C10.7847 12.9223 10.3946 12.9999 10.0006 13C9.20494 13 8.44188 12.6839 7.87927 12.1213C7.31666 11.5587 7.00059 10.7956 7.00059 10C7.00059 9.20435 7.31666 8.44129 7.87927 7.87868C8.44188 7.31607 9.20494 7 10.0006 7M15.2506 3.5C14.9191 3.5 14.6011 3.6317 14.3667 3.86612C14.1323 4.10054 14.0006 4.41848 14.0006 4.75C14.0006 5.08152 14.1323 5.39946 14.3667 5.63388C14.6011 5.8683 14.9191 6 15.2506 6C15.5821 6 15.9001 5.8683 16.1345 5.63388C16.3689 5.39946 16.5006 5.08152 16.5006 4.75C16.5006 4.41848 16.3689 4.10054 16.1345 3.86612C15.9001 3.6317 15.5821 3.5 15.2506 3.5Z" fill="#577897" />
+									</svg>
+								</a>
+							</div>
+						</div>
+						<div class="header-top__lang">
+							<select name="form[]" data-class-modif="form" data-aria-label="Список выбора языка">
+								<option data-asset="img/rus.jpg" data-class="header-top__lang-ru" value="1" selected>RU</option>
+								<option data-asset="img/usa.jpg" data-class="header-top__lang-am" value="2">EN</option>
+							</select>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="header-bottom">
+				<div class="header-bottom__container">
+					<a href="index.html" aria-label="Ссылка на главную" class="header-bottom__logo"><img src="img/logo.svg" class="ibg ibg--contain" alt="logo"></a>
+					<div class="header-bottom__menu menu">
+						<nav class="menu__body">
+							<ul class="menu__list">
+								<li class="menu__item">
+									<a href="developers.html" class="menu__link">Застройщики</a>
+								</li>
+								<li class="menu__item">
+									<a href="objects.html" class="menu__link">Объекты недвижимости</a>
+								</li>
+								<li class="menu__item">
+									<a href="agencies.html" class="menu__link">Агентства</a>
+								</li>
+								<li class="menu__item">
+									<a href="#" class="menu__link">Премия Девелопер 2024</a>
+								</li>
+							</ul>
+						</nav>
+					</div>
+					<div class="header-bottom__right">
+						<div class="header-bottom__form search-form">
+							<form class="search-form__form" action="files/sendmail/sendmail.php" method="POST">
+								<input type="text" name="search" data-error="Error" placeholder="Поиск" class="search-form__input">
+								<button type="submit" class="search-form__button icon-search" aria-label="Кнопка поиска"></button>
+							</form>
+							<div class="search-form__content">
+								<div class="search-form__links">
+									<a href="developer.html" class="search-form__link icon-arrow-r-t-s">ILOT</a>
+									<a href="developer.html" class="search-form__link icon-arrow-r-t-s">ILOT PROPERTY</a>
+								</div>
+								<div class="search-form__bottom">
+									<div class="search-form__bottomtitle">Категории</div>
+									<div class="search-form__bottomlinks">
+										<a href="developers.html" class="search-form__bottomlink">Застройщики</a>
+										<a href="objects.html" class="search-form__bottomlink">Объекты</a>
+									</div>
+								</div>
+							</div>
+						</div>
+						<button type="button" class="header-bottom__popuplink button-login icon-login" data-popup="#popup"><span>Авторизация</span></button>
+					</div>
+				</div>
+			</div>
+		</header>
+		<main class="page">
+			<div class="crumbs">
+				<div class="crumbs__container">
+					<a href="index.html" class="crumbs__link">Главная</a>
+					<a href="#" class="crumbs__link">Акции</a>
+				</div>
+			</div>
+			<section class="sales-page">
+				<div class="sales-page__container">
+					<h1 class="sales-page__title title">Акции</h1>
+					<div class="sales-page__row">
+						<div class="sales-page__item">
+							<picture><source srcset="img/news-top-1.webp" type="image/webp"><img src="img/news-top-1.jpg" class="" alt="Image"></picture>
+							<div class="sales-page__content">
+								<div class="sales-page__name">Получите скидку на покупку недвижимости на этапе строительства 15%
+								</div>
+								<div class="sales-page__text">Условия акции: необходимо купить недвижимость у определенного
+									застройщика суммой не менее 15 тыс. долларов.</div>
+								<div class="sales-page__date">акция действительна до 12.01.24</div>
+							</div>
+						</div>
+						<div class="sales-page__item">
+							<picture><source srcset="img/news-top-1.webp" type="image/webp"><img src="img/news-top-1.jpg" class="" alt="Image"></picture>
+							<div class="sales-page__content">
+								<div class="sales-page__name">Получите скидку на покупку недвижимости на этапе строительства 15%
+								</div>
+								<div class="sales-page__text">Условия акции: необходимо купить недвижимость у определенного
+									застройщика суммой не менее 15 тыс. долларов.</div>
+								<div class="sales-page__date">акция действительна до 12.01.24</div>
+							</div>
+						</div>
+						<div class="sales-page__item">
+							<picture><source srcset="img/news-top-1.webp" type="image/webp"><img src="img/news-top-1.jpg" class="" alt="Image"></picture>
+							<div class="sales-page__content">
+								<div class="sales-page__name">Получите скидку на покупку недвижимости на этапе строительства 15%
+								</div>
+								<div class="sales-page__text">Условия акции: необходимо купить недвижимость у определенного
+									застройщика суммой не менее 15 тыс. долларов.</div>
+								<div class="sales-page__date">акция действительна до 12.01.24</div>
+							</div>
+						</div>
+					</div>
+					<div class="pagging">
+						<a href="#" class="pagging__arrow pagging__arrow-left icon-arrow-d-b"></a>
+						<ul class="pagging__list">
+							<li>
+								<a href="#" class="pagging__item _active">1</a>
+							</li>
+							<li>
+								<a href="#" class="pagging__item">2</a>
+							</li>
+							<li>
+								<a href="#" class="pagging__item">...</a>
+							</li>
+							<li>
+								<a href="#" class="pagging__item">10</a>
+							</li>
+						</ul>
+						<a href="#" class="pagging__arrow pagging__arrow-right icon-arrow-d-b _active"></a>
+					</div>
+				</div>
+			</section>
+		</main>
+		<footer class="footer">
+			<div class="footer__container">
+				<a href="index.html" aria-label="Ссылка на главную" class="footer__logo"><img src="img/logo-footer.svg" class="ibg ibg--contain" alt="logo"></a>
+				<nav class="footer__menubody">
+					<div class="footer__menublock">
+						<div class="footer__menulistname">Информация</div>
+						<ul class="footer__menulist">
+							<li class="footer__menuitem">
+								<a href="knowledge.html" class="footer__menulink">База знаний</a>
+							</li>
+							<li class="footer__menuitem">
+								<a href="sales.html" class="footer__menulink">Акции</a>
+							</li>
+							<li class="footer__menuitem">
+								<a href="news.html" class="footer__menulink">Новости</a>
+							</li>
+							<li class="footer__menuitem">
+								<a href="events.html" class="footer__menulink">Мероприятия</a>
+							</li>
+						</ul>
+					</div>
+					<div class="footer__menublock">
+						<div class="footer__menulistname">Недвижимость</div>
+						<ul class="footer__menulist">
+							<li class="footer__menuitem">
+								<a href="developers.html" class="footer__menulink">Застройщики</a>
+							</li>
+							<li class="footer__menuitem">
+								<a href="agencies.html" class="footer__menulink">Агентства</a>
+							</li>
+							<li class="footer__menuitem">
+								<a href="objects.html" class="footer__menulink">Объекты недвижимости</a>
+							</li>
+						</ul>
+					</div>
+				</nav>
+				<div class="footer__right">
+					<div class="search-form">
+						<form class="search-form__form" action="files/sendmail/sendmail.php" method="POST">
+							<input type="text" name="search" data-error="Error" placeholder="Поиск" class="search-form__input">
+							<button type="submit" class="search-form__button icon-search" aria-label="Кнопка поиска"></button>
+						</form>
+						<div class="search-form__content">
+							<div class="search-form__links">
+								<a href="developer.html" class="search-form__link icon-arrow-r-t-s">ILOT</a>
+								<a href="developer.html" class="search-form__link icon-arrow-r-t-s">ILOT PROPERTY</a>
+							</div>
+							<div class="search-form__bottom">
+								<div class="search-form__bottomtitle">Категории</div>
+								<div class="search-form__bottomlinks">
+									<a href="developers.html" class="search-form__bottomlink">Застройщики</a>
+									<a href="objects.html" class="search-form__bottomlink">Объекты</a>
+								</div>
+							</div>
+						</div>
+					</div>
+					<button type="button" class="button-login icon-login" data-popup="#popup"><span>Авторизация</span></button>
+				</div>
+				<div class="footer__info">
+					<div class="footer__copy"><span>©Balirate 2024.</span> Все права защищены.</div>
+					<div class="footer__site">Сайт создан - <a href="https://wtstudio.ru/" target="_blank" rel="nofollow" class="footer__sitelink">wtstudio.ru</a></div>
+				</div>
+			</div>
+		</footer>
+	</div>
+	<div id="popup" aria-hidden="true" class="popup">
+		<div class="popup__wrapper">
+			<div class="popup__content">
+				<button data-close type="button" class="popup__close icon-close">
+				</button>
+				<div class="popup__body">
+					<div class="popup__title">Авторизация</div>
+					<form class="popup__form" action="functions.php" method="POST">
+						<div class="popup__lines">
+							<div class="popup__line">
+								<div class="popup__linetop">Через соцсети</div>
+								<button type="button" class="popup__google">
+									<img src="img/google.svg" class="ibg ibg--contain" alt="Image">
+								</button>
+							</div>
+						</div>
+						<div class="popup__separator">или</div>
+						<div class="popup__lines">
+							<div class="popup__line">
+								<div class="popup__linetop">Ваш e-mail</div>
+								<input type="text" data-required="email" name="e-mail" placeholder="Введите ваш e-mail" class="input popup__input">
+							</div>
+							<div class="popup__line">
+								<div class="popup__linetop">Пароль</div>
+								<input type="password" data-required name="password" placeholder="Введите пароль" class="input popup__input">
+							</div>
+						</div>
+						<button type="submit" class="popup__submit">Войти</button>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div id="popup-filter" aria-hidden="true" class="popup popup-filter">
+		<div class="popup__wrapper">
+			<div class="popup__content">
+				<button data-close type="button" class="popup__close icon-close">
+				</button>
+				<div class="popup__body">
+					<div class="popup-filter__body">
+
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div id="popup-comment" aria-hidden="true" class="popup popup-comment">
+		<div class="popup__wrapper">
+			<div class="popup__content">
+				<button data-close type="button" class="popup__close icon-close">
+				</button>
+				<div class="popup__body">
+					<div class="popup__title">Написать отзыв</div>
+					<form class="popup__form" action="functions.php" method="POST">
+						<div class="popup__lines">
+							<div class="popup__line">
+								<div class="popup__linetop">Ваше имя</div>
+								<input type="text" name="name" placeholder="Введите ваше имя" class="input popup__input">
+							</div>
+							<div class="popup__line">
+								<div class="popup__linetop">Поставьте оценку</div>
+								<div data-rating="set" data-rating-value="5.0" class="rating"></div>
+							</div>
+							<div class="popup__line">
+								<div class="popup__linetop">Ваш отзыв</div>
+								<textarea data-autoheight name="comment" placeholder="Введите ваш отзыв" class="input popup__input"></textarea>
+							</div>
+						</div>
+						<button type="submit" class="popup__submit">Отправить отзыв</button>
+						<div class="popup__info">Нажимая кнопку вы даете согласие на обработку <a href="#">персональных
+								данных</a> в
+							соответствии с <a href="#">политикой конфиденциальности</a></div>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div id="popup-feed" aria-hidden="true" class="popup popup-feed">
+		<div class="popup__wrapper">
+			<div class="popup__content">
+				<button data-close type="button" class="popup__close icon-close">
+				</button>
+				<div class="popup__body">
+					<div class="popup__title">Оставить заявку</div>
+					<div class="popup__text">Оставьте свои контакты, мы свяжемся с вами и назначим встречу, для активации
+						профиля</div>
+					<form class="popup__form" action="functions.php" method="POST">
+						<div class="popup__lines">
+							<div class="popup__line">
+								<div class="popup__linetop">Ваше имя</div>
+								<input type="text" name="name" placeholder="Введите ваше имя" class="input popup__input">
+							</div>
+							<div class="popup__line">
+								<div class="popup__linetop">Ваш телефон</div>
+								<input type="text" data-required="phone" data-inputmask="'mask': '+7 (999) 999 99 99', 'repeat': 1, 'greedy' : false" name="tel" placeholder="Введите ваше телефон" class="input popup__input">
+							</div>
+							<div class="popup__line">
+								<div class="popup__linetop">Ваш e-mail</div>
+								<input type="text" data-required="email" name="e-mail" placeholder="Введите ваш e-mail" class="input popup__input">
+							</div>
+						</div>
+						<button type="submit" class="popup__submit">Отправить отзыв</button>
+						<div class="popup__info">Нажимая кнопку вы даете согласие на обработку <a href="#">персональных
+								данных</a> в
+							соответствии с <a href="#">политикой конфиденциальности</a></div>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+	<script src="js/app.min.js?_v=20240920150820"></script>
+</body>
+
+</html>
