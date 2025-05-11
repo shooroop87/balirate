@@ -114,21 +114,21 @@ if (!function_exists('actionsmb_loader_100')) {
 }
 
 // Регистрируем пользовательские размеры изображений
-add_image_size('logo_small', 130, 108, false);
-add_image_size('banner-vertical', 374, 526, false);
-add_image_size('obj_big', 623, 372, true);
-add_image_size('obj_small', 115, 75, true);
-add_image_size('offer_prev', 280, 160, true);
-add_image_size('agent_prev', 120, 120, true);
-add_image_size('event_prev', 580, 340, true);
-add_image_size('event_big', 800, 536, true);
-add_image_size('event_small', 180, 160, true);
-add_image_size('news_big', 1180, 435, true);
-add_image_size('banner_desc', 1340, 200, true);
-add_image_size('news_prev', 380, 220, true);
-add_image_size('bazaimage', 379, 297, true);
-add_image_size('baza_prev', 180, 120, true);
-add_image_size('logo_dev', 580, 366, false);
+add_image_size('logo_small', 260, 216, false);
+add_image_size('banner-vertical', 748, 1052, false);
+add_image_size('obj_big', 1246, 744, true);
+add_image_size('obj_small', 230, 150, true);
+add_image_size('offer_prev', 560, 320, true);
+add_image_size('agent_prev', 240, 240, true);
+add_image_size('event_prev', 1160, 680, true);
+add_image_size('event_big', 1600, 1072, true);
+add_image_size('event_small', 360, 320, true);
+add_image_size('news_big', 2360, 870, true);
+add_image_size('banner_desc', 2680, 400, true);
+add_image_size('news_prev', 760, 440, true);
+add_image_size('bazaimage', 758, 594, true);
+add_image_size('baza_prev', 360, 240, true);
+add_image_size('logo_dev', 1160, 732, false);
 
 /**
  * Функция для вывода пагинации.
@@ -455,3 +455,20 @@ function popup_image_settings_page_html() {
     </div>
     <?php
 }
+
+// Улучшаем качество JPEG изображений (значение от 0 до 100)
+add_filter('jpeg_quality', function($arg) {
+    return 90; // Меняем качество на 90% (по умолчанию обычно 82%)
+});
+
+// Отключаем автоматическое сжатие WebP изображений (если такое есть)
+add_filter('wp_editor_set_quality', function($quality) {
+    return 90; // Устанавливаем качество 90% для всех типов изображений
+}, 10, 1);
+
+// При необходимости можно увеличить размеры существующих миниатюр
+// Например, увеличим размер миниатюры event_big
+add_image_size('event_big', 1200, 800, true); // было 800, 536
+
+// Также можно добавить новые высококачественные размеры
+add_image_size('high_quality', 1800, 1200, false);

@@ -15,8 +15,11 @@ $rate = getRate($filds['developer']->ID);
 
 <div class="offers__slide swiper-slide offer-item">
   <a href="<?= get_permalink($id) ?>" class="offer-item__image">
-    <img src="<?= $filds['image']['sizes']['offer_prev'] ?>" class="ibg ibg--contain" alt="<?= $args->post_title ?>"
-      loading="lazy">
+    <img 
+  src="<?= $filds['image']['url'] ?>"
+  class="ibg ibg--contain"
+  alt="<?= $args->post_title ?>"
+  loading="lazy">
   </a>
   <div class="offer-item__content">
     <a href="<?= get_permalink($id) ?>" class="offer-item__name"><?= $args->post_title ?></a>

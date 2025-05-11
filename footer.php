@@ -142,7 +142,7 @@ if ($lang=='en') {$menurealt_id =49; } else {$menurealt_id =7;}
 				</button>
 				<div class="popup__body">
 					<div class="popup__title"><?php the_field('text_btn_'.$lang, 'options'); ?></div>
-					<div class="popup__text">Оставьте свои контакты, мы свяжемся с вами в ближайшее время</div>
+					<div class="popup__text">Оставьте свои контакты и получите подборку самых надежных застройщиков с эксклюзивными спецпредложениями!</div>
 						<? echo do_shortcode( '[contact-form-7 id="0783fb9" title="Cвязаться - Агентство" html_class="popup__form"]' ); ?>
 				</div>
 			</div>
@@ -156,7 +156,7 @@ if ($lang=='en') {$menurealt_id =49; } else {$menurealt_id =7;}
 				<!-- Левая колонка: форма -->
 				<div class="popup__form-block">
 					<h2 class="popup__title">Оставить заявку</h2>
-					<p class="popup__text">Оставьте свои контакты, мы свяжемся с вами в ближайшее время</p>
+					<p class="popup__text">Оставьте свои контакты и получите подборку самых надежных застройщиков с эксклюзивными спецпредложениями!</p>
 					<?php echo do_shortcode('[contact-form-7 id="1790" title="Pop-Up 10 секунд" html_class="popup__form"]'); ?>
 				</div>
 

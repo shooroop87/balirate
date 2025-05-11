@@ -55,7 +55,7 @@ if ($lang=='en') { $pers_id=464;} else {$pers_id=462;}
 		<div class="developer-page__content">
 			<div class="developer-page__image">
 				<? if ($page_fields['f_logo']) { ?> 
-					<img src="<?=$page_fields['f_logo']['sizes']['logo_dev']?>"  alt="<?=the_title()?>">
+					<img src="<?=$page_fields['f_logo']['url']?>" alt="<?=the_title()?>" loading="lazy">
 				<? } ?>
 			</div>
 			<div class="developer-page__right">

@@ -22,7 +22,7 @@ $rate = $filds['rating'];
     <!-- Логотип девелопера -->
     <?php if ($filds['f_logo']) : ?>
         <a href="<?= get_permalink($id); ?>" aria-label="Ссылка на страницу застройщика" class="first-row__image">
-            <img src="<?= $filds['f_logo']['sizes']['logo_small'] ?>" class="ibg ibg--contain" alt="<?= $args->post_title ?>" loading="lazy">
+            <img src="<?= $filds['f_logo']['sizes']['logo_small'] ?>" class="ibg ibg--contain2" alt="<?= $args->post_title ?>" loading="lazy">
         </a>
     <?php endif; ?>
 

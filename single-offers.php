@@ -130,22 +130,19 @@ if ($lang=='en') { $catid=339;} else {$catid=195;}
 							<div class="object-page__smallslidercont">
 								<button type="button" aria-label="Кнопка слайдера предыдущая" class="object-page__swiper-button-prev swiper-button swiper-button-prev icon-arrow-d-b"></button>
 								<div class="object-page__smallslider swiper">
-									<div class="object-page__smallwrapper swiper-wrapper">
-										<div class="object-page__smallslide swiper-slide">
-											<? if ($page_fields['image']) { ?> 
-										<img src="<?=$page_fields['image']['sizes']['obj_small']?>" class="ibg" alt="<?=the_title()?>">
-										<? } ?>
-										</a>
-										</div>
-										 <?php foreach($page_fields['images'] as $c_num => $slider) {?>
-										 	<div class="object-page__smallslide swiper-slide">
-											<img src="<?=$slider['sizes']['obj_small']?>" alt="<?php the_title()?>" class="ibg">
-										</div>
-										 	 
-										<? } ?>
-										
-										
-									</div>
+								<div class="object-page__smallwrapper swiper-wrapper">
+    <div class="object-page__smallslide swiper-slide">
+        <?php if ($page_fields['image']) { ?>
+            <img src="<?=$page_fields['image']['url']?>" class="ibg" alt="<?=the_title()?>" loading="lazy">
+        <?php } ?>
+    </div>
+    
+    <?php foreach($page_fields['images'] as $c_num => $slider) { ?>
+        <div class="object-page__smallslide swiper-slide">
+            <img src="<?=$slider['url']?>" alt="<?php the_title()?>" class="ibg" loading="lazy">
+        </div>
+    <?php } ?>
+</div>
 								</div>
 								<button type="button" aria-label="Кнопка слайдера следующая" class="object-page__swiper-button-next swiper-button swiper-button-next icon-arrow-d-b"></button>
 							</div>

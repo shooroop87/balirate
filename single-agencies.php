@@ -53,10 +53,13 @@ if ($lang=='en') { $pers_id=464;} else {$pers_id=462;}
 					</div>
 					<div class="developer-page__content">
 						<div class="developer-page__image">
-						<? if ($page_fields['f_logo']) { ?> 
-									<img src="<?=$page_fields['f_logo']['sizes']['event_prev']?>"  alt="<?=the_title()?>" loading="lazy">
-									<? } ?>
-						</div>
+  <?php if ($page_fields['f_logo']) { ?> 
+    <img 
+      src="<?= $page_fields['f_logo']['url'] ?>"
+      alt="<?= the_title() ?>" 
+      loading="lazy">
+  <?php } ?>
+</div>
 						<div class="developer-page__right">
 							 <? if ($page_fields['harr']) { ?>
 							<div class="developer-page__infos">

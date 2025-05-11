@@ -13,7 +13,7 @@ if (!empty($developer->post_name) and isset($developer->post_name)) :
 <div class="devscomments__slide swiper-slide devscomment-item">
   <div class="devscomment-item__top">
     <div class="devscomment-item__image">
-      <img src="<?= $fildsD['f_logo']['sizes']['logo_small'] ?>" class="ibg ibg--contain" alt="<? the_title() ?>"
+      <img src="<?= $fildsD['f_logo']['sizes']['logo_small'] ?>" class="ibg ibg--contain2" alt="<? the_title() ?>"
         loading="lazy">
     </div>
     <div class="devscomment-item__topright">

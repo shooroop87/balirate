@@ -59,7 +59,7 @@ if ($lang=='en') {$topmenu_id =40; } else {$topmenu_id =8;}
 		<header class="header">
 			<div class="header-top">
 				<div class="header-top__container">
-					<a href="<?=get_home_url();?>" aria-label="Ссылка на главную" class="header-bottom__logo"><img src="<?php the_field('logo', 'options'); ?>" class="ibg ibg--contain" alt="logo"></a>
+					<a href="<?=get_home_url();?>" aria-label="Ссылка на главную" class="header-bottom__logo"><img src="<?php the_field('logo', 'options'); ?>" class="ibg ibg--contain" alt="logo" style="object-fit:contain!important;"></a>
 					<div class="header-top__menu menu">
 						<button type="button" aria-label="Кнопка раскрытия меню бургер" class="menu__icon icon-menu"><span></span></button>
 						<nav class="menu__body">
