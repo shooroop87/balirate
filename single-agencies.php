@@ -32,6 +32,24 @@ if ($lang=='en') { $catid=342;} else {$catid=191;}
 if ($lang=='en') { $conf_id=460;} else {$conf_id=248;} 
 if ($lang=='en') { $pers_id=464;} else {$pers_id=462;} 
  ?>
+
+<?php
+if (!empty($page_fields['bottom_banner_pk'])) {
+    $args = [
+        'bottom_banner_pk'  => $page_fields['bottom_banner_pk'],
+        'bottom_banner_mob' => $page_fields['bottom_banner_mob'] ?? $page_fields['bottom_banner_pk'],
+        'bottom_banner_url' => $page_fields['bottom_banner_url'] ?? '',
+    ];
+    ?>
+    <section class="first">
+        <div class="first__container">
+            <!-- Рекламный баннер внизу -->
+            <?php get_template_part('templates/bottom_advertising_banner', null, $args); ?>
+        </div>
+    </section>
+    <?php
+}
+?>
 <div class="crumbs">
 									<div class="crumbs__container">
 										<a href="<?=get_home_url();?>" class="crumbs__link"><?php pll_e('Главная'); ?></a>
@@ -81,7 +99,7 @@ if ($lang=='en') { $pers_id=464;} else {$pers_id=462;}
 								<div class="first-row__descsrows">
 									<? if (getMark($page_id,'mark1')>0) { ?>
 									<div class="first-row__descsrow">
-										<div class="first-row__descsrowleft"><?=pll_e('srok')?></div>
+										<div class="first-row__descsrowleft">Сроки сдачи</div>
 										<div class="first-row__descsrowright">
 											<div class="first-row__descsrowline">
 												<div class="first-row__descsrowlinevalue" style="background: linear-gradient(92.21deg, #11E226 -5.36%, #9CEDA4 25.53%, #11E226 51.27%, #9CEDA4 69.52%, #5AE868 88.24%); width: <?=getMark($page_id,'mark1')/5*100?>%">
@@ -93,7 +111,7 @@ if ($lang=='en') { $pers_id=464;} else {$pers_id=462;}
 									<? } ?>
 									<? if (getMark($page_id,'mark2')>0) { ?>
 									<div class="first-row__descsrow">
-										<div class="first-row__descsrowleft"><?=pll_e('premi')?></div>
+										<div class="first-row__descsrowleft">Премиальность</div>
 										<div class="first-row__descsrowright">
 											<div class="first-row__descsrowline">
 												<div class="first-row__descsrowlinevalue" style="background: linear-gradient(92.21deg, #11E226 -5.36%, #9CEDA4 25.53%, #11E226 51.27%, #9CEDA4 69.52%, #5AE868 88.24%); width: <?=getMark($page_id,'mark2')/5*100?>%">
@@ -105,7 +123,7 @@ if ($lang=='en') { $pers_id=464;} else {$pers_id=462;}
 									<? } ?>
 									<? if (getMark($page_id,'mark3')>0) { ?>
 									<div class="first-row__descsrow">
-										<div class="first-row__descsrowleft"><?=pll_e('supp')?></div>
+										<div class="first-row__descsrowleft">Поддержка</div>
 										<div class="first-row__descsrowright">
 											<div class="first-row__descsrowline">
 												<div class="first-row__descsrowlinevalue" style="background: linear-gradient(92.21deg, #11E226 -5.36%, #9CEDA4 25.53%, #11E226 51.27%, #9CEDA4 69.52%, #5AE868 88.24%); width: <?=getMark($page_id,'mark3')/5*100?>%">
@@ -117,7 +135,7 @@ if ($lang=='en') { $pers_id=464;} else {$pers_id=462;}
 									<? } ?>
 									<? if (getMark($page_id,'mark4')>0) { ?>
 									<div class="first-row__descsrow">
-										<div class="first-row__descsrowleft"><?=pll_e('quality')?></div>
+										<div class="first-row__descsrowleft">Качество строительства</div>
 										<div class="first-row__descsrowright">
 											<div class="first-row__descsrowline">
 												<div class="first-row__descsrowlinevalue" style="background: linear-gradient(92.21deg, #11E226 -5.36%, #9CEDA4 25.53%, #11E226 51.27%, #9CEDA4 69.52%, #5AE868 88.24%); width: <?=getMark($page_id,'mark4')/5*100?>%">
@@ -153,7 +171,7 @@ if ($lang=='en') { $pers_id=464;} else {$pers_id=462;}
 								<? } else  { ?>
 								<button type="button" class="developer-page__popuplink icon-message" data-popup="#popup"><span><?php the_field('text_sendrev_'.$lang, 'options'); ?></span></button>
 								<? } ?>
-                                <button type="button" class="object-page__popuplink2 button icon-message" data-popup="#popup-agency"><span>Каталог</span></button>
+                                <button type="button" class="object-page__popuplink2 button icon-message" data-popup="#popup-agency"><span>Скачать каталог</span></button>
 								<? if ($page_fields['sait']) { ?>
 								<a href="<?=$page_fields['sait']?>" class="developer-page__site icon-arrow-r-t" target="_blank" rel="nofollow"><?php the_field('text_sait_'.$lang, 'options'); ?></a>
 								<? } ?>
@@ -231,24 +249,6 @@ if ($lang=='en') { $pers_id=464;} else {$pers_id=462;}
 				</div>
 			</section>
     <?  } ?>
-    
-<?php
-if (!empty($page_fields['bottom_banner_pk'])) {
-    $args = [
-        'bottom_banner_pk'  => $page_fields['bottom_banner_pk'],
-        'bottom_banner_mob' => $page_fields['bottom_banner_mob'] ?? $page_fields['bottom_banner_pk'],
-        'bottom_banner_url' => $page_fields['bottom_banner_url'] ?? '',
-    ];
-    ?>
-    <section class="first">
-        <div class="first__container">
-            <!-- Рекламный баннер внизу -->
-            <?php get_template_part('templates/bottom_advertising_banner', null, $args); ?>
-        </div>
-    </section>
-    <?php
-}
-?>
 
  <?php endif; wp_reset_query(); ?>
  
@@ -269,19 +269,19 @@ if (!empty($page_fields['bottom_banner_pk'])) {
 								<input type="text" name="name" placeholder="<?php pll_e('Введите ваше имя'); ?>" class="input popup__input" required>
 							</div>
 							<div class="popup__line">
-								<div class="popup__linetop"><?php pll_e('srok'); ?></div>
+								<div class="popup__linetop">Срок строительства</div>
 								<div data-rating="set" data-rating-value="0" class="mark1"></div>
 							</div>
 							<div class="popup__line">
-								<div class="popup__linetop"><?php pll_e('premi'); ?></div>
+								<div class="popup__linetop">Премиальность</div>
 								<div data-rating="set" data-rating-value="0" class="mark2"></div>
 							</div>
 							<div class="popup__line">
-								<div class="popup__linetop"><?php pll_e('supp'); ?></div>
+								<div class="popup__linetop">Поддержка</div>
 								<div data-rating="set" data-rating-value="0" class="mark3"></div>
 							</div>
 							<div class="popup__line">
-								<div class="popup__linetop"><?php pll_e('quality'); ?></div>
+								<div class="popup__linetop">Качество строительства</div>
 								<div data-rating="set" data-rating-value="0" class="mark4"></div>
 							</div>
 							<div class="popup__line">

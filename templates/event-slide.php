@@ -16,7 +16,7 @@ $date = $date[0].' '.pll__('in').' '.$date[1];
                     <a href="<?php the_permalink(); ?>" class="event-item__name"><?php the_title(); ?> </a>
                      <? if ($filds['date']) { ?><div class="event-item__info"><?=$filds['text_mini']?></div><? } ?>
                      <? if ( strtotime($filds['date']) > time() ) {?>
-                    <a href="<?php the_permalink(); ?>"><button type="button" class="event-item__button button button--gray"><?php pll_e('more_btn'); ?></button></a>
+                    <a href="<?php the_permalink(); ?>"><button type="button" class="event-item__button button button--gray">Подробнее</button></a>
                     <? } ?>
                   </div>
                 </div>

@@ -66,7 +66,7 @@ $rate = $filds['rating'];
         <div class="first-row__descsrows">
             <?php if (getMark($page_id, 'mark1') > 0) : ?>
                 <div class="first-row__descsrow">
-                    <div class="first-row__descsrowleft"><?= pll_e('srok') ?></div>
+                    <div class="first-row__descsrowleft">Срок сдачи</div>
                     <div class="first-row__descsrowright">
                         <div class="first-row__descsrowline">
                             <div class="first-row__descsrowlinevalue" style="width: <?= getMark($page_id, 'mark1') / 5 * 100 ?>%"></div>
@@ -78,7 +78,7 @@ $rate = $filds['rating'];
 
             <?php if (getMark($page_id, 'mark2') > 0) : ?>
                 <div class="first-row__descsrow">
-                    <div class="first-row__descsrowleft"><?= pll_e('premi') ?></div>
+                    <div class="first-row__descsrowleft">Премиальность</div>
                     <div class="first-row__descsrowright">
                         <div class="first-row__descsrowline">
                             <div class="first-row__descsrowlinevalue" style="width: <?= getMark($page_id, 'mark2') / 5 * 100 ?>%"></div>
@@ -90,7 +90,7 @@ $rate = $filds['rating'];
 
             <?php if (getMark($page_id, 'mark3') > 0) : ?>
                 <div class="first-row__descsrow">
-                    <div class="first-row__descsrowleft"><?= pll_e('supp') ?></div>
+                    <div class="first-row__descsrowleft">Поддержка</div>
                     <div class="first-row__descsrowright">
                         <div class="first-row__descsrowline">
                             <div class="first-row__descsrowlinevalue" style="width: <?= getMark($page_id, 'mark3') / 5 * 100 ?>%"></div>
@@ -102,7 +102,7 @@ $rate = $filds['rating'];
 
             <?php if (getMark($page_id, 'mark4') > 0) : ?>
                 <div class="first-row__descsrow">
-                    <div class="first-row__descsrowleft"><?= pll_e('quality') ?></div>
+                    <div class="first-row__descsrowleft">Качество строительства</div>
                     <div class="first-row__descsrowright">
                         <div class="first-row__descsrowline">
                             <div class="first-row__descsrowlinevalue" style="width: <?= getMark($page_id, 'mark4') / 5 * 100 ?>%"></div>

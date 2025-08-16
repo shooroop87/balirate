@@ -27,7 +27,7 @@ if (!empty($developer->post_name) and isset($developer->post_name)) :
     <div data-showmore-content="167" class="devscomment-item__showcontent"><? the_content(); ?>
     </div>
     <button hidden data-showmore-button type="button"
-      class="devscomment-item__showmore"><span><?php pll_e('more_btn'); ?></span><span><?php the_field('text_hide_' . $lang, 'options'); ?></span></button>
+      class="devscomment-item__showmore"><span>Подробнее</span><span><?php the_field('text_hide_' . $lang, 'options'); ?></span></button>
   </div>
   <div class="devscomment-item__bottom">
     <div class="devscomment-item__bottomleft">

@@ -65,7 +65,7 @@ $lang = pll_current_language();
             <!-- Оценка: срок сдачи -->
             <?php if (getMark($page_id, 'mark1') > 0) : ?>
                 <div class="first-row__descsrow">
-                    <div class="first-row__descsrowleft"><?= pll_e('srok') ?></div>
+                    <div class="first-row__descsrowleft">Срок сдачи</div>
                     <div class="first-row__descsrowright">
                         <div class="first-row__descsrowline">
                             <div class="first-row__descsrowlinevalue"
@@ -80,7 +80,7 @@ $lang = pll_current_language();
             <!-- Оценка: премиальность -->
             <?php if (getMark($page_id, 'mark2') > 0) : ?>
                 <div class="first-row__descsrow">
-                    <div class="first-row__descsrowleft"><?= pll_e('premi') ?></div>
+                    <div class="first-row__descsrowleft">Премиальность</div>
                     <div class="first-row__descsrowright">
                         <div class="first-row__descsrowline">
                             <div class="first-row__descsrowlinevalue"
@@ -95,7 +95,7 @@ $lang = pll_current_language();
             <!-- Оценка: поддержка -->
             <?php if (getMark($page_id, 'mark3') > 0) : ?>
                 <div class="first-row__descsrow">
-                    <div class="first-row__descsrowleft"><?= pll_e('supp') ?></div>
+                    <div class="first-row__descsrowleft">Поддержка</div>
                     <div class="first-row__descsrowright">
                         <div class="first-row__descsrowline">
                             <div class="first-row__descsrowlinevalue"
@@ -110,7 +110,7 @@ $lang = pll_current_language();
             <!-- Оценка: качество строительства -->
             <?php if (getMark($page_id, 'mark4') > 0) : ?>
                 <div class="first-row__descsrow">
-                    <div class="first-row__descsrowleft"><?= pll_e('quality') ?></div>
+                    <div class="first-row__descsrowleft">Качество строительства</div>
                     <div class="first-row__descsrowright">
                         <div class="first-row__descsrowline">
                             <div class="first-row__descsrowlinevalue"

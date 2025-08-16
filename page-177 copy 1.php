@@ -43,9 +43,11 @@ $itemmain = get_fields($idmain);
 				<a href="<?php the_permalink(); ?>" class="news-topitem__name"><?= $topbaza->post_title ?></a>
 				<div class="news-topitem__text"><?= $itemmain['text_mini'] ?> </div>
 				<a href="<?php the_permalink(); ?>"
-					class="news-topitem__link icon-arrow-r-t"><?php pll_e('more_btn'); ?></a>
+					class="news-topitem__link icon-arrow-r-t">Подробнее</a>
 			</div>
 		</div>
+
+
 
 		<div class="knowledge-page__blocks">
 			<?php
@@ -62,66 +64,63 @@ $itemmain = get_fields($idmain);
 			);
 			$categories = get_categories($args);
 
+
 			foreach ($categories as $category) {
 				if ($category->term_id > 1) {
 					$catID = $category->term_id;
+					;
 					$url = get_term_link($category); ?>
 					<div class="knowledge-page__block">
 						<h2 class="knowledge-page__blocktitle title-s"><?php echo $category->name; ?> </h2>
 						<div class="knowledge-page__slidercont slidercont">
 							<div class="news__slider swiper">
 								<div class="news__wrapper swiper-wrapper">
-									<?php 
-									// ИСПРАВЛЕНИЕ: Используем WP_Query вместо query_posts
-									$knowledge_query = new WP_Query(array(
-										'posts_per_page' => 8,
-										'cat' => $catID,
-										'post_type' => array('knowledge')
-									));
-									
-									if ($knowledge_query->have_posts()): 
-										while ($knowledge_query->have_posts()): 
-											$knowledge_query->the_post();
-											// ИСПРАВЛЕНИЕ: Передаем get_post() вместо the_post()
-											get_template_part('templates/baza_slide', null, get_post());
-										endwhile;
-										wp_reset_postdata(); // ИСПРАВЛЕНИЕ: Сбрасываем данные запроса
-									endif;
-									?>
+									<?php if (have_posts()):
+										query_posts(array(
+											'posts_per_page' => 8,
+											'cat' => $catID,
+											'post_type' => array('knowledge')
+										)); ?>
+										<?php while (have_posts()): ?>
+											<? get_template_part('templates/baza_slide', null, the_post()); ?>
+										<?php endwhile; ?>
+									<?php endif;
+									wp_reset_query(); ?>
 								</div>
 							</div>
 						</div>
 					</div>
+
 					<?php
 				}
 			}
+
 			?>
 		</div>
 
+
 		<?php
 		$paged = (get_query_var('paged')) ? get_query_var('paged') : 1;
-		
-		// ИСПРАВЛЕНИЕ: Используем WP_Query вместо query_posts
-		$main_query = new WP_Query(array(
-			'posts_per_page' => 6,
-			'post_type' => array('knowledge'),
-			'paged' => $paged
-		));
-		
-		if ($main_query->have_posts()): ?>
-			<!-- Здесь можно добавить вывод основных статей если нужно -->
-		<?php else: ?>
-			<div class="knowledge-page__bottom">
-				<h3>Ничего не найдено</h3>
-			</div>
+		if (have_posts()):
+			query_posts(array(
+				'posts_per_page' => 6,
+				'post_type' => array('knowledge'),
+				'paged' => $paged
+			)); ?>
+			<? if (!have_posts()) { ?>
+				<div class="knowledge-page__bottom">
+					<h3>Ничего не найдено</h3>
+				</div> <? } ?>
 		<?php endif;
-		wp_reset_postdata();
-		?>
+		wp_reset_query(); ?>
+
 
 		<? get_template_part('templates/bottom_advertising_banner', null, $page_fields); ?>
 
 	</div>
+	</div>
 </section>
+
 
 <?php
 get_footer();

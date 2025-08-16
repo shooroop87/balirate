@@ -35,6 +35,6 @@ $rate = getRate($filds['developer']->ID);
       <span><? the_field('date_ob_' . $lang, 'options') ?></span>
       <span><?= $filds['date'] ?></span>
     </div>
-    <a href="<?= get_permalink($id) ?>" class="offer-item__link icon-arrow-r-t"><? pll_e('more_btn') ?></a>
+    <a href="<?= get_permalink($id) ?>" class="offer-item__link icon-arrow-r-t">Подробнее</a>
   </div>
 </div>

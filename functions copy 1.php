@@ -705,8 +705,7 @@ function rotate_banners_on_refresh() {
  * Получение текущего набора баннеров
  */
 function get_current_banner_set() {
-    // return get_option('current_banner_set', 0);
-    return 0;
+    return get_option('current_banner_set', 0);
 }
 
 /**
@@ -982,8 +981,3 @@ add_action('wp_loaded', function() {
  */
 
 define( 'PLL_REMOVE_ALL_DATA', true );
-
-function yourtheme_setup() {
-    add_theme_support( 'title-tag' );
-}
-add_action( 'after_setup_theme', 'yourtheme_setup' );

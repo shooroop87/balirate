@@ -22,6 +22,6 @@ $lang= pll_current_language();
                       <span><?php the_field('date_ob_'.$lang, 'options'); ?></span>
                       <span><?=$filds['date']?></span>
                     </div>
-                    <a href="<?=get_permalink($id);?>" class="offer-item__link icon-arrow-r-t"><?php pll_e('more_btn'); ?></a>
+                    <a href="<?=get_permalink($id);?>" class="offer-item__link icon-arrow-r-t">Подробнее</a>
                   </div>
                 </div>

@@ -237,7 +237,7 @@ $catid = ($lang == 'en') ? 339 : 195;
             <?php endif; endforeach; ?>
         </ul>
 
-        <div class="first__body first__body--reverce">
+        <div class="first__body first__body--reverce first__body--full">
             <div class="first__left">
                 <div class="first__objects">
                     <?php

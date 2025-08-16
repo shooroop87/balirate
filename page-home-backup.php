@@ -1,84 +1,58 @@
 <?php
 /**
- * Главный шаблон страницы (page-home.php) с динамическими баннерами.
+ * Главный шаблон страницы (page-home.php).
+ * Используется для отображения главной страницы сайта.
+ * Использует данные из ACF (Advanced Custom Fields).
  */
 
+// Подключаем header
 get_header(); 
 
+// Получаем ID текущей страницы и все ACF-поля
 $page_id = get_queried_object_id();
 $page_fields = get_fields($page_id);
 ?>
 
-<?php if ($page_fields['tabs']) { ?>
+<?php 
+// --- ВКЛАДКИ С РЕЙТИНГАМИ ---
+if ($page_fields['tabs']) { ?>
 <section class="first">
   <div class="first__container">
 
-    <!-- Рекламный баннер сверху (динамический) -->
-    <div class="dynamic-top-banner">
-      <?php foreach ($page_fields['tabs'] as $num => $tab): ?>
-        <?php if ($tab['list']) : ?>
-          <div class="banner-content" data-tab="<?= $num ?>" style="<?= $num === 0 ? '' : 'display: none;' ?>">
-            <?php if (!empty($tab['banner_pk'])) : ?>
-              <a href="#" data-popup="#popup-lead" class="w-100">
-                <img src="<?= $tab['banner_pk']['sizes']['banner_desc'] ?>" class="banner-pk" alt="<?= $tab['banner_pk']['alt'] ?>">
-              </a>
-            <?php endif; ?>
-            
-            <?php if (!empty($tab['banner_mob'])) : ?>
-              <a href="#" data-popup="#popup-lead" class="w-100">
-                <img src="<?= $tab['banner_mob']['sizes']['banner-vertical'] ?>" class="banner-mob" alt="<?= $tab['banner_mob']['alt'] ?>">
-              </a>
-            <?php endif; ?>
-          </div>
-        <?php endif; ?>
-      <?php endforeach; ?>
-    </div>
+    <!-- Рекламный баннер сверху -->
+    <?php get_template_part('templates/advertising_banner', null, $page_fields); ?>
 
+    <!-- Заголовок рейтинга -->
     <h1 class="first__title title"><?= $page_fields['rating_title'] ?></h1>
 
     <div class="first__body">
       <div class="first__left">
         <!-- Вкладки -->
         <div data-tabs class="first__tabs">
-          <?php
-// Массив иконок для каждой вкладки
-$tab_icons = [
-    'Лучшие девелоперы' => 'https://balirate.com/wp-content/uploads/2025/06/group-1.png',
-    'Выбор Агентов' => 'https://balirate.com/wp-content/uploads/2025/06/group-7.png', 
-    'Надежные девелоперы' => 'https://balirate.com/wp-content/uploads/2025/06/group-4.png',
-    'Девелоперы премиум сегмента' => 'https://balirate.com/wp-content/uploads/2025/06/group-5.png',
-    'Девелоперы бизнес+ сегмента' => 'https://balirate.com/wp-content/uploads/2025/06/group-8.png',
-    'Агентства недвижимости' => 'https://balirate.com/wp-content/uploads/2025/06/group-4-1.png'
-];
-?>
-
-<nav data-tabs-titles class="first__tabsnavigation">
-    <?php foreach ($page_fields['tabs'] as $num => $tab): ?>
-        <?php if ($tab['list']) : ?>
-            <button type="button" class="first__tabstitle <?= $num === 0 ? '_tab-active' : '' ?>" data-tab-index="<?= $num ?>">
-                <?php 
-                // Получаем иконку для текущей вкладки
-                $icon_url = isset($tab_icons[$tab['title']]) ? $tab_icons[$tab['title']] : '';
-                ?>
-                <?php if ($icon_url): ?>
-                    <img src="<?= $icon_url ?>" alt="<?= $tab['title'] ?>" class="tab-icon">
-                <?php endif; ?>
-                <span class="tab-text"><?= $tab['title'] ?></span>
-            </button>
-        <?php endif; ?>
-    <?php endforeach; ?>
-</nav>
+          <nav data-tabs-titles class="first__tabsnavigation">
+            <!-- Заголовки вкладок -->
+            <?php foreach ($page_fields['tabs'] as $num => $tab): ?>
+              <?php if ($tab['list']) : ?>
+                <button type="button" class="first__tabstitle <?= $num === 0 ? '_tab-active' : '' ?>">
+                  <?= $tab['title'] ?>
+                </button>
+              <?php endif; ?>
+            <?php endforeach; ?>
+          </nav>
 
           <!-- Контент вкладок -->
           <div data-tabs-body class="first__tabscontent">
             <?php foreach ($page_fields['tabs'] as $num => $tab): ?>
               <?php if ($tab['list']) : ?>
-                <div class="first__tabsbody" data-tab-content="<?= $num ?>">
+                <div class="first__tabsbody">
                   <div class="first__rows">
+                    <!-- Элементы внутри вкладки (девелоперы и т.п.) -->
                     <?php foreach ($tab['list'] as $item): ?>
                       <?php get_template_part('templates/item', null, $item); ?>
                     <?php endforeach; ?>
                   </div>
+
+                  <!-- Кнопка "смотреть весь список" + подсказка -->
                   <div class="first__leftbottom">
                     <a href="<?= get_permalink(132); ?>" class="first__leftlink button button--gray">Смотреть весь список</a>
                     <div class="first__tippy"
@@ -96,76 +70,26 @@ $tab_icons = [
         </div>
       </div>
 
-      <!-- Боковые баннеры (динамические) -->
-      <div class="first__right first__right--mt">
-        <div class="first__rightitems adsitems">
-          <div class="dynamic-side-banners">
-            <?php foreach ($page_fields['tabs'] as $num => $tab): ?>
-              <?php if ($tab['list']) : ?>
-                <div class="side-banners-content" data-tab="<?= $num ?>" style="<?= $num === 0 ? '' : 'display: none;' ?>">
-                  <?php if (!empty($tab['side_banners'])) : ?>
-                    <?php foreach ($tab['side_banners'] as $banner): ?>
-                      <div class="adsitems__item adsitems-item">
-                        <a href="#" data-popup="#popup-lead">
-                          <img src="<?= $banner['image']['sizes']['banner-vertical'] ?>" alt="<?= $banner['name'] ?>" loading="lazy">
-                        </a>
-                      </div>
-                    <?php endforeach; ?>
-                  <?php endif; ?>
-                </div>
-              <?php endif; ?>
+      <!-- Рекламные баннеры справа -->
+      <?php if ($page_fields['banners']) : ?>
+        <div class="first__right first__right--mt">
+          <div class="first__rightitems adsitems">
+            <?php foreach ($page_fields['banners'] as $item): ?>
+              <div class="adsitems__item adsitems-item">
+                <a href="<?= $item['link'] ?>" target="_blank" rel="nofollow">
+                  <img src="<?= $item['image']['sizes']['banner-vertical'] ?>" alt="<?= $item['name'] ?>" loading="lazy">
+                </a>
+              </div>
             <?php endforeach; ?>
           </div>
         </div>
-      </div>
+      <?php endif; ?>
     </div>
 
-    <!-- Нижний баннер (динамический) -->
-    <div class="dynamic-bottom-banner">
-      <?php foreach ($page_fields['tabs'] as $num => $tab): ?>
-        <?php if ($tab['list']) : ?>
-          <div class="bottom-banner-content" data-tab="<?= $num ?>" style="<?= $num === 0 ? '' : 'display: none;' ?>">
-            <?php if (!empty($tab['bottom_banner_pk'])) : ?>
-              <a href="#" data-popup="#popup-lead" class="w-100">
-                <img src="<?= $tab['bottom_banner_pk']['sizes']['banner_desc'] ?>" class="banner-pk __bottom" alt="<?= $tab['bottom_banner_pk']['alt'] ?>">
-              </a>
-            <?php endif; ?>
-            
-            <?php if (!empty($tab['bottom_banner_mob'])) : ?>
-              <a href="#" data-popup="#popup-lead" class="w-100">
-                <img src="<?= $tab['bottom_banner_mob']['sizes']['banner-vertical'] ?>" class="banner-mob __bottom" alt="<?= $tab['bottom_banner_mob']['alt'] ?>">
-              </a>
-            <?php endif; ?>
-          </div>
-        <?php endif; ?>
-      <?php endforeach; ?>
-    </div>
+    <!-- Рекламный баннер внизу -->
+    <?php get_template_part('templates/bottom_advertising_banner', null, $page_fields); ?>
   </div>
 </section>
-
-<!-- JavaScript для смены баннеров -->
-<script>
-document.addEventListener('DOMContentLoaded', function() {
-    const tabButtons = document.querySelectorAll('.first__tabstitle');
-    
-    tabButtons.forEach(button => {
-        button.addEventListener('click', function() {
-            const tabIndex = this.getAttribute('data-tab-index');
-            
-            // Скрываем все баннеры
-            document.querySelectorAll('[data-tab]').forEach(el => {
-                el.style.display = 'none';
-            });
-            
-            // Показываем баннеры для текущей вкладки
-            document.querySelectorAll(`[data-tab="${tabIndex}"]`).forEach(el => {
-                el.style.display = '';
-            });
-        });
-    });
-});
-</script>
-
 <?php } ?>
 
 <?php 
@@ -173,17 +97,9 @@ document.addEventListener('DOMContentLoaded', function() {
 if ($page_fields['offers']) { ?>
 <section class="offers">
   <div class="offers__container">
-    
-    <!-- Заголовок и кнопки в одной строке -->
-    <div class="offers__header-row">
-      <h2 class="offers__title title"><?= $page_fields['offer_title'] ?></h2>
-      <div class="offers__buttons">
-        <a href="#" data-popup="#popup-lead" class="offers__link2 button catalog-btn">Скачать каталог</a>
-        <a href="<?= get_permalink(195); ?>" class="offers__link button button--gray">Смотреть все объекты</a>
-      </div>
-    </div>
+    <h2 class="offers__title title"><?= $page_fields['offer_title'] ?></h2>
+    <a href="<?= get_permalink(195); ?>" class="offers__link button button--gray">Смотреть все объекты</a>
 
-    <!-- Слайдер -->
     <div class="offers__slidercont slidercont">
       <div class="offers__slider swiper">
         <div class="offers__wrapper swiper-wrapper">
@@ -192,10 +108,10 @@ if ($page_fields['offers']) { ?>
           <?php endforeach; ?>
         </div>
       </div>
+      <!-- Кнопки навигации -->
       <button class="offers__swiper-button-prev swiper-button icon-arrow-d-b"></button>
       <button class="offers__swiper-button-next swiper-button icon-arrow-d-b"></button>
     </div>
-    
   </div>
 </section>
 <?php } ?>
@@ -240,6 +156,10 @@ if (have_posts()) { ?>
 </section>
 <?php } wp_reset_query(); ?>
 
+
+
+
+
 <?php
 // --- СЕКЦИЯ "ОТЗЫВЫ" ---
 $reviews_query = new WP_Query([
@@ -274,6 +194,7 @@ if ($reviews_query->have_posts()): ?>
 	</section>
 <?php endif;
 wp_reset_postdata(); ?>
+
 
 <?php 
 // --- СЕКЦИЯ "НОВОСТИ" ---

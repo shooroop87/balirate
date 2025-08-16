@@ -38,8 +38,8 @@ $page_fields = get_fields($page_id);
 			$paged = (get_query_var('paged')) ? get_query_var('paged') : 1;
 			if (have_posts()):
 				query_posts(array(
-					'posts_per_page' => 4,
-					'post_type' => array('news'),
+					'posts_per_page' => 5,
+					'post_type' => array('obzori'),
 					'paged' => $paged
 				)); ?>
 				<? if (have_posts()) { ?>

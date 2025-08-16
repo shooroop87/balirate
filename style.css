@@ -140,7 +140,7 @@ body{
   -moz-osx-font-smoothing:grayscale 
 }
 button, input, textarea{
-  font-family:OpenSans;
+  font-family:Raleway;
   font-size:inherit;
   line-height:inherit;
   color:inherit;
@@ -631,7 +631,7 @@ body::after{
   transition:transform .3s ease 0s;
   transition:transform .3s ease 0s,-webkit-transform .3s ease 0s;
   background-color:var(--whiteColor);
-  padding:2.5rem;
+  padding: 1rem 1.8rem 1rem 1rem;
   width:100%;
   max-width:30.75rem;
   border-radius:1.25rem
@@ -649,8 +649,9 @@ body::after{
   transition:color .3s
 }
 .popup__title{
+  font-family: Raleway;
   text-align:center;
-  font-weight:700;
+  font-weight:800;
   line-height:140%;
   text-transform:uppercase;
   margin-bottom:1.875rem;
@@ -725,7 +726,7 @@ body::after{
   width:100%;
   text-align:center;
   color:var(--whiteColor);
-  font-size:.75rem;
+  font-size:1rem;
   line-height:126%;
   margin-top:1.25rem
 }
@@ -817,6 +818,7 @@ body::after{
   transition:transform .4s,-webkit-transform .4s
 }
 .first-row__name{
+  font-family: Raleway;
   font-size:1.375rem;
   line-height:109.090909%;
   transition:color .3s;
@@ -844,9 +846,11 @@ body::after{
   transform:translateY(1px)
 }
 .first-row__right{
-  display:flex;
-  align-items:center;
-  align-self:start
+    display: flex;
+    align-self: start;
+    flex-direction: column;
+    align-items: flex-end;
+    margin-right: 5px;
 }
 .first-row__right .rating{
   display:flex;
@@ -859,6 +863,7 @@ body::after{
   color:var(--opGrayColor)
 }
 .first-row__arrow{
+  display: none!important;
   width:1.25rem;
   height:1.25rem;
   flex:0 0 1.25rem;
@@ -1181,11 +1186,13 @@ body::after{
   display:flex;
   gap:.25rem;
   flex-direction:column;
-  font-size:.75rem;
+  font-size: 14px;
+  font-weight: 300;
   line-height:126%;
   color:var(--opGrayColor)
 }
 .offer-item__link{
+  font-family: Manrope;
   display:flex;
   flex-direction:row-reverse;
   align-self:flex-start;
@@ -1340,7 +1347,7 @@ body::after{
   align-items:flex-start
 }
 .devscomment-item__bottomleft{
-  display:grid;
+  display:flex;
   -webkit-column-gap:.625rem;
   -moz-column-gap:.625rem;
   column-gap:.625rem;
@@ -1352,7 +1359,8 @@ body::after{
   border-radius:50%;
   aspect-ratio:1/1;
   overflow:hidden;
-  grid-row:1/3
+  grid-row:1/3;
+  display: none;
 }
 .devscomment-item__bottomname{
   line-height:105%;
@@ -1475,7 +1483,8 @@ body::after{
   gap:.625rem;
   align-items:center;
   color:var(--buttonActive);
-  transition:color .3s
+  transition:color .3s;
+  text-transform: capitalize;
 }
 .news-item__link::before{
   width:1.25rem;
@@ -1802,15 +1811,19 @@ body::after{
   flex:1 1 auto
 }
 .header-bottom__right{
+  font-family: Raleway;
+  font-weight: 700;
   display:flex;
-  gap:.625rem
+  gap:.1rem
 }
 .header-bottom__form{
-  flex:0 0 13.75rem;
-  width:13.75rem;
+  flex:0 0 11.75rem;
+  width: 13.75rem;
   display:none
 }
-.header-bottom__form .search-form__content{
+.header-bottom__form 
+
+__content{
   top:calc(100% + 1.5rem)
 }
 .header-bottom__popuplink.button-login{
@@ -1823,14 +1836,16 @@ body::after{
 }
 .menu__link{
   line-height:126%;
-  transition:color .3s
+  transition:color .3s;
+  text-transform: capitalize;
 }
 .icon-menu{
   display:none
 }
 .search-form{
   height:3rem;
-  position:relative
+  position:relative;
+    display:none;
 }
 .search-form__form{
   border:1px solid var(--lightGrayColor);
@@ -1967,8 +1982,8 @@ body::after{
   gap:.625rem;
   align-items:center;
   justify-content:center;
-  padding:.875rem 2.5rem;
   border-radius:6.25rem;
+  padding: .875rem 1.5rem;
   background-color:var(--buttonActive);
   transition:background-color .3s;
   font-size:1rem;
@@ -2016,12 +2031,12 @@ body::after{
   font-size:1rem;
   font-weight:500;
   line-height:126%;
-  transition:color .3s
+  transition:color .3s;
+  text-transform: capitalize;
 }
 .footer__right{
   display:flex;
   flex-direction:column;
-  gap:1.875rem
 }
 .footer__right .search-form__content{
   bottom:calc(100% + .3125rem)
@@ -2040,10 +2055,10 @@ body::after{
   transition:color .3s
 }
 .page{
-  padding:2.5rem 0
+  padding:2% 0;
 }
 .first{
-  padding-bottom:2.5rem
+  padding-bottom:2.0rem
 }
 .first__body{
   display:flex;
@@ -2091,6 +2106,7 @@ body::after{
   align-items:center
 }
 .first__leftlink{
+  display: none!important;
   background-color:var(--buttonGrayColor);
   color:var(--mainColor)
 }
@@ -2158,10 +2174,14 @@ body::after{
   font-size: 1rem;
   line-height: 139.375%;
 }
-.offers__link2{
-  align-self:center;
-  background-color:var(--buttonGrayColor);
-  color:var(--mainColor)
+.offers__link2 {
+  align-self: center;
+  background-color: var(--buttonActive);
+  color: #fff;
+}
+.offers__link2:hover {
+  background-color: var(--buttonHover);
+  color: #fff;
 }
 .offers__slidercont2{
   min-width:0
@@ -2923,7 +2943,7 @@ body::after{
   gap:.625rem;
   align-items:center;
   justify-content:center;
-  padding:.875rem 2.5rem;
+  padding:.875rem 1.5rem;
   border-radius:6.25rem;
   background-color:var(--buttonActive);
   transition:background-color .3s;
@@ -3812,8 +3832,10 @@ body:not(.lg-from-hash) .lg-outer.lg-start-zoom .lg-item:not(.lg-zoomable).lg-co
        display:none 
   }
    .first__title{
-       margin-bottom:2.5rem;
-       max-width:calc(100% - 18.75rem) 
+      font-family: Raleway;
+      font-weight: 800;
+      margin-bottom:2.5rem;
+      max-width:calc(100% - 18.75rem) 
   }
    .first__left{
        flex:0 1 calc(100% - 18.75rem);
@@ -3872,6 +3894,13 @@ body:not(.lg-from-hash) .lg-outer.lg-start-zoom .lg-item:not(.lg-zoomable).lg-co
    .object-page__blockaddress{
        font-size:1rem;
        font-weight:700 
+  }
+  .first__body--full .first__left {
+    flex: 0 0 100%;
+    width: 100%;
+  }
+  .first__body--full .first__right {
+    display: none;
   }
 }
 @media (min-width:61.99875em){
@@ -4005,9 +4034,6 @@ body:not(.lg-from-hash) .lg-outer.lg-start-zoom .lg-item:not(.lg-zoomable).lg-co
    .object-page__body{
        gap:2.5rem
   }
-   .object-page__smallslidercont{
-       padding:0 .9375rem 
-  }
 }
 @media (min-width:80.625em){
   .slidercont{
@@ -4058,10 +4084,8 @@ body:not(.lg-from-hash) .lg-outer.lg-start-zoom .lg-item:not(.lg-zoomable).lg-co
   }
    .header-bottom__popuplink.button-login{
        padding:.875rem;
-       aspect-ratio:1/1 
   }
    .header-bottom__popuplink.button-login span{
-       display:none 
   }
    .first__objects{
        -webkit-column-gap:.625rem;
@@ -4379,7 +4403,8 @@ body:not(.lg-from-hash) .lg-outer.lg-start-zoom .lg-item:not(.lg-zoomable).lg-co
        left:0 
   }
    .menu__body .header-bottom__popuplink.button-login{
-       display:flex 
+       display:flex;
+       width: 100%;
   }
    .menu__body .header-bottom__form{
        display:block 
@@ -4452,11 +4477,10 @@ body:not(.lg-from-hash) .lg-outer.lg-start-zoom .lg-item:not(.lg-zoomable).lg-co
        grid-row:4/5 
   }
    .page{
-       padding:1.25rem 0 
+       padding: 0;
   }
    .first{
-       padding-bottom:1.25rem;
-       padding-top:1.25rem 
+    padding-bottom:0.5rem;
   }
    .first__title{
        margin-bottom:1.25rem 
@@ -4748,7 +4772,7 @@ body:not(.lg-from-hash) .lg-outer.lg-start-zoom .lg-item:not(.lg-zoomable).lg-co
    .offers__link{
        order:2 
   }
-   .offers__slidercont.slidercont .swiper-button{
+  .offers__slidercont.slidercont .swiper-button{
        top:0;
        margin-top:calc(57% - 1rem);
        -webkit-transform:translate(0);
@@ -5354,15 +5378,16 @@ button, a{
     font-size: 26px;
     font-weight: 700;
 }
-.banner-pk , .banner-mob { width:100%; margin:5px 0px 40px 0px; border-radius:20px;}
+.banner-pk , .banner-mob { width:100%; margin:5px 0px 25px 0px; border-radius:20px;}
 .banner-mob { display:none;}
 @media (max-width:768px) {
-.banner-mob { display:block;}	
-.banner-pk { display:none;}
+.banner-mob { display:none;}
 }
-.banner-pk.__bottom, .banner-mob.__bottom{
-  margin-top: 40px;
+.banner-pk.__bottom {
   margin-bottom: 5px;
+}
+.banner-mob.__bottom {
+  display: none;
 }
 .developer-page__icon {
     display: inline-block;
@@ -5408,7 +5433,7 @@ button, a{
 
 .popup__content--wide {
 	width: 90%;
-	max-width: 1100px;
+	max-width: 800px;
 	background: #fff;
 	border-radius: 16px;
 	overflow: hidden;
@@ -5417,15 +5442,13 @@ button, a{
 }
 
 .popup__close {
-	position: absolute;
-	top: 20px;
-	right: 20px;
-	background: none;
-	border: none;
-	font-size: 28px;
-	line-height: 1;
-	cursor: pointer;
-	z-index: 10;
+  position: absolute;
+  right: 10px;
+  border: none;
+  font-size: 16px;
+  line-height: 1;
+  cursor: pointer;
+  z-index: 10;
 }
 
 .popup__grid {
@@ -5436,7 +5459,7 @@ button, a{
 
 .popup__form-block {
 	flex: 1;
-	padding: 40px 40px 40px 20px;
+	padding: 20px 40px 20px 20px;
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
@@ -5473,7 +5496,7 @@ button, a{
 	max-height: 100%;
 	object-fit: cover;
 	display: block;
-	border-radius: 0;
+	border-radius: 12px;
 }
 
 @media (max-width: 768px) {
@@ -5491,3 +5514,1173 @@ button, a{
 	}
 }
 .swiper-slide {height: auto;}
+/* Секция партнеров */
+.partners {
+    padding: 60px 0;
+}
+
+.partners__container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 15px;
+}
+
+.partners__top {
+    margin-bottom: 30px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.partners__title {
+    font-size: 28px;
+    font-weight: 700;
+}
+
+.partners__slidercont {
+    position: relative;
+    padding: 0 40px;
+}
+
+.partners__slider {
+    overflow: hidden;
+}
+
+.partners__wrapper {
+    display: flex;
+}
+
+.partner-item {
+    height: 120px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 15px;
+    transition: transform 0.3s ease;
+}
+
+.partner-item:hover {
+    transform: scale(1.05);
+}
+
+.partner-item__image {
+    width: 100%;
+    height: 100%;
+    position: relative;
+}
+
+.partner-item__image img {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+}
+
+/* Кнопки навигации слайдера */
+.partners__swiper-button-prev,
+.partners__swiper-button-next {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background-color: #f5f5f5;
+    color: #333;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 10;
+    transition: background-color 0.3s ease;
+}
+
+.partners__swiper-button-prev {
+    left: 0;
+}
+
+.partners__swiper-button-next {
+    right: 0;
+}
+
+.partners__swiper-button-prev:hover,
+.partners__swiper-button-next:hover {
+    background-color: #e0e0e0;
+}
+@media (max-width: 767px) {
+    .partners {
+        padding: 40px 0;
+    }
+    
+    .partner-item {
+        height: 80px;
+    }
+}
+.news-page__row .news-topitem {
+    flex: 0 0 100%;
+}
+.news__top:not(:last-child) {
+    margin-bottom: 2.5rem;
+}
+.news-page__row .news-topitem {
+    flex: 0 0 100%;
+}
+.news-topitem {
+    border-radius: 1.25rem;
+    overflow: hidden;
+    padding: 2.5rem;
+    min-height: 27.1875rem;
+    position: relative;
+}
+.news-topitem img {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    -o-object-fit: cover;
+    object-fit: cover;
+}
+.news-page__row .news-topitem {
+    flex: 0 0 100%;
+}
+.news__top:not(:last-child) {
+    margin-bottom: 2.5rem;
+}
+.news-page__row .news-topitem {
+    flex: 0 0 100%;
+}
+.news-topitem {
+    border-radius: 1.25rem;
+    overflow: hidden;
+    padding: 2.5rem;
+    min-height: 27.1875rem;
+    position: relative;
+}
+@media (min-width: 61.9988em) {
+    .news-page__row .news-item {
+        flex: 0 1 calc((100% - 40px) / 3);
+    }
+}
+@media (min-width: 61.9988em) {
+    .news-page__row .news-item {
+        flex: 0 1 calc((100% - 40px) / 3);
+    }
+}
+.news-item {
+    box-shadow: 0 4px 15.9px 0 rgba(0, 0, 0, .0509803922);
+    border-radius: 1.25rem;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+}
+/* Основные стили для формы каталога Balirate */
+.header-bottom__form.catalog-form {
+    position: relative;
+    display: flex;
+    align-items: center;
+    height: 100%;
+}
+
+
+/* Кнопка "Получить каталог" в стиле сайта */
+.balirate-catalog-btn {
+    background: var(--buttonActive);
+    color: white;
+    border: none;
+    padding: 12px 20px;
+    border-radius: 6px;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 6px rgba(255,166,0, 0.3);
+    white-space: nowrap;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    font-family: inherit;
+}
+
+.balirate-catalog-btn:hover {
+    background: var(--buttonActive);
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(255,166,0, 0.4);
+}
+
+.balirate-catalog-btn:active {
+    transform: translateY(0);
+}
+
+.catalog-icon {
+    width: 16px;
+    height: 16px;
+    flex-shrink: 0;
+}
+
+.catalog-btn__text {
+    font-size: 14px;
+    line-height: 1;
+}
+
+/* Модальное окно в стиле Balirate */
+.balirate-catalog-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 99999;
+    display: none;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+}
+
+.balirate-catalog-modal.active {
+    display: flex;
+    opacity: 1;
+    visibility: visible;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+}
+
+.balirate-catalog-modal .catalog-modal__overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.7);
+    backdrop-filter: blur(4px);
+}
+
+.balirate-catalog-modal .catalog-modal__content {
+    position: relative;
+    background: white;
+    border-radius: 12px;
+    max-width: 520px;
+    width: 100%;
+    max-height: 90vh;
+    overflow-y: auto;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+    animation: modalSlideIn 0.3s ease;
+    z-index: 1;
+}
+
+@keyframes modalSlideIn {
+    from {
+        transform: scale(0.9) translateY(-30px);
+        opacity: 0;
+    }
+    to {
+        transform: scale(1) translateY(0);
+        opacity: 1;
+    }
+}
+
+.balirate-catalog-modal .catalog-modal__header {
+    padding: 28px 28px 0;
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    border-bottom: 1px solid #f0f0f0;
+    margin-bottom: 0;
+}
+
+.balirate-catalog-modal .catalog-modal__title {
+    margin: 0 0 20px 0;
+    font-size: 24px;
+    font-weight: 700;
+    color: #333;
+    line-height: 1.3;
+}
+
+.balirate-catalog-modal .catalog-modal__close {
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: #999;
+    transition: color 0.2s ease;
+    padding: 4px;
+    margin: -4px -4px 0 0;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.balirate-catalog-modal .catalog-modal__close:hover {
+    color: #333;
+    background: #f5f5f5;
+}
+
+.balirate-catalog-modal .catalog-modal__body {
+    padding: 20px 28px 28px;
+}
+
+.balirate-catalog-modal .catalog-modal__description {
+    color: #666;
+    margin: 0 0 24px;
+    line-height: 1.6;
+    font-size: 15px;
+}
+
+/* Стили для Contact Form 7 в стиле Balirate */
+.balirate-catalog-modal .wpcf7-form {
+    margin: 0;
+}
+
+.balirate-catalog-modal .wpcf7-form p {
+    margin: 0 0 20px;
+}
+
+.balirate-catalog-modal .wpcf7-form-control-wrap {
+    display: block;
+    position: relative;
+}
+
+.balirate-catalog-modal .wpcf7-form-control {
+    width: 100%;
+    padding: 14px 16px;
+    border: 2px solid #e1e5e9;
+    border-radius: 8px;
+    font-size: 15px;
+    transition: all 0.3s ease;
+    background: white;
+    box-sizing: border-box;
+    font-family: inherit;
+}
+
+.balirate-catalog-modal .wpcf7-form-control:focus {
+    outline: none;
+    border-color: var(--buttonActive);
+    box-shadow: 0 0 0 3px rgba(255,166,0, 0.1);
+}
+
+.balirate-catalog-modal textarea.wpcf7-form-control {
+    min-height: 100px;
+    resize: vertical;
+}
+
+.balirate-catalog-modal .wpcf7-submit {
+    background: var(--buttonActive);
+    color: white;
+    border: none;
+    padding: 16px 32px;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    width: 100%;
+    box-shadow: 0 3px 12px rgba(255,166,0, 0.3);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    font-family: inherit;
+}
+
+.balirate-catalog-modal .wpcf7-submit:hover {
+    background: var(--buttonActive);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(255,166,0, 0.4);
+}
+
+.balirate-catalog-modal .wpcf7-submit:active {
+    transform: translateY(0);
+}
+
+/* Чекбокс согласия */
+.balirate-catalog-modal .form-privacy {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    margin: 24px 0 !important;
+    font-size: 14px;
+    line-height: 1.5;
+}
+
+.balirate-catalog-modal .privacy-checkbox {
+    margin: 0 !important;
+    flex-shrink: 0;
+}
+
+.balirate-catalog-modal .form-privacy a {
+    color: var(--buttonActive);
+    text-decoration: underline;
+}
+
+.balirate-catalog-modal .form-privacy a:hover {
+    text-decoration: none;
+}
+
+/* Сообщения */
+.balirate-catalog-modal .wpcf7-not-valid-tip {
+    color: var(--buttonActive);
+    font-size: 13px;
+    margin-top: 6px;
+    display: block;
+}
+
+.balirate-catalog-modal .wpcf7-response-output {
+    border: none !important;
+    margin: 20px 0 0 !important;
+    padding: 16px 20px !important;
+    border-radius: 8px !important;
+    font-size: 15px !important;
+    font-weight: 500;
+}
+
+.balirate-catalog-modal .wpcf7-mail-sent-ok {
+    background: #d4edda !important;
+    color: #155724 !important;
+    border-left: 4px solid #28a745 !important;
+}
+
+.balirate-catalog-modal .wpcf7-validation-errors,
+.balirate-catalog-modal .wpcf7-mail-sent-ng {
+    background: #f8d7da !important;
+    color: #721c24 !important;
+    border-left: 4px solid var(--buttonActive)!important;
+}
+
+/* Адаптивность для Balirate */
+@media (max-width: 1024px) {
+    .balirate-catalog-btn {
+        padding: 10px 16px;
+        font-size: 13px;
+    }
+}
+
+@media (max-width: 768px) {
+    .balirate-catalog-btn {
+        padding: 10px 14px;
+        font-size: 12px;
+    }
+    
+    .balirate-catalog-modal .catalog-modal__content {
+        margin: 20px;
+        width: calc(100% - 40px);
+    }
+    
+    .balirate-catalog-modal .catalog-modal__header {
+        padding: 24px 24px 0;
+    }
+    
+    .balirate-catalog-modal .catalog-modal__body {
+        padding: 20px 24px 24px;
+    }
+    
+    .balirate-catalog-modal .catalog-modal__title {
+        font-size: 22px;
+    }
+}
+
+@media (max-width: 480px) {
+    .catalog-btn__text {
+        display: none;
+    }
+    
+    .balirate-catalog-btn {
+        padding: 10px;
+        min-width: 44px;
+        justify-content: center;
+    }
+    
+    .balirate-catalog-modal.active {
+        padding: 10px;
+    }
+    
+    .balirate-catalog-modal .catalog-modal__content {
+        margin: 0;
+        width: 100%;
+        border-radius: 8px;
+    }
+    
+    .balirate-catalog-modal .catalog-modal__header {
+        padding: 20px 20px 0;
+    }
+    
+    .balirate-catalog-modal .catalog-modal__body {
+        padding: 16px 20px 20px;
+    }
+}
+/* Планшеты (iPad, устройства с шириной от 768px до 1024px) */
+@media screen and (min-width: 768px) and (max-width: 1024px) {
+.header-bottom__form{
+  flex:0 0 11rem;
+  width:13.75rem;
+  display:none
+}
+}
+/* CSS стили только для блока "Связаться с нами" в footer */
+
+.footer__right {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.footer__right .footer__menulistname {
+    font-size: 18px;
+    font-weight: 600;
+    color: #333;
+    margin-bottom: 5px;
+}
+
+/* Стили для Contact Form 7 */
+.footer__right .contact-form {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    width: 100%;
+}
+
+.footer__right .contact-form .wpcf7-form-control-wrap {
+    flex: 1;
+    width: 100%;
+    max-width: 100%;
+}
+
+/* Поле ввода телефона */
+.footer__right .contact-form .wpcf7-tel {
+    flex: 1;
+    padding: 12px 16px;
+    border: 2px solid #e0e0e0;
+    border-radius: 6px;
+    font-size: 14px;
+    color: #333;
+    background: #fff;
+    transition: border-color 0.3s ease;
+    min-width: 0;
+    width: 100%;
+}
+
+.footer__right .contact-form .wpcf7-tel:focus {
+    outline: none;
+    border-color: #FFA600;
+}
+
+.footer__right .contact-form .wpcf7-tel::placeholder {
+    color: #999;
+}
+
+/* Кнопка отправки */
+.footer__right .contact-form .wpcf7-submit {
+    background: #FFA600;
+    color: white;
+    border: none;
+    padding: 12px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: 500;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    flex: 0 0 48px;
+    width: 48px;
+    height: 48px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.footer__right .contact-form .wpcf7-submit:hover {
+    background: #e6940a;
+    transform: translateY(-1px);
+}
+
+/* Заметка под формой */
+.footer__right .contact-form-note {
+    font-size: 12px;
+    color: #666;
+    line-height: 1.4;
+    margin-top: 8px;
+}
+
+/* Убираем стандартные отступы CF7 */
+.footer__right .contact-form p {
+    margin: 0;
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    width: 100%;
+}
+
+.footer__right .contact-form p > span:first-child {
+    flex: 7;
+}
+
+.footer__right .contact-form p > input[type="submit"] {
+    flex: 1;
+}
+
+.footer__right .contact-form br {
+    display: none;
+}
+.wpcf7-spinner {
+    display: contents;
+}
+
+/* Responsive для мобильных */
+@media (max-width: 768px) {
+    .footer__right .contact-form {
+        flex-direction: column;
+        gap: 12px;
+    }
+    
+    .footer__right .contact-form .wpcf7-submit {
+        width: 100%;
+    }
+}
+
+/* Grid стили для десктопа */
+@media (min-width: 61.9988em) {
+    .footer__right {
+        grid-row: 1 / 3;
+        grid-column: 3 / 4;
+    }
+}
+
+/* Секция партнеров */
+.partners {
+    padding: 60px 0;
+}
+
+.partners__container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 15px;
+}
+
+.partners__top {
+    margin-bottom: 30px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.partners__title {
+    font-size: 28px;
+    font-weight: 700;
+}
+
+.partners__slidercont {
+    position: relative;
+    padding: 0 40px;
+}
+
+.partners__slider {
+    overflow: hidden;
+}
+
+.partners__wrapper {
+    display: flex;
+}
+
+.partner-item {
+    height: 120px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 15px;
+    transition: transform 0.3s ease;
+}
+
+.partner-item:hover {
+    transform: scale(1.05);
+}
+
+.partner-item__image {
+    width: 100%;
+    height: 100%;
+    position: relative;
+}
+
+.partner-item__image img {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+}
+
+/* Кнопки навигации слайдера */
+.partners__swiper-button-prev,
+.partners__swiper-button-next {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background-color: #f5f5f5;
+    color: #333;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 10;
+    transition: background-color 0.3s ease;
+}
+
+.partners__swiper-button-prev {
+    left: 0;
+}
+
+.partners__swiper-button-next {
+    right: 0;
+}
+
+.partners__swiper-button-prev:hover,
+.partners__swiper-button-next:hover {
+    background-color: #e0e0e0;
+}
+
+@media (max-width: 767px) {
+    .partners {
+        padding: 40px 0;
+    }
+    
+    .partner-item {
+        height: 80px;
+    }
+}
+.dynamic-bottom-banner {
+  padding-top: 3%;
+}
+/* CSS для плавной смены баннеров */
+.dynamic-top-banner,
+.dynamic-bottom-banner,
+.dynamic-side-banners {
+    position: relative;
+    overflow: hidden;
+}
+
+.banner-content,
+.bottom-banner-content,
+.side-banners-content {
+    transition: opacity 0.5s ease-in-out, transform 0.3s ease;
+    opacity: 1;
+}
+
+.banner-content.hidden,
+.bottom-banner-content.hidden,
+.side-banners-content.hidden {
+    opacity: 0;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    pointer-events: none;
+}
+
+.banner-rotation-active {
+    animation: bannerFadeIn 0.5s ease-in-out;
+}
+
+@keyframes bannerFadeIn {
+    from { 
+        opacity: 0; 
+        transform: translateY(10px);
+    }
+    to { 
+        opacity: 1; 
+        transform: translateY(0);
+    }
+}
+
+/* Стили для индикатора текущей вкладки */
+.first__tabstitle {
+    transition: all 0.3s ease;
+    position: relative;
+}
+
+.first__tabstitle._tab-active::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    animation: underlineGrow 0.3s ease;
+}
+
+@keyframes underlineGrow {
+    from { width: 0; }
+    to { width: 100%; }
+}
+
+/* Прелоадер для баннеров */
+.banner-loading {
+    position: relative;
+}
+
+.banner-loading::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 20px;
+    height: 20px;
+    margin: -10px 0 0 -10px;
+    border: 2px solid #f3f3f3;
+    border-top: 2px solid #007cba;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+/* Стили для вкладок с иконками */
+.first__tabstitle {
+    display: flex;
+    align-items: center;
+    gap: 8px; /* Расстояние между иконкой и текстом */
+}
+
+.first__tabstitle .tab-icon {
+    width: 24px;
+    height: 24px;
+    flex-shrink: 0; /* Предотвращает сжатие иконки */
+    object-fit: contain;
+}
+
+.first__tabstitle .tab-text {
+    flex: 1;
+    text-align: left;
+    font-size: 14px;
+}
+
+/* Адаптивность для мобильных устройств */
+@media (max-width: 768px) {
+    .first__tabstitle .tab-icon {
+        width: 20px;
+        height: 20px;
+    }
+    
+    .first__tabstitle {
+        gap: 6px;
+    }
+}
+.offers__header-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-bottom: 2rem; /* или сколько нужно отступа до слайдера */
+}
+
+.offers__buttons {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+/* 📱 Адаптация под мобильные устройства */
+@media (max-width: 768px) {
+  .offers__header-row {
+    flex-direction: column;
+    align-items: stretch; /* растягивает кнопки по ширине контейнера */
+  }
+
+  .offers__buttons {
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .offers__buttons .offers__link {
+    width: 100%; /* кнопка на всю ширину */
+    text-align: center; /* выравнивание текста */
+  }
+}
+.telegram-button {
+    position: fixed;
+    right: 13px;
+    bottom: 30px;
+    transform: translate(-50%, -50%);
+    background: #0088cc; /*цвет кнопки*/
+    border-radius: 50%;
+    width: 55px; /*ширина кнопки*/
+    height: 55px; /*высота кнопки*/
+    color: #fff;
+    text-align: center;
+    line-height: 53px; /*центровка иконки в кнопке*/
+    font-size: 35px; /*размер иконки*/
+    z-index: 9999;
+}
+.telegram-button a {
+    color: #fff;
+}
+.telegram-button:before,
+.telegram-button:after {
+    content: " ";
+    display: block;
+    position: absolute;
+    border: 50%;
+    border: 1px solid #0088cc; /*цвет анимированных волн от кнопки*/
+    left: -20px;
+    right: -20px;
+    top: -20px;
+    bottom: -20px;
+    border-radius: 50%;
+    animation: animate 1.5s linear infinite;
+    opacity: 0;
+    backface-visibility: hidden; 
+}
+ 
+.telegram-button:after{
+    animation-delay: .5s;
+}
+ 
+@keyframes animate
+{
+    0%
+    {
+        transform: scale(0.5);
+        opacity: 0;
+    }
+    50%
+    {
+        opacity: 1;
+    }
+    100%
+    {
+        transform: scale(1.2);
+        opacity: 0;
+    }
+}
+@media (max-width : 800px) {  
+.telegram-button {   
+    bottom: 5px; /*отступ кнопки снизу от экрана*/
+    left: 70px; /*отступ кнопки слева от экрана(right - справа)*/
+  }
+}
+.grecaptcha-badge { visibility: hidden; }/* ОБЯЗАТЕЛЬНАЯ ПЕРЕЗАПИСЬ СУЩЕСТВУЮЩИХ ПРАВИЛ */
+
+/* Мобильные устройства (до 480px) - максимальный приоритет */
+@media (max-width: 29.9988em) {
+    .first-row {
+        grid-template-columns: auto 1fr auto !important;
+        grid-template-areas: "logo name site" !important;
+        padding: 1rem .75rem !important;
+        align-items: center !important;
+        display: grid !important;
+    }
+
+    .first-row__name--check::after{
+       display:none;
+    }
+    
+    .first-row__image {
+        grid-area: logo !important;
+        width: 3rem !important;
+        height: auto !important;
+        grid-row: 1 !important;
+        grid-column: auto !important;
+    }
+    
+    .first-row__name {
+        grid-area: name !important;
+        display: block !important;
+        font-size: 0.9rem !important;
+        white-space: normal !important;
+        overflow: hidden !important;
+        word-wrap: break-word !important;
+        word-break: break-word !important;
+        hyphens: auto !important;
+        line-height: 1.2 !important;
+        max-width: 100% !important;
+        grid-row: 1 !important;
+        grid-column: auto !important;
+        margin-top: 0 !important;
+        margin-bottom: 0 !important;
+        align-self: center !important;
+        justify-self: start !important;
+    }
+    
+    .first-row__right {
+        grid-row: 1 !important;
+        grid-column: auto !important;
+        justify-content: flex-end !important;
+        align-self: center !important;
+        margin-right: 0 !important;
+    }
+    
+    .first-row__descs {
+        grid-column: 1/4 !important;
+        grid-row: 2 !important;
+        display: none !important;
+    }
+    
+    .first-row__bottom {
+        grid-column: 1/4 !important;
+        grid-row: 3 !important;
+        display: none !important;
+    }
+    
+    /* Стили для ссылки на сайт */
+    .first-row__site--top {
+        white-space: nowrap !important;
+        order: 1 !important;
+    }
+  .offers__slidercont.slidercont .swiper-button{
+      display: none !important;
+  }
+}
+.footer__copy {
+  font-size: 14px;
+}
+/* Скрыть на планшетах и мобильных */
+@media (max-width: 768px) {
+    .tabs-def {
+        display: none !important;
+    }
+}
+/* Или скрыть только на мобильных */
+@media (max-width: 480px) {
+    .tabs-def {
+        display: none !important;
+    }
+}
+/* CSS для переключателя языков в header */
+.header-lang-switcher {
+    position: relative;
+    display: inline-block;
+}
+
+.lang-dropdown {
+    position: relative;
+}
+
+.lang-current {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 20px;
+    height: 20px;
+    padding: 0;
+    background: transparent;
+    border: none;
+    border-radius: 2px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    position: relative;
+}
+
+.lang-current:hover {
+    transform: scale(1.1);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+}
+
+.lang-current:focus {
+    outline: 2px solid #3b82f6;
+    outline-offset: 2px;
+}
+
+.lang-flag {
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+}
+
+.lang-flag img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+.lang-options {
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    background: white;
+    border: 1px solid #e2e8f0;
+    border-radius: 6px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    z-index: 1000;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateX(-50%) translateY(-8px);
+    transition: all 0.2s ease;
+    margin-top: 6px;
+    padding: 4px 0;
+    min-width: 40px;
+}
+
+.lang-dropdown:hover .lang-options {
+    opacity: 1;
+    visibility: visible;
+    transform: translateX(-50%) translateY(0);
+}
+
+.lang-option {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 6px 8px;
+    text-decoration: none;
+    color: inherit;
+    transition: background-color 0.2s ease;
+    min-height: 28px;
+}
+
+.lang-option:hover {
+    background: #f8fafc;
+}
+
+.lang-option:focus {
+    background: #f1f5f9;
+    outline: 2px solid #3b82f6;
+    outline-offset: -2px;
+}
+
+.lang-option .lang-flag {
+    width: 16px;
+    height: 16px;
+}
+
+/* Темная тема (опционально) */
+@media (prefers-color-scheme: dark) {
+    .lang-current {
+        border-color: #374151;
+        color: #f9fafb;
+    }
+    
+    .lang-current:hover {
+        border-color: #4b5563;
+        background: rgba(255, 255, 255, 0.05);
+    }
+    
+    .lang-options {
+        background: #1f2937;
+        border-color: #374151;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    }
+    
+    .lang-option {
+        color: #f9fafb;
+        border-color: #374151;
+    }
+    
+    .lang-option:hover {
+        background: #374151;
+    }
+    
+    .lang-option:focus {
+        background: #4b5563;
+    }
+}

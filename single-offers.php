@@ -224,8 +224,8 @@ if ($lang=='en') { $catid=339;} else {$catid=195;}
       <? if (have_posts()) { ?>
 <section class="offers">
 				<div class="offers__container">
-					<h2 class="offers__title title"><?php pll_e('other_offer'); ?></h2>
-					<a href="<?=get_permalink(195);?>" class="offers__link button button--gray"><?php pll_e('see_all'); ?></a>
+					<h2 class="offers__title title">Прочие предложения</h2>
+					<a href="<?=get_permalink(195);?>" class="offers__link button button--gray">Смотреть все объекты</a>
 					<div class="offers__slidercont slidercont">
 						<div class="offers__slider swiper">
 							<div class="offers__wrapper swiper-wrapper">

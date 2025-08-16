@@ -19,15 +19,15 @@ $page_fields = get_fields($page_id);
         <?php if ($tab['list']) : ?>
           <div class="banner-content" data-tab="<?= $num ?>" style="<?= $num === 0 ? '' : 'display: none;' ?>">
             <?php if (!empty($tab['banner_pk'])) : ?>
-              <a href="#" data-popup="#popup-lead" class="w-100">
+              <?= !empty($tab['banner_url']) ? '<a href="' . $tab['banner_url'] . '" class="w-100">' : '' ?>
                 <img src="<?= $tab['banner_pk']['sizes']['banner_desc'] ?>" class="banner-pk" alt="<?= $tab['banner_pk']['alt'] ?>">
-              </a>
+              <?= !empty($tab['banner_url']) ? '</a>' : '' ?>
             <?php endif; ?>
             
             <?php if (!empty($tab['banner_mob'])) : ?>
-              <a href="#" data-popup="#popup-lead" class="w-100">
+              <?= !empty($tab['banner_url']) ? '<a href="' . $tab['banner_url'] . '" class="w-100">' : '' ?>
                 <img src="<?= $tab['banner_mob']['sizes']['banner-vertical'] ?>" class="banner-mob" alt="<?= $tab['banner_mob']['alt'] ?>">
-              </a>
+              <?= !empty($tab['banner_url']) ? '</a>' : '' ?>
             <?php endif; ?>
           </div>
         <?php endif; ?>
@@ -106,7 +106,7 @@ $tab_icons = [
                   <?php if (!empty($tab['side_banners'])) : ?>
                     <?php foreach ($tab['side_banners'] as $banner): ?>
                       <div class="adsitems__item adsitems-item">
-                        <a href="#" data-popup="#popup-lead">
+                        <a href="<?= $banner['link'] ?>" target="_blank" rel="nofollow">
                           <img src="<?= $banner['image']['sizes']['banner-vertical'] ?>" alt="<?= $banner['name'] ?>" loading="lazy">
                         </a>
                       </div>
@@ -126,15 +126,15 @@ $tab_icons = [
         <?php if ($tab['list']) : ?>
           <div class="bottom-banner-content" data-tab="<?= $num ?>" style="<?= $num === 0 ? '' : 'display: none;' ?>">
             <?php if (!empty($tab['bottom_banner_pk'])) : ?>
-              <a href="#" data-popup="#popup-lead" class="w-100">
+              <?= !empty($tab['bottom_banner_url']) ? '<a href="' . $tab['bottom_banner_url'] . '" class="w-100">' : '' ?>
                 <img src="<?= $tab['bottom_banner_pk']['sizes']['banner_desc'] ?>" class="banner-pk __bottom" alt="<?= $tab['bottom_banner_pk']['alt'] ?>">
-              </a>
+              <?= !empty($tab['bottom_banner_url']) ? '</a>' : '' ?>
             <?php endif; ?>
             
             <?php if (!empty($tab['bottom_banner_mob'])) : ?>
-              <a href="#" data-popup="#popup-lead" class="w-100">
+              <?= !empty($tab['bottom_banner_url']) ? '<a href="' . $tab['bottom_banner_url'] . '" class="w-100">' : '' ?>
                 <img src="<?= $tab['bottom_banner_mob']['sizes']['banner-vertical'] ?>" class="banner-mob __bottom" alt="<?= $tab['bottom_banner_mob']['alt'] ?>">
-              </a>
+              <?= !empty($tab['bottom_banner_url']) ? '</a>' : '' ?>
             <?php endif; ?>
           </div>
         <?php endif; ?>
@@ -178,7 +178,7 @@ if ($page_fields['offers']) { ?>
     <div class="offers__header-row">
       <h2 class="offers__title title"><?= $page_fields['offer_title'] ?></h2>
       <div class="offers__buttons">
-        <a href="#" data-popup="#popup-lead" class="offers__link2 button catalog-btn">Скачать каталог</a>
+        <a href="#" class="offers__link2 button catalog-btn">Скачать каталог</a>
         <a href="<?= get_permalink(195); ?>" class="offers__link button button--gray">Смотреть все объекты</a>
       </div>
     </div>
@@ -240,6 +240,10 @@ if (have_posts()) { ?>
 </section>
 <?php } wp_reset_query(); ?>
 
+
+
+
+
 <?php
 // --- СЕКЦИЯ "ОТЗЫВЫ" ---
 $reviews_query = new WP_Query([
@@ -274,6 +278,7 @@ if ($reviews_query->have_posts()): ?>
 	</section>
 <?php endif;
 wp_reset_postdata(); ?>
+
 
 <?php 
 // --- СЕКЦИЯ "НОВОСТИ" ---

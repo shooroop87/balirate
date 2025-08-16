@@ -39,7 +39,7 @@ $page_fields = get_fields($page_id);
 			if (have_posts()):
 				query_posts(array(
 					'posts_per_page' => 4,
-					'post_type' => array('news'),
+					'post_type' => array('stati'),
 					'paged' => $paged
 				)); ?>
 				<? if (have_posts()) { ?>
@@ -48,9 +48,9 @@ $page_fields = get_fields($page_id);
 						<?php while (have_posts()): ?>
 							<? $k++;
 							if ($k == 1 or $k == 11) {
-								get_template_part('templates/newbig', null, the_post());
+								get_template_part('templates/article_big', null, the_post());
 							} else {
-								get_template_part('templates/new_prev', null, the_post());
+								get_template_part('templates/article_prev', null, the_post());
 							} ?>
 						<?php endwhile; ?>
 						<? $k = 0; ?>

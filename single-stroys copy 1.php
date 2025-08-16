@@ -26,50 +26,6 @@ if ($lang=='en') { $catid=344;} else {$catid=132;}
 if ($lang=='en') { $conf_id=460;} else {$conf_id=248;} 
 if ($lang=='en') { $pers_id=464;} else {$pers_id=462;} 
  ?>
-
-<?php
-if (!empty($page_fields['bottom_banner_pk'])) {
-    $args = [
-        'bottom_banner_pk'  => $page_fields['bottom_banner_pk'],
-        'bottom_banner_mob' => $page_fields['bottom_banner_mob'] ?? $page_fields['bottom_banner_pk'],
-        'bottom_banner_url' => $page_fields['bottom_banner_url'] ?? '',
-    ];
-    ?>
-    <section class="first">
-        <div class="first__container">
-            <!-- Рекламный баннер внизу -->
-            <?php get_template_part('templates/bottom_advertising_banner', null, $args); ?>
-        </div>
-    </section>
-    <?php
-}
-?>
-<?php
-// Добавляем верхний рекламный баннер перед хлебными крошками
-if (!empty($page_fields['top_banner_pk'])) {
-    ?>
-    <section class="top-advertising-banner">
-        <div class="first__container">
-            <!-- Рекламный баннер сверху -->
-            <div class="advertising-banner">
-                <?php if (!empty($page_fields['top_banner_pk'])) : ?>
-                    <?= !empty($page_fields['top_banner_url']) ? '<a href="' . $page_fields['top_banner_url'] . '" class="w-100">' : '' ?>
-                        <img src="<?= $page_fields['top_banner_pk']['sizes']['banner_desc'] ?>" class="banner-pk" alt="<?= $page_fields['top_banner_pk']['alt'] ?>">
-                    <?= !empty($page_fields['top_banner_url']) ? '</a>' : '' ?>
-                <?php endif; ?>
-                
-                <?php if (!empty($page_fields['top_banner_mob'])) : ?>
-                    <?= !empty($page_fields['top_banner_url']) ? '<a href="' . $page_fields['top_banner_url'] . '" class="w-100">' : '' ?>
-                        <img src="<?= $page_fields['top_banner_mob']['sizes']['banner-vertical'] ?>" class="banner-mob" alt="<?= $page_fields['top_banner_mob']['alt'] ?>">
-                    <?= !empty($page_fields['top_banner_url']) ? '</a>' : '' ?>
-                <?php endif; ?>
-            </div>
-        </div>
-    </section>
-    <?php
-}
-?>
-
 <div class="crumbs">
 	<div class="crumbs__container">
 		<a href="<?=get_home_url();?>" class="crumbs__link"><?php pll_e('Главная'); ?></a>
@@ -276,6 +232,24 @@ if (!empty($page_fields['top_banner_pk'])) {
 				</div>
 			</section>
     <?  } ?>
+
+	<?php
+if (!empty($page_fields['bottom_banner_pk'])) {
+    $args = [
+        'bottom_banner_pk'  => $page_fields['bottom_banner_pk'],
+        'bottom_banner_mob' => $page_fields['bottom_banner_mob'] ?? $page_fields['bottom_banner_pk'],
+        'bottom_banner_url' => $page_fields['bottom_banner_url'] ?? '',
+    ];
+    ?>
+    <section class="first">
+        <div class="first__container">
+            <!-- Рекламный баннер внизу -->
+            <?php get_template_part('templates/bottom_advertising_banner', null, $args); ?>
+        </div>
+    </section>
+    <?php
+}
+?>
 
  <?php endif; wp_reset_query(); ?>
 

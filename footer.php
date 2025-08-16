@@ -35,20 +35,19 @@ if ($lang=='en') {$menurealt_id =49; } else {$menurealt_id =7;}
 						</ul>
 					</div>
 				</nav>
-				<div class="footer__right">
-					<div class="search-form">
+<div class="footer__right">
+    <div class="footer__menulistname">Связаться с нами</div>
+    <?php echo do_shortcode('[contact-form-7 id="7f5f198" html_class="contact-form"]'); ?>
+    <p class="contact-form-note">Оставьте свои контакты, чтобы задать любой вопрос. Мы свяжемся с вами в течение рабочего дня.</p>
+</div>
 
-					<?php echo do_shortcode('[asearch  image="false" source="stroys,agencies"]'); ?>
-					</div>
-					<? if ( is_user_logged_in() ) { ?> 
-						  <a href="/wp-login.php?action=logout"><button type="button" class="header-bottom__popuplink button-login icon-logout" ><span><?php the_field('text_logout_'.$lang, 'options'); ?></span></button></a>
-						<? } else { ?>
-						  <button type="button" class="button-login icon-login" data-popup="#popup"><span><?php the_field('text_auth_'.$lang, 'options'); ?></span></button>
-						<? }	?>
-					
-				</div>
+
+
+
+
+
 				<div class="footer__info">
-					<div class="footer__copy"><span>©Balirate 2025.</span> <?php the_field('text_allr_'.$lang, 'options'); ?></div>
+					<div class="footer__copy"><span>©Balirate 2025.</span> <?php the_field('text_allr_'.$lang, 'options'); ?>This site is protected by reCAPTCHA and the Google<a href="https://policies.google.com/privacy">Privacy Policy</a> and<a href="https://policies.google.com/terms">Terms of Service</a> apply.</div>
 					<div class="footer__site"><!--<?php the_field('text_sitectreat_'.$lang, 'options'); ?> --></div>
 				</div>
 			</div>
@@ -116,7 +115,7 @@ if ($lang=='en') {$menurealt_id =49; } else {$menurealt_id =7;}
 				<div class="popup__body">
 					<div class="popup__title"><?php the_field('text_btn_'.$lang, 'options'); ?></div>
 					<div class="popup__text"><?php the_field('text_form_'.$lang, 'options'); ?></div>
-						<? echo do_shortcode( '[contact-form-7  id="012e18d" title="Контактная форма 1" html_class="popup__form"]' ); ?>
+						<? echo do_shortcode( '[contact-form-7 id="80efce5" title="Связаться - Объект недвижимости" html_class="popup__form"]' ); ?>
 					
 				</div>
 			</div>
@@ -142,7 +141,7 @@ if ($lang=='en') {$menurealt_id =49; } else {$menurealt_id =7;}
 				</button>
 				<div class="popup__body">
 					<div class="popup__title"><?php the_field('text_btn_'.$lang, 'options'); ?></div>
-					<div class="popup__text">Оставьте свои контакты и получите подборку самых надежных застройщиков с эксклюзивными спецпредложениями!</div>
+					<div class="popup__text">Эксклюзивный каталог лучших застройщиков Бали — получите в WhatsApp прямо сейчас</div>
 						<? echo do_shortcode( '[contact-form-7 id="0783fb9" title="Cвязаться - Агентство" html_class="popup__form"]' ); ?>
 				</div>
 			</div>
@@ -156,7 +155,7 @@ if ($lang=='en') {$menurealt_id =49; } else {$menurealt_id =7;}
 				<!-- Левая колонка: форма -->
 				<div class="popup__form-block">
 					<h2 class="popup__title">Оставить заявку</h2>
-					<p class="popup__text">Оставьте свои контакты и получите подборку самых надежных застройщиков с эксклюзивными спецпредложениями!</p>
+					<p class="popup__text">Эксклюзивный каталог лучших застройщиков Бали — получите в WhatsApp прямо сейчас</p>
 					<?php echo do_shortcode('[contact-form-7 id="1790" title="Pop-Up 10 секунд" html_class="popup__form"]'); ?>
 				</div>
 
@@ -170,6 +169,108 @@ if ($lang=='en') {$menurealt_id =49; } else {$menurealt_id =7;}
 </div>
 	<script  defer src="<?=get_template_directory_uri()?>/js/common.js?ver=<?=wp_get_theme()->get( 'Version' );?><?=time();?>"></script>
 	<script  defer src="<?=get_template_directory_uri()?>/js/app.min.js?ver=<?=wp_get_theme()->get( 'Version' );?><?=time();?>"></script>
+
+<script>
+// Добавьте этот скрипт в footer.php или в отдельный JS файл
+
+document.addEventListener('DOMContentLoaded', function() {
+    // Находим все ссылки переключения языка
+    const langLinks = document.querySelectorAll('.lang-option');
+    
+    langLinks.forEach(function(link) {
+        const hreflang = link.getAttribute('hreflang');
+        
+        // Если это ссылка на русский язык
+        if (hreflang === 'ru_RU') {
+            // Получаем текущий URL
+            let currentUrl = window.location.pathname;
+            
+            // Убираем языковые префиксы
+            let cleanUrl = currentUrl;
+            if (cleanUrl.startsWith('/en/')) {
+                cleanUrl = cleanUrl.substring(4); // убираем '/en/'
+                if (cleanUrl === '') cleanUrl = '/';
+            } else if (cleanUrl.startsWith('/id/')) {
+                cleanUrl = cleanUrl.substring(4); // убираем '/id/'
+                if (cleanUrl === '') cleanUrl = '/';
+            }
+            
+            // Формируем правильную ссылку для русского (без префикса)
+            const baseUrl = window.location.origin;
+            let russianUrl;
+            
+            if (cleanUrl === '/') {
+                russianUrl = baseUrl + '/';
+            } else {
+                russianUrl = baseUrl + '/' + cleanUrl.replace(/^\/+/, '');
+            }
+            
+            // Обновляем ссылку
+            link.href = russianUrl;
+            
+            console.log('Обновлена ссылка на русский:', russianUrl);
+        }
+        
+        // Если это ссылка на английский язык
+        if (hreflang === 'en_US') {
+            let currentUrl = window.location.pathname;
+            let cleanUrl = currentUrl;
+            
+            // Убираем существующие префиксы
+            if (cleanUrl.startsWith('/en/')) {
+                cleanUrl = cleanUrl.substring(4);
+            } else if (cleanUrl.startsWith('/id/')) {
+                cleanUrl = cleanUrl.substring(4);
+            } else {
+                // Для русского убираем начальный слеш
+                cleanUrl = cleanUrl.substring(1);
+            }
+            
+            const baseUrl = window.location.origin;
+            let englishUrl;
+            
+            if (cleanUrl === '' || cleanUrl === '/') {
+                englishUrl = baseUrl + '/en/';
+            } else {
+                englishUrl = baseUrl + '/en/' + cleanUrl;
+            }
+            
+            link.href = englishUrl;
+            console.log('Обновлена ссылка на английский:', englishUrl);
+        }
+        
+        // Если это ссылка на индонезийский язык
+        if (hreflang === 'id_ID') {
+            let currentUrl = window.location.pathname;
+            let cleanUrl = currentUrl;
+            
+            // Убираем существующие префиксы
+            if (cleanUrl.startsWith('/en/')) {
+                cleanUrl = cleanUrl.substring(4);
+            } else if (cleanUrl.startsWith('/id/')) {
+                cleanUrl = cleanUrl.substring(4);
+            } else {
+                // Для русского убираем начальный слеш
+                cleanUrl = cleanUrl.substring(1);
+            }
+            
+            const baseUrl = window.location.origin;
+            let indonesianUrl;
+            
+            if (cleanUrl === '' || cleanUrl === '/') {
+                indonesianUrl = baseUrl + '/id/';
+            } else {
+                indonesianUrl = baseUrl + '/id/' + cleanUrl;
+            }
+            
+            link.href = indonesianUrl;
+            console.log('Обновлена ссылка на индонезийский:', indonesianUrl);
+        }
+    });
+});
+</script>
 	<?php wp_footer(); ?>
+<a href="https://t.me/balirate?text=Hello!%20I%20would%20like%20to%20request%20more%20information" target="_blank" title="Написать в Telegram" rel="noopener noreferrer"><div class="telegram-button"><i class="fa fa-telegram"></i></div></a>
+
 </body>
 </html>
