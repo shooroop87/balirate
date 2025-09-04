@@ -239,33 +239,6 @@ if (isset($_POST['sq_min'])) {
 
 		<? get_template_part('templates/advertising_banner', null, $page_fields); ?>
 
-		<?php
-		$args = array(
-
-			'child_of' => 0,
-			'parent' => '',
-			'orderby' => 'name',
-			'order' => 'ASC',
-			'hide_empty' => 0,
-			'hierarchical' => 1,
-			'taxonomy' => 'catobj',
-			'pad_counts' => false
-		);
-		$categories = get_categories($args);
-		?>
-		<ul class="tabs-def d-none d-lg-flex">
-			<? $paged = (get_query_var('paged')) ? get_query_var('paged') : 1; ?>
-			<? foreach ($categories as $category) {
-				if ($category->term_id > 1) {
-					$catID = $category->term_id;
-					;
-					$url = get_term_link($category); ?>
-					<li class="tabs-def__item"><a class="tabs-def__link " href="<?= $url ?>"><?php echo $category->name; ?></a>
-					</li>
-				<? }
-			} ?>
-
-		</ul>
 		<div class="first__body first__body--reverce first__body--full">
 			<div class="first__left">
 				<div class="first__objects ">

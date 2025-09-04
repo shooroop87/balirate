@@ -42,31 +42,31 @@ if ($lang=='en') { $catid=339;} else {$catid=195;}
 							<div class="object-page__rows">
 								<? if ($page_fields['komleks']) { ?>
 								<div class="object-page__row">
-									<span><?php the_field('text_off1_'.$lang, 'options'); ?></span>
+									<span>Жилой комплекс</span>
 									<span><?=$page_fields['komleks']?></span>
 								</div>
 								<? } ?>
 								<? if ($page_fields['city']) { ?>
 								<div class="object-page__row">
-									<span><?php the_field('text_city_'.$lang, 'options'); ?></span>
+									<span>Город</span>
 									<span><?=$page_fields['city']?></span>
 								</div>
 								<? } ?>
 								<? if ($page_fields['adress']) { ?>
 								<div class="object-page__row">
-									<span><?php the_field('text_adres_'.$lang, 'options'); ?></span>
+									<span>Адрес</span>
 									<span><?=$page_fields['adress']?></span>
 								</div>
 								<? } ?>
 								<? if ($page_fields['type']) { ?>
 								<div class="object-page__row">
-									<span><?php the_field('text_type_'.$lang, 'options'); ?></span>
+									<span>Тип жилья</span>
 									<span><?=$page_fields['type']?></span>
 								</div>
 								<? } ?>
 								<? if ($page_fields['rooms']) { ?>
 								<div class="object-page__row">
-									<span><?php the_field('text_rooms_'.$lang, 'options'); ?></span>
+									<span>Комнат</span>
 									<span><?=$page_fields['rooms']?></span>
 								</div>
 								<? } ?>
@@ -105,7 +105,7 @@ if ($lang=='en') { $catid=339;} else {$catid=195;}
 								<div class="object-page__bottomcontent">
 
 									<div class="object-page__name"><?=$developer->post_title;?></div>
-									<button type="button" class="object-page__popuplink button icon-message" data-popup="#popup-feed"><span><?=get_field('test_letter_'.$lang, 'options')?></span></button>
+									<button type="button" class="object-page__popuplink button icon-message" data-popup="#popup-feed"><span>Получить презентацию</span></button>
 									<a href="<?=get_permalink($developer_ID);?>" class="object-page__link"><?php the_field('test_also_'.$lang, 'options'); ?> <?=$developer_fields['sdano']+$developer_fields['stroitsya']-1?> <?=get_field('text_obj3_'.$lang, 'options')?></a>
 								</div>
 									<? } ?>
@@ -224,8 +224,8 @@ if ($lang=='en') { $catid=339;} else {$catid=195;}
       <? if (have_posts()) { ?>
 <section class="offers">
 				<div class="offers__container">
-					<h2 class="offers__title title">Прочие предложения</h2>
-					<a href="<?=get_permalink(195);?>" class="offers__link button button--gray">Смотреть все объекты</a>
+					<h2 class="offers__title title">Другие предложения</h2>
+					<a href="<?=get_permalink(195);?>" class="offers__link button button--gray">Смотреть предложения</a>
 					<div class="offers__slidercont slidercont">
 						<div class="offers__slider swiper">
 							<div class="offers__wrapper swiper-wrapper">

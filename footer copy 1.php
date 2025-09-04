@@ -114,7 +114,7 @@ if ($lang=='en') {$menurealt_id =49; } else {$menurealt_id =7;}
 				</button>
 				<div class="popup__body">
 					<div class="popup__title"><?php the_field('text_btn_'.$lang, 'options'); ?></div>
-					<div class="popup__text">Заполните контактную информацию, и наш специалист свяжется с вами в кратчайшие сроки</div>
+					<div class="popup__text"><?php the_field('text_form_'.$lang, 'options'); ?></div>
 						<? echo do_shortcode( '[contact-form-7 id="80efce5" title="Связаться - Объект недвижимости" html_class="popup__form"]' ); ?>
 					
 				</div>
@@ -270,12 +270,17 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 </script>
 	<?php wp_footer(); ?>
-<a href="https://wa.me/62812278673919" class="social-button whatsapp" target="_blank">
-  <i class="fa fa-whatsapp"></i>
+
+<!-- Кнопка WhatsApp -->
+<a href="https://api.whatsapp.com/send?phone=6281227867391" target="_blank" title="Написать в WhatsApp" rel="noopener noreferrer">
+  <div class="social-button whatsapp"><i class="fa fa-whatsapp"></i></div>
 </a>
-<a href="https://t.me/balirate" class="social-button telegram" target="_blank">
-  <i class="fa fa-telegram"></i>
+
+<!-- Кнопка Telegram -->
+<a href="https://t.me/balirate?text=Hello!%20I%20would%20like%20to%20request%20more%20information" target="_blank" title="Написать в Telegram" rel="noopener noreferrer">
+  <div class="social-button telegram"><i class="fa fa-telegram"></i></div>
 </a>
+
 
 </body>
 </html>

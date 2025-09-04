@@ -194,7 +194,7 @@ if (!empty($page_fields['top_banner_pk'])) {
 					<? } else  { ?>
 					<button type="button" class="developer-page__popuplink icon-message" data-popup="#popup"><span><?php the_field('text_sendrev_'.$lang, 'options'); ?></span></button>
 					<? } ?>
-                    <button type="button" class="object-page__popuplink2 button icon-message" data-popup="#popup-developer"><span>Скачать каталог</span></button>
+                    <button type="button" class="object-page__popuplink2 button icon-message" data-popup="#popup-developer"><span>Получить презентацию</span></button>
 					<? if ($page_fields['sait']) { ?>
 					<a href="<?=$page_fields['sait']?>" class="developer-page__site icon-arrow-r-t" target="_blank" rel="nofollow"><?php the_field('text_sait_'.$lang, 'options'); ?></a>
 					<? } ?>

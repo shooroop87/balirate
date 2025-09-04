@@ -294,40 +294,24 @@ if (function_exists('trp_get_languages')) {
                     </div>
                 </header>
                 <!-- Единое модальное окно для всех кнопок каталога -->
-    <div id="popup-developer" aria-hidden="true" class="popup popup-feed">
-		<div class="popup__wrapper">
-			<div class="popup__content">
-				<button data-close type="button" class="popup__close icon-close">
-				</button>
-				<div class="popup__body">
-					<div class="popup__title"><?php the_field('text_btn_'.$lang, 'options'); ?></div>
-					<div class="popup__text">Получить предложение месяца</div>
-						<? echo do_shortcode( '[contact-form-7 id="498dd46" title="Cвязаться - Застройщик" html_class="popup__form"]' ); ?>
-				</div>
-			</div>
-		</div>
-	</div>
-
-<!-- Catalog modal в стилях popup/popup-feed -->
-<div id="catalogModal" aria-hidden="true" class="popup popup-feed">
-  <div class="popup__wrapper">
-    <div class="popup__content">
-      <button data-close type="button" class="popup__close icon-close"></button>
-
-      <div class="popup__body">
-        <div class="popup__title">Получить предложение месяца</div>
-
-        <div class="popup__text">
-          Хотите каталог с лучшими проектами на Бали?<br>
-          Оставьте WhatsApp — отправим в течение нескольких минут!
+<div class="balirate-catalog-modal" id="catalogModal">
+    <div class="catalog-modal__overlay"></div>
+    <div class="catalog-modal__content">
+        <div class="catalog-modal__header">
+            <h3 class="catalog-modal__title">Получить предложение месяца</h3>
+            <button type="button" class="catalog-modal__close" id="closeModal">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M19,6.41L17.59,5L12,10.59L6.41,5L5,6.41L10.59,12L5,17.59L6.41,19L12,13.41L17.59,19L19,17.59L13.41,12L19,6.41Z" />
+                </svg>
+            </button>
         </div>
-
-        <?php
-          // как в #popup-developer: пробрасываем класс формы, чтобы поля/кнопка были как в первом окне
-          echo do_shortcode('[contact-form-7 id="8726fff" title="PopUp Получить каталог (Header)" html_class="popup__form"]');
-        ?>
-      </div>
+        <div class="catalog-modal__body">
+            <p class="catalog-modal__description">
+                Хотите каталог с лучшими проектами на Бали?<br>
+                Оставьте WhatsApp — отправим в течение нескольких минут!
+            </p>
+            <?php echo do_shortcode('[contact-form-7 id="8726fff" title="PopUp Получить каталог (Header)"]'); ?>
+        </div>
     </div>
-  </div>
 </div>
                 <main class="page">

@@ -19,8 +19,7 @@ $lang= pll_current_language();
                       <? if ($rate>0 ) {?><div class="offer-item__inforating"><?=$rate?></div><? } ?>
                     </div>
                     <div class="offer-item__deadline">
-                      <span><?php the_field('date_ob_'.$lang, 'options'); ?></span>
-                      <span><?=$filds['date']?></span>
+                      <span><?php the_field('date_ob_'.$lang, 'options'); ?> <?=$filds['date']?></span>
                     </div>
                     <a href="<?=get_permalink($id);?>" class="offer-item__link icon-arrow-r-t">Подробнее</a>
                   </div>

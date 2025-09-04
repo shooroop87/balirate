@@ -294,40 +294,78 @@ if (function_exists('trp_get_languages')) {
                     </div>
                 </header>
                 <!-- Единое модальное окно для всех кнопок каталога -->
-    <div id="popup-developer" aria-hidden="true" class="popup popup-feed">
-		<div class="popup__wrapper">
-			<div class="popup__content">
-				<button data-close type="button" class="popup__close icon-close">
-				</button>
-				<div class="popup__body">
-					<div class="popup__title"><?php the_field('text_btn_'.$lang, 'options'); ?></div>
-					<div class="popup__text">Получить предложение месяца</div>
-						<? echo do_shortcode( '[contact-form-7 id="498dd46" title="Cвязаться - Застройщик" html_class="popup__form"]' ); ?>
-				</div>
-			</div>
-		</div>
-	</div>
-
-<!-- Catalog modal в стилях popup/popup-feed -->
-<div id="catalogModal" aria-hidden="true" class="popup popup-feed">
+<!-- Единое модальное окно для всех кнопок каталога, переприсвоены классы как в #popup-developer -->
+<div id="catalogModal" class="popup popup-feed" aria-hidden="true">
   <div class="popup__wrapper">
     <div class="popup__content">
-      <button data-close type="button" class="popup__close icon-close"></button>
+      <button type="button" class="popup__close icon-close" id="closeModal"></button>
 
       <div class="popup__body">
         <div class="popup__title">Получить предложение месяца</div>
-
         <div class="popup__text">
           Хотите каталог с лучшими проектами на Бали?<br>
           Оставьте WhatsApp — отправим в течение нескольких минут!
         </div>
 
-        <?php
-          // как в #popup-developer: пробрасываем класс формы, чтобы поля/кнопка были как в первом окне
-          echo do_shortcode('[contact-form-7 id="8726fff" title="PopUp Получить каталог (Header)" html_class="popup__form"]');
-        ?>
-      </div>
+        <!-- форма остаётся CF7, добавим классам инпутов .popup__input, кнопке .popup__submit -->
+        <div class="wpcf7 js" id="wpcf7-f2092-o1" lang="ru-RU" dir="ltr" data-wpcf7-id="2092">
+          <div class="screen-reader-response"><p role="status" aria-live="polite" aria-atomic="true"></p> <ul></ul></div>
+          <form action="/#wpcf7-f2092-o1" method="post" class="wpcf7-form popup__form init" aria-label="Контактная форма" novalidate data-status="init">
+            <!-- твои hidden поля -->
+            <fieldset class="hidden-fields-container">…</fieldset>
+
+            <div class="popup__lines">
+              <div class="popup__line">
+                <div class="popup__linetop"><p>Ваше имя</p></div>
+                <p><span class="wpcf7-form-control-wrap" data-name="text-291">
+                  <input class="wpcf7-form-control wpcf7-text wpcf7-validates-as-required input popup__input"
+                         type="text" name="text-291" placeholder="Введите ваше имя">
+                </span></p>
+              </div>
+
+              <div class="popup__line">
+                <div class="popup__linetop"><p>Ваш WhatsApp</p></div>
+                <p><span class="wpcf7-form-control-wrap" data-name="text-290">
+                  <input class="wpcf7-form-control wpcf7-text wpcf7-validates-as-required input popup__input"
+                         type="text" name="text-290" placeholder="Введите ваш WhatsApp">
+                </span></p>
+              </div>
+            </div>
+
+            <p>
+              <input class="wpcf7-form-control wpcf7-submit has-spinner popup__submit" type="submit" value="Отправить">
+              <span class="wpcf7-spinner"></span>
+            </p>
+
+            <div class="popup__info">
+              <p>Нажимая кнопку вы даете согласие на обработку
+                <a href="#">персональных данных</a> в соответствии с
+                <a href="#">политикой конфиденциальности</a>
+              </p>
+            </div>
+
+            <div class="wpcf7-response-output" aria-hidden="true"></div>
+          </form>
+        </div>
+      </div> <!-- /.popup__body -->
     </div>
   </div>
 </div>
+<script>
+  (function(){
+    const modal = document.getElementById('catalogModal');
+    const closeBtn = document.getElementById('closeModal');
+
+    function open()  { modal.classList.add('popup_show'); modal.setAttribute('aria-hidden','false'); }
+    function close() { modal.classList.remove('popup_show'); modal.setAttribute('aria-hidden','true'); }
+
+    closeBtn?.addEventListener('click', close);
+    modal?.addEventListener('click', e => {
+      if (e.target === modal) close(); // клик по фону
+    });
+
+    // пример открытия:
+    // document.querySelectorAll('[data-open="catalog"]').forEach(btn => btn.addEventListener('click', open));
+  })();
+</script>
                 <main class="page">
