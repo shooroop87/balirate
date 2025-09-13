@@ -1,6 +1,6 @@
 <?php
 /**
- * Главный шаблон страницы (page-home.php) с динамическими баннерами и поддержкой TranslatePress.
+ * Главный шаблон страницы (page-home.php) с динамическими баннерами.
  */
 
 get_header(); 
@@ -34,14 +34,7 @@ $page_fields = get_fields($page_id);
       <?php endforeach; ?>
     </div>
 
-    <h1 class="first__title title"><?php 
-      $rating_title = $page_fields['rating_title'] ?? '';
-      if (function_exists('trp_translate')) {
-          echo trp_translate(esc_html($rating_title), 'textdomain');
-      } else {
-          echo esc_html($rating_title);
-      }
-    ?></h1>
+    <h1 class="first__title title"><?= esc_html($page_fields['rating_title'] ?? '') ?></h1>
 
     <div class="first__body">
       <div class="first__left">
@@ -70,13 +63,7 @@ $page_fields = get_fields($page_id);
                   <?php if ($icon_url): ?>
                     <img src="<?= esc_url($icon_url) ?>" alt="<?= esc_attr($title) ?>" class="tab-icon">
                   <?php endif; ?>
-                  <span class="tab-text"><?php 
-                    if (function_exists('trp_translate')) {
-                        echo trp_translate(esc_html($title), 'textdomain');
-                    } else {
-                        echo esc_html($title);
-                    }
-                  ?></span>
+                  <span class="tab-text"><?= esc_html($title) ?></span>
                 </button>
               <?php endif; ?>
             <?php endforeach; ?>
@@ -93,39 +80,13 @@ $page_fields = get_fields($page_id);
                     <?php endforeach; ?>
                   </div>
                   <div class="first__leftbottom">
-                    <a href="<?= esc_url(get_permalink(132)) ?>" class="first__leftlink button button--gray"><?php 
-                      if (function_exists('trp_translate')) {
-                          echo trp_translate('Смотреть весь список', 'textdomain');
-                      } else {
-                          echo 'Смотреть весь список';
-                      }
-                    ?></a>
+                    <a href="<?= esc_url(get_permalink(132)) ?>" class="first__leftlink button button--gray">Смотреть весь список</a>
                     <div class="first__tippy"
-                      data-tippy-content="<strong><?php 
-                        $rate_text = $page_fields['rate_text'] ?? '';
-                        if (function_exists('trp_translate')) {
-                            echo esc_attr(trp_translate($rate_text, 'textdomain'));
-                        } else {
-                            echo esc_attr($rate_text);
-                        }
-                      ?></strong><br/><br/><p><?php 
-                        $rate_text2 = $page_fields['rate_text2'] ?? '';
-                        if (function_exists('trp_translate')) {
-                            echo esc_attr(trp_translate($rate_text2, 'textdomain'));
-                        } else {
-                            echo esc_attr($rate_text2);
-                        }
-                      ?></p>"
+                      data-tippy-content="<strong><?= esc_attr($page_fields['rate_text'] ?? '') ?></strong><br/><br/><p><?= esc_attr($page_fields['rate_text2'] ?? '') ?></p>"
                       data-tippy-allowhtml="true"
                       data-tippy-placement="bottom-end"
                       data-tippy-arrow="false">
-                      <?php 
-                        if (function_exists('trp_translate')) {
-                            echo trp_translate(esc_html($rate_text), 'textdomain');
-                        } else {
-                            echo esc_html($rate_text);
-                        }
-                      ?>
+                      <?= esc_html($page_fields['rate_text'] ?? '') ?>
                     </div>
                   </div>
                 </div>
@@ -205,29 +166,10 @@ if (!empty($page_fields['offers'])) { ?>
     
     <!-- Заголовок и кнопки в одной строке -->
     <div class="offers__header-row">
-      <h2 class="offers__title title"><?php 
-        $offer_title = $page_fields['offer_title'] ?? '';
-        if (function_exists('trp_translate')) {
-            echo trp_translate(esc_html($offer_title), 'textdomain');
-        } else {
-            echo esc_html($offer_title);
-        }
-      ?></h2>
+      <h2 class="offers__title title"><?= esc_html($page_fields['offer_title'] ?? '') ?></h2>
       <div class="offers__buttons">
-        <a href="#" data-popup="#popup-lead" class="offers__link2 button catalog-btn"><?php 
-          if (function_exists('trp_translate')) {
-              echo trp_translate('Скачать каталог', 'textdomain');
-          } else {
-              echo 'Скачать каталог';
-          }
-        ?></a>
-        <a href="<?= esc_url(get_permalink(195)) ?>" class="offers__link button button--gray"><?php 
-          if (function_exists('trp_translate')) {
-              echo trp_translate('Смотреть все объекты', 'textdomain');
-          } else {
-              echo 'Смотреть все объекты';
-          }
-        ?></a>
+        <a href="#" data-popup="#popup-lead" class="offers__link2 button catalog-btn">Скачать каталог</a>
+        <a href="<?= esc_url(get_permalink(195)) ?>" class="offers__link button button--gray">Смотреть все объекты</a>
       </div>
     </div>
 
@@ -283,13 +225,7 @@ query_posts([
 if (have_posts()) { ?>
 <section class="events">
   <div class="events__container">
-    <h2 class="events__title title"><?php 
-      if (function_exists('trp_translate')) {
-          echo trp_translate('Мероприятия', 'textdomain');
-      } else {
-          echo 'Мероприятия';
-      }
-    ?></h2>
+    <h2 class="events__title title">Мероприятия</h2>
     <div class="events__slidercont slidercont">
       <div class="events__slider swiper">
         <div class="events__wrapper swiper-wrapper">
@@ -315,13 +251,7 @@ if ($reviews_query->have_posts()): ?>
   <section class="devscomments">
     <div class="devscomments__container">
       <div class="devscomments__top">
-        <h2 class="devscomments__title title"><?php 
-          if (function_exists('trp_translate')) {
-              echo trp_translate('Отзывы на девелоперов', 'textdomain');
-          } else {
-              echo 'Отзывы на девелоперов';
-          }
-        ?></h2>
+        <h2 class="devscomments__title title">Отзывы на девелоперов</h2>
         <div class="devscomments__toptiv"><?= esc_html(wp_count_posts('review')->publish) ?></div>
       </div>
 
@@ -354,13 +284,7 @@ query_posts([
 if (have_posts()) { ?>
 <section class="news">
   <div class="news__container">
-    <h2 class="news__title title"><?php 
-      if (function_exists('trp_translate')) {
-          echo trp_translate('Новости', 'textdomain');
-      } else {
-          echo 'Новости';
-      }
-    ?></h2>
+    <h2 class="news__title title">Новости</h2>
     <?php $k = 0; ?>
     <?php while (have_posts()) : the_post(); $k++; ?>
       <?php
@@ -409,30 +333,10 @@ if (have_posts()) { ?>
         <img src="<?= esc_url($page_fields['baza_image']['sizes']['bazaimage']) ?>" alt="<?= esc_attr($page_fields['title'] ?? '') ?>" loading="lazy">
       <?php endif; ?>
       <div class="knowledge__lefttop">
-        <h2 class="knowledge__lefttitle title"><?php 
-          $baza_title = $page_fields['baza_title'] ?? '';
-          if (function_exists('trp_translate')) {
-              echo trp_translate(esc_html($baza_title), 'textdomain');
-          } else {
-              echo esc_html($baza_title);
-          }
-        ?></h2>
-        <div class="knowledge__lefttext"><?php 
-          $baza_text = $page_fields['baza_text'] ?? '';
-          if (function_exists('trp_translate')) {
-              echo trp_translate(wp_kses_post($baza_text), 'textdomain');
-          } else {
-              echo wp_kses_post($baza_text);
-          }
-        ?></div>
+        <h2 class="knowledge__lefttitle title"><?= esc_html($page_fields['baza_title'] ?? '') ?></h2>
+        <div class="knowledge__lefttext"><?= wp_kses_post($page_fields['baza_text'] ?? '') ?></div>
       </div>
-      <a href="<?= esc_url(get_permalink(177)) ?>" class="knowledge__leftbutton button button--gray button--fw"><?php 
-        if (function_exists('trp_translate')) {
-            echo trp_translate('Больше о недвижимости', 'textdomain');
-        } else {
-            echo 'Больше о недвижимости';
-        }
-      ?></a>
+      <a href="<?= esc_url(get_permalink(177)) ?>" class="knowledge__leftbutton button button--gray button--fw">Больше о недвижимости</a>
     </div>
     <div class="knowledge__right">
       <?php while (have_posts()) : the_post(); ?>
@@ -457,13 +361,7 @@ if ($partners_query->have_posts()): ?>
   <section class="partners">
     <div class="partners__container">
       <div class="partners__top">
-        <h2 class="partners__title title"><?php 
-          if (function_exists('trp_translate')) {
-              echo trp_translate('Официальные партнеры', 'textdomain');
-          } else {
-              echo 'Официальные партнеры';
-          }
-        ?></h2>
+        <h2 class="partners__title title">Официальные партнеры</h2>
       </div>
 
       <div class="partners__slidercont slidercont">
@@ -509,23 +407,29 @@ wp_reset_postdata(); ?>
 
 <?php
 /**
- * ===== FAQ СЕКЦИЯ (с поддержкой TranslatePress) =====
+ * ===== FAQ СЕКЦИЯ (с правильной поддержкой TranslatePress) =====
  */
+
 $page_id = isset($page_id) ? $page_id : get_queried_object_id();
+
+// Проверяем наличие Repeater'а
 $has_repeater = function_exists('have_rows') && have_rows('faq_items', $page_id);
+
+// Фолбек на одиночные поля
 $single_q = get_field('question', $page_id);
 $single_a = get_field('ansanswerwer', $page_id);
 
 if ( $has_repeater || (!empty($single_q) && !empty($single_a)) ) : ?>
   <section class="faq" id="faq" aria-labelledby="faq-title">
     <div class="faq__container">
-      <h2 id="faq-title" class="faq__title title"><?php 
-        if (function_exists('trp_translate')) {
-            echo trp_translate('Вопросы и ответы', 'textdomain');
-        } else {
-            echo 'Вопросы и ответы';
-        }
-      ?></h2>
+      <h2 id="faq-title" class="faq__title title">
+        <?php 
+        // ИСПРАВЛЕНО: Используем правильный подход для TranslatePress
+        echo function_exists('trp_translate') && get_locale() !== 'ru_RU' 
+            ? trp_translate('Вопросы и ответы', 'ru_RU', get_locale()) 
+            : 'Вопросы и ответы';
+        ?>
+      </h2>
 
       <div class="faq__list">
         <?php if ($has_repeater) : ?>
@@ -536,20 +440,26 @@ if ( $has_repeater || (!empty($single_q) && !empty($single_a)) ) : ?>
             <details class="faq__item" id="faq-<?= esc_attr($slug) ?>">
               <summary class="faq__question">
                 <?php 
-                if (function_exists('trp_translate')) {
-                    echo trp_translate(esc_html($q), 'textdomain');
+                // ИСПРАВЛЕНО: Используем хелпер функцию или прямой вызов
+                if (function_exists('get_translatable_acf_field')) {
+                    echo get_translatable_acf_field('question', $page_id . '_' . get_row_index());
                 } else {
-                    echo esc_html($q);
+                    echo function_exists('trp_translate') && get_locale() !== 'ru_RU' 
+                        ? trp_translate($q, 'ru_RU', get_locale()) 
+                        : esc_html($q);
                 }
                 ?>
                 <span class="faq__icon" aria-hidden="true"></span>
               </summary>
               <div class="faq__answer">
                 <?php 
-                if (function_exists('trp_translate')) {
-                    echo trp_translate(wp_kses_post($a), 'textdomain');
+                // ИСПРАВЛЕНО: Аналогично для ответа
+                if (function_exists('get_translatable_acf_field')) {
+                    echo get_translatable_acf_field('answer', $page_id . '_' . get_row_index());
                 } else {
-                    echo wp_kses_post($a);
+                    echo function_exists('trp_translate') && get_locale() !== 'ru_RU' 
+                        ? trp_translate($a, 'ru_RU', get_locale()) 
+                        : wp_kses_post($a);
                 }
                 ?>
               </div>
@@ -559,21 +469,17 @@ if ( $has_repeater || (!empty($single_q) && !empty($single_a)) ) : ?>
           <details class="faq__item">
             <summary class="faq__question">
               <?php 
-              if (function_exists('trp_translate')) {
-                  echo trp_translate(esc_html($single_q), 'textdomain');
-              } else {
-                  echo esc_html($single_q);
-              }
+              echo function_exists('trp_translate') && get_locale() !== 'ru_RU' 
+                  ? trp_translate($single_q, 'ru_RU', get_locale()) 
+                  : esc_html($single_q);
               ?>
               <span class="faq__icon" aria-hidden="true"></span>
             </summary>
             <div class="faq__answer">
               <?php 
-              if (function_exists('trp_translate')) {
-                  echo trp_translate(wp_kses_post($single_a), 'textdomain');
-              } else {
-                  echo wp_kses_post($single_a);
-              }
+              echo function_exists('trp_translate') && get_locale() !== 'ru_RU' 
+                  ? trp_translate($single_a, 'ru_RU', get_locale()) 
+                  : wp_kses_post($single_a);
               ?>
             </div>
           </details>
@@ -584,6 +490,19 @@ if ( $has_repeater || (!empty($single_q) && !empty($single_a)) ) : ?>
 <?php endif; ?>
 
 <?php
+/**
+ * Эту секцию нужно добавить в page-home.php между FAQ и SEO-текстом:
+ * 
+ * Найти в page-home.php строки:
+ * <?php endif; ?>  // конец секции FAQ
+ * 
+ * <?php
+ * // SEO-текст (после FAQ)
+ * $seo_text = get_field('seo_text', $page_id);
+ * 
+ * И между ними вставить:
+ */
+
 // === СЕКЦИЯ "ПОСЛЕДНИЕ НОВОСТИ" (после FAQ, перед SEO-текстом) ===
 $latest_news_query = new WP_Query([
   'posts_per_page' => 3,
@@ -595,13 +514,7 @@ $latest_news_query = new WP_Query([
 if ($latest_news_query->have_posts()) { ?>
 <section class="news-page" style="padding-top: 2.5rem;">
   <div class="news-page__container">
-    <h2 class="news-page__title title"><?php 
-      if (function_exists('trp_translate')) {
-          echo trp_translate('Последние новости', 'textdomain');
-      } else {
-          echo 'Последние новости';
-      }
-    ?></h2>
+    <h2 class="news-page__title title">Последние новости</h2>
     
     <div class="news-page__row">
       <?php while ($latest_news_query->have_posts()) : $latest_news_query->the_post(); ?>
@@ -613,21 +526,19 @@ if ($latest_news_query->have_posts()) { ?>
 <?php } 
 wp_reset_postdata(); ?>
 
+
 <?php
-/**
- * ===== SEO-ТЕКСТ (с поддержкой TranslatePress) =====
- */
+// SEO-текст (после FAQ) с правильной поддержкой TranslatePress
 $seo_text = get_field('seo_text', $page_id);
 if (!empty($seo_text)) : ?>
   <section class="seo-text">
     <div class="seo-text__container">
       <div class="seo-text__content">
         <?php 
-        if (function_exists('trp_translate')) {
-            echo trp_translate(wp_kses_post($seo_text), 'textdomain');
-        } else {
-            echo wp_kses_post($seo_text);
-        }
+        // ИСПРАВЛЕНО: Правильный подход для TranslatePress
+        echo function_exists('trp_translate') && get_locale() !== 'ru_RU' 
+            ? trp_translate($seo_text, 'ru_RU', get_locale()) 
+            : wp_kses_post($seo_text);
         ?>
       </div>
     </div>
@@ -635,4 +546,5 @@ if (!empty($seo_text)) : ?>
 <?php endif; ?>
 
 <?php
+// Подключаем footer
 get_footer();

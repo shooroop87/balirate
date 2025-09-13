@@ -1225,3 +1225,76 @@ function get_youtube_video_info($url) {
     
     return $data;
 }
+
+/**
+ * =================================================================
+ * ИСПРАВЛЕНИЕ TRANSLATEPRESS
+ * =================================================================
+ */
+
+// Принудительная регистрация строк для TranslatePress
+function force_translatepress_strings() {
+    if (function_exists('trp_get_current_language')) {
+        add_filter('gettext', function($translation, $text, $domain) {
+            // Список строк для перевода
+            $strings_to_translate = [
+                'Вопросы и ответы',
+                'Последние новости', 
+                'Мероприятия',
+                'Новости',
+                'Отзывы на девелоперов',
+                'Официальные партнеры',
+                'Смотреть весь список',
+                'Скачать каталог',
+                'Смотреть все объекты',
+                'Больше о недвижимости',
+                'Лучшие девелоперы',
+                'Выбор Агентов',
+                'Надежные девелоперы',
+                'Девелоперы премиум сегмента',
+                'Девелоперы бизнес+ сегмента',
+                'Агентства недвижимости'
+            ];
+            
+            if (in_array($text, $strings_to_translate)) {
+                return apply_filters('trp_translate_gettext', $translation, $text, $domain);
+            }
+            
+            return $translation;
+        }, 10, 3);
+    }
+}
+add_action('init', 'force_translatepress_strings', 20);
+
+// Принудительное сканирование строк
+function custom_translatepress_scan_strings($strings) {
+    $custom_strings = [
+        'Вопросы и ответы',
+        'Последние новости',
+        'Мероприятия', 
+        'Новости',
+        'Отзывы на девелоперов',
+        'Официальные партнеры',
+        'Смотреть весь список',
+        'Скачать каталог',
+        'Смотреть все объекты',
+        'Больше о недвижимости',
+        'Лучшие девелоперы',
+        'Выбор Агентов',
+        'Надежные девелоперы',
+        'Девелоперы премиум сегмента',
+        'Девелоперы бизнес+ сегмента',
+        'Агентства недвижимости'
+    ];
+    
+    foreach ($custom_strings as $string) {
+        $strings[] = $string;
+    }
+    
+    return $strings;
+}
+add_filter('trp_scan_gettext_strings', 'custom_translatepress_scan_strings');
+
+// Включаем динамический перевод
+add_filter('trp_enable_dynamic_translation', '__return_true');
+add_filter('trp_allow_tp_to_run', '__return_true');

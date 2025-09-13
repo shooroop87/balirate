@@ -205,16 +205,6 @@ if (!empty($page_fields['top_banner_pk'])) {
 	</div>
 </section>
 
-<?php
-// === ДОБАВЛЯЕМ СЕКЦИЮ ВИДЕО ЗАСТРОЙЩИКА ===
-$company_videos = get_field('company_videos', $page_id);
-if (!empty($company_videos)) {
-    get_template_part('templates/developer_videos', null, [
-        'company_videos' => $company_videos
-    ]);
-}
-?>
-
 <?php if ( have_posts() ) : query_posts(array(
                 'posts_per_page' => 200,
                 'post_type' => array( 'review'),

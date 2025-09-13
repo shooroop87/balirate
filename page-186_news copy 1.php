@@ -38,7 +38,7 @@ $page_fields = get_fields($page_id);
 			$paged = (get_query_var('paged')) ? get_query_var('paged') : 1;
 			if (have_posts()):
 				query_posts(array(
-					'posts_per_page' => 4,
+					'posts_per_page' => 5,
 					'post_type' => array('news'),
 					'paged' => $paged
 				)); ?>

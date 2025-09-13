@@ -4,36 +4,18 @@
  * Файл: templates/developer_videos.php
  */
 
-// Первая проверка - есть ли аргументы и массив видео
 if (!$args || empty($args['company_videos'])) return;
 
 $lang = function_exists('pll_current_language') ? pll_current_language() : null;
-
-// Предварительно проверяем, есть ли хотя бы одно валидное видео
-$has_valid_videos = false;
-foreach ($args['company_videos'] as $video) {
-    if (!empty($video['video_url'])) {
-        $video_id = function_exists('get_youtube_video_id') ? get_youtube_video_id($video['video_url']) : null;
-        if ($video_id) {
-            $has_valid_videos = true;
-            break; // Найдено хотя бы одно валидное видео, можно прерывать цикл
-        }
-    }
-}
-
-// Если нет ни одного валидного видео - не показываем секцию вообще
-if (!$has_valid_videos) return;
 ?>
 
 <section class="developer-videos">
   <div class="developer-videos__container">
     <h2 class="developer-videos__title title">Видео компании</h2>
 
+    <!-- Всегда показываем сетку -->
     <div class="developer-videos__grid">
       <?php foreach ($args['company_videos'] as $video):
-        // Проверяем наличие URL видео
-        if (empty($video['video_url'])) continue;
-        
         $video_id = function_exists('get_youtube_video_id') ? get_youtube_video_id($video['video_url']) : null;
         if (!$video_id) continue;
 
@@ -88,12 +70,13 @@ if (!$has_valid_videos) return;
 .developer-videos { padding: 60px 0; background: #f8f9fa; }
 .developer-videos__title { margin-bottom: 30px; text-align: left; }
 
-/* Сетка карточек: 3 -> 2 -> 1 */
+/* Сетка карточек: 4 -> 3 -> 2 -> 1 */
 .developer-videos__grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(4, 1fr);
   gap: 25px;
 }
+@media (max-width: 1200px) { .developer-videos__grid { grid-template-columns: repeat(3, 1fr); } }
 @media (max-width: 992px)  { .developer-videos__grid { grid-template-columns: repeat(2, 1fr); } }
 @media (max-width: 480px)  { .developer-videos__grid { grid-template-columns: 1fr; } }
 

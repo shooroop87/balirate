@@ -107,16 +107,12 @@ error_log("Processing post ID: " . $page_id . " | Title: " . get_the_title());
 </section>
 
 <?php
-// ИСПРАВЛЯЕМ: Получаем текущую страницу для пагинации через $_GET['pg']
-$current_page = max(1, isset($_GET['pg']) ? intval($_GET['pg']) : 1);
-
-// Похожие статьи с пагинацией
+// Похожие статьи
 $related_stati = new WP_Query([
-    'posts_per_page' => 13, // 1 большая + 12 маленьких
+    'posts_per_page' => 4,
     'post__not_in' => [$page_id],
     'post_type' => 'stati',
-    'post_status' => 'publish',
-    'paged' => $current_page
+    'post_status' => 'publish'
 ]);
 
 if ($related_stati->have_posts()) : ?>
@@ -124,73 +120,44 @@ if ($related_stati->have_posts()) : ?>
         <div class="news__container">
             <h2 class="news__title title">Похожие статьи</h2>
             
-            <div class="news__content">
-                <?php 
-                $k = 0;
-                while ($related_stati->have_posts()) : 
-                    $related_stati->the_post();
-                    $k++;
-                    
-                    if ($k == 1) {
-                        // Первая статья - большая
-                        ?>
-                        <div class="news__featured">
-                            <?php get_template_part('templates/article_big', null, get_post()); ?>
-                        </div>
-                        <?php
-                    } else {
-                        if ($k == 2) {
-                            // Начинаем контейнер для маленьких статей
-                            echo '<div class="news__grid">';
-                        }
-                        
-                        // Маленькие статьи
-                        get_template_part('templates/article_prev', null, get_post());
-                    }
-                endwhile;
+            <?php 
+            $k = 0;
+            while ($related_stati->have_posts()) : 
+                $related_stati->the_post();
+                $k++;
                 
-                // Закрываем контейнер для маленьких статей, если он был открыт
-                if ($k > 1) {
-                    echo '</div>';
+                if ($k == 1) {
+                    get_template_part('templates/article_big', null, get_post());
+                } else {
+                    get_template_part('templates/null', null, get_post());
                 }
-                
-                wp_reset_postdata();
-                ?>
-            </div>
+            endwhile;
+            wp_reset_postdata();
+            ?>
             
-            <?php
-            // ИСПРАВЛЯЕМ: Кастомная пагинация для single страниц
-            if ($related_stati->max_num_pages > 1) : ?>
-                <div class="news__pagination">
-                    <?php
-                    // Создаем базовый URL для пагинации
-                    $base_url = get_permalink();
-                    
-                    echo '<div class="pagination-links">';
-                    
-                    // Предыдущая страница
-                    if ($current_page > 1) {
-                        echo '<a href="' . $base_url . '?pg=' . ($current_page - 1) . '" class="prev-page">← Предыдущая</a>';
-                    }
-                    
-                    // Номера страниц
-                    for ($i = 1; $i <= $related_stati->max_num_pages; $i++) {
-                        if ($i == $current_page) {
-                            echo '<span class="current">' . $i . '</span>';
-                        } else {
-                            echo '<a href="' . $base_url . '?pg=' . $i . '">' . $i . '</a>';
-                        }
-                    }
-                    
-                    // Следующая страница
-                    if ($current_page < $related_stati->max_num_pages) {
-                        echo '<a href="' . $base_url . '?pg=' . ($current_page + 1) . '" class="next-page">Следующая →</a>';
-                    }
-                    
-                    echo '</div>';
-                    ?>
+            <div class="news__slidercont slidercont">
+                <div class="news__slider swiper">
+                    <div class="news__wrapper swiper-wrapper">
+                        <?php
+                        $k = 0;
+                        $related_stati->rewind_posts();
+                        while ($related_stati->have_posts()) :
+                            $related_stati->the_post();
+                            $k++;
+                            
+                            if ($k > 1) {
+                                get_template_part('templates/article_prev', null, get_post());
+                            } else {
+                                get_template_part('templates/null', null, get_post());
+                            }
+                        endwhile;
+                        wp_reset_postdata();
+                        ?>
+                    </div>
                 </div>
-            <?php endif; ?>
+                <button type="button" aria-label="Кнопка слайдера предыдущая" class="news__swiper-button-prev swiper-button swiper-button-prev icon-arrow-d-b"></button>
+                <button type="button" aria-label="Кнопка слайдера следующая" class="news__swiper-button-next swiper-button swiper-button-next icon-arrow-d-b"></button>
+            </div>
         </div>
     </section>
 <?php endif; ?>
@@ -231,84 +198,6 @@ if ($page_fields_home) : ?>
     </div>
 </section>
 <?php endif; ?>
-
-<style>
-/* Стили для новой структуры новостей */
-.news__content {
-    margin-bottom: 40px;
-}
-
-.news__featured {
-    margin-bottom: 30px;
-}
-
-.news__grid {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 20px;
-}
-
-@media (max-width: 1200px) {
-    .news__grid {
-        grid-template-columns: repeat(3, 1fr);
-    }
-}
-
-@media (max-width: 768px) {
-    .news__grid {
-        grid-template-columns: repeat(2, 1fr);
-        gap: 15px;
-    }
-}
-
-@media (max-width: 480px) {
-    .news__grid {
-        grid-template-columns: 1fr;
-    }
-}
-
-/* Стили пагинации */
-.news__pagination {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-top: 30px;
-}
-
-.pagination-links {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 10px;
-}
-
-.pagination-links a,
-.pagination-links span {
-    display: inline-block;
-    padding: 10px 15px;
-    text-decoration: none;
-    border: 1px solid #ddd;
-    border-radius: 5px;
-    color: #333;
-    transition: all 0.3s ease;
-}
-
-.pagination-links a:hover {
-    background-color: #f5f5f5;
-    border-color: #bbb;
-}
-
-.pagination-links .current {
-    background-color: #007cba;
-    color: white;
-    border-color: #007cba;
-}
-
-.pagination-links .prev-page,
-.pagination-links .next-page {
-    font-weight: bold;
-}
-</style>
 
 <?php
 endwhile; // Закрываем цикл have_posts()

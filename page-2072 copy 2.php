@@ -38,12 +38,12 @@ $page_fields = get_fields($page_id);
 			<?php
 			$paged = (get_query_var('paged')) ? get_query_var('paged') : 1;
 			
-			// ИСПРАВЛЕНИЕ: Изменяем на 13 записей (1 большая + 12 мелких)
+			// ИСПРАВЛЕНИЕ: Используем WP_Query вместо query_posts
 			$stati_query = new WP_Query(array(
-				'posts_per_page' => 13,
+				'posts_per_page' => 4,
 				'post_type' => array('stati'),
 				'paged' => $paged,
-				'post_status' => 'publish'
+				'post_status' => 'publish' // Убеждаемся что берем только опубликованные
 			));
 			
 			if ($stati_query->have_posts()) : ?>
@@ -54,29 +54,29 @@ $page_fields = get_fields($page_id);
 						$stati_query->the_post();
 						$k++;
 						
-						if ($k == 1) {
+						if ($k == 1 or $k == 11) {
+							// ИСПРАВЛЕНИЕ: Передаем get_post() вместо the_post()
 							get_template_part('templates/article_big', null, get_post());
 						} else {
+							// ИСПРАВЛЕНИЕ: Передаем get_post() вместо the_post()
 							get_template_part('templates/article_prev', null, get_post());
 						}
 					endwhile;
-					wp_reset_postdata();
+					wp_reset_postdata(); // ИСПРАВЛЕНИЕ: Сбрасываем данные запроса
 					?>
 				</div>
 
 				<div class="pagging">
 					<?php 
-					// ИСПРАВЛЕНИЕ: Правильная пагинация для кастомного запроса
-					$big = 999999999; // уникальное число для замены
-					
-					echo paginate_links(array(
-						'base' => str_replace($big, '%#%', esc_url(get_pagenum_link($big))),
-						'format' => '?paged=%#%',
-						'current' => max(1, $paged),
-						'total' => $stati_query->max_num_pages,
-						'prev_text' => '«',
-						'next_text' => '»',
-					));
+					// Пагинация для кастомного запроса
+					if (function_exists('wp_pagenavi')) {
+						wp_pagenavi(array('query' => $stati_query));
+					} else {
+						echo paginate_links(array(
+							'total' => $stati_query->max_num_pages,
+							'current' => $paged
+						));
+					}
 					?>
 				</div>
 			<?php else : ?>
