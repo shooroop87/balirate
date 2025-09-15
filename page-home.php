@@ -306,6 +306,58 @@ if (have_posts()) { ?>
 <?php } wp_reset_query(); ?>
 
 <?php
+// --- НОВАЯ СЕКЦИЯ "УПРАВЛЯЮЩИЕ КОМПАНИИ" ---
+// Создаем массив с управляющими компаниями из постов типа "agencies" с меткой УК
+$uk_query = new WP_Query([
+  'posts_per_page' => 10,
+  'post_type'      => 'agencies',
+  'meta_query'     => [
+    [
+      'key'     => 'uk',
+      'compare' => '!=',
+      'value'   => ''
+    ]
+  ],
+  'orderby'        => 'menu_order',
+  'order'          => 'ASC'
+]);
+
+if ($uk_query->have_posts()): ?>
+<section class="first management-companies">
+  <div class="first__container">
+    <h2 class="first__title title"><?php 
+      if (function_exists('trp_translate')) {
+          echo trp_translate('Управляющие компании', 'textdomain');
+      } else {
+          echo 'Управляющие компании';
+      }
+    ?></h2>
+    
+    <div class="first__body">
+      <div class="first__left">
+        <div class="first__rows">
+          <?php while ($uk_query->have_posts()) : $uk_query->the_post(); ?>
+            <?php get_template_part('templates/item-list', null, get_post()); ?>
+          <?php endwhile; ?>
+        </div>
+        
+        <div class="first__leftbottom">
+          <a href="<?= esc_url(get_permalink(191)) ?>" class="first__leftlink button button--gray"><?php 
+            if (function_exists('trp_translate')) {
+                echo trp_translate('Смотреть весь список', 'textdomain');
+            } else {
+                echo 'Смотреть весь список';
+            }
+          ?></a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<?php endif;
+wp_reset_postdata(); ?>
+
+<?php
 // --- СЕКЦИЯ "ОТЗЫВЫ" ---
 $reviews_query = new WP_Query([
   'posts_per_page' => 200,
@@ -315,13 +367,7 @@ if ($reviews_query->have_posts()): ?>
   <section class="devscomments">
     <div class="devscomments__container">
       <div class="devscomments__top">
-        <h2 class="devscomments__title title"><?php 
-          if (function_exists('trp_translate')) {
-              echo trp_translate('Отзывы на девелоперов', 'textdomain');
-          } else {
-              echo 'Отзывы на девелоперов';
-          }
-        ?></h2>
+        <h2 class="devscomments__title title">Отзывы на девелоперов</h2>
         <div class="devscomments__toptiv"><?= esc_html(wp_count_posts('review')->publish) ?></div>
       </div>
 
@@ -345,55 +391,80 @@ if ($reviews_query->have_posts()): ?>
 <?php endif;
 wp_reset_postdata(); ?>
 
-<?php 
-// --- СЕКЦИЯ "НОВОСТИ" ---
-query_posts([
-  'posts_per_page' => 4,
-  'post_type'      => 'news',
-]);
-if (have_posts()) { ?>
-<section class="news">
-  <div class="news__container">
-    <h2 class="news__title title"><?php 
-      if (function_exists('trp_translate')) {
-          echo trp_translate('Новости', 'textdomain');
-      } else {
-          echo 'Новости';
-      }
-    ?></h2>
-    <?php $k = 0; ?>
-    <?php while (have_posts()) : the_post(); $k++; ?>
-      <?php
-      if ($k == 1) {
-        get_template_part('templates/newbig');
-      } else {
-        get_template_part('templates/null');
-      }
-      ?>
-    <?php endwhile; ?>
+<?php
+/**
+ * Эту секцию нужно добавить в page-home.php между FAQ и SEO-текстом:
+ * 
+ * Найти в page-home.php строки:
+ * <?php endif; ?>  // конец секции FAQ
+ * 
+ * <?php
+ * // SEO-текст (после FAQ)
+ * $seo_text = get_field('seo_text', $page_id);
+ * 
+ * И между ними вставить:
+ */
 
-    <!-- Слайдер новостей -->
-    <div class="news__slidercont slidercont">
-      <div class="news__slider swiper">
-        <div class="news__wrapper swiper-wrapper">
-          <?php
-          $k = 0;
-          while (have_posts()) : the_post(); $k++;
-            if ($k > 1) {
-              get_template_part('templates/new_prev');
-            } else {
-              get_template_part('templates/null');
-            }
-          endwhile;
-          ?>
-        </div>
-      </div>
-      <button class="news__swiper-button-prev swiper-button icon-arrow-d-b"></button>
-      <button class="news__swiper-button-next swiper-button icon-arrow-d-b"></button>
+// === СЕКЦИЯ "ПОСЛЕДНИЕ НОВОСТИ" (после FAQ, перед SEO-текстом) ===
+$latest_news_query = new WP_Query([
+  'posts_per_page' => 3,
+  'post_type'      => 'news',
+  'orderby'        => 'date',
+  'order'          => 'DESC'
+]);
+
+if ($latest_news_query->have_posts()) { ?>
+<section class="news-page" style="padding-top: 2.5rem;">
+  <div class="news-page__container">
+    <h2 class="news-page__title title">Последние новости</h2>
+    
+    <div class="news-page__row">
+      <?php while ($latest_news_query->have_posts()) : $latest_news_query->the_post(); ?>
+        <?php get_template_part('templates/new_prev', null, get_post()); ?>
+      <?php endwhile; ?>
     </div>
   </div>
 </section>
-<?php } wp_reset_query(); ?>
+<?php } 
+wp_reset_postdata(); ?>
+
+<?php
+/**
+ * Эту секцию нужно добавить в page-home.php между FAQ и SEO-текстом:
+ * 
+ * Найти в page-home.php строки:
+ * <?php endif; ?>  // конец секции FAQ
+ * 
+ * <?php
+ * // SEO-текст (после FAQ)
+ * $seo_text = get_field('seo_text', $page_id);
+ * 
+ * И между ними вставить:
+ */
+
+// === СЕКЦИЯ "ПОСЛЕДНИЕ НОВОСТИ" (после FAQ, перед SEO-текстом) ===
+$latest_news_query = new WP_Query([
+  'posts_per_page' => 3,
+  'post_type'      => 'stati',
+  'orderby'        => 'date',
+  'order'          => 'DESC'
+]);
+
+if ($latest_news_query->have_posts()) { ?>
+<section class="news-page" style="padding-top: 2.5rem;">
+  <div class="news-page__container">
+    <h2 class="news-page__title title">Последние статьи</h2>
+    
+    <div class="news-page__row">
+      <?php while ($latest_news_query->have_posts()) : $latest_news_query->the_post(); ?>
+        <?php get_template_part('templates/new_prev', null, get_post()); ?>
+      <?php endwhile; ?>
+    </div>
+  </div>
+</section>
+<?php } 
+wp_reset_postdata(); ?>
+
 
 <?php 
 // --- СЕКЦИЯ "БАЗА ЗНАНИЙ" ---
@@ -442,7 +513,7 @@ if (have_posts()) { ?>
   </div>
 </section>
 <?php } wp_reset_query(); ?>
-    
+
 <?php 
 // --- СЕКЦИЯ "ОФИЦИАЛЬНЫЕ ПАРТНЕРЫ" ---
 $partners_query = new WP_Query([
@@ -582,36 +653,6 @@ if ( $has_repeater || (!empty($single_q) && !empty($single_a)) ) : ?>
     </div>
   </section>
 <?php endif; ?>
-
-<?php
-// === СЕКЦИЯ "ПОСЛЕДНИЕ НОВОСТИ" (после FAQ, перед SEO-текстом) ===
-$latest_news_query = new WP_Query([
-  'posts_per_page' => 3,
-  'post_type'      => 'news',
-  'orderby'        => 'date',
-  'order'          => 'DESC'
-]);
-
-if ($latest_news_query->have_posts()) { ?>
-<section class="news-page" style="padding-top: 2.5rem;">
-  <div class="news-page__container">
-    <h2 class="news-page__title title"><?php 
-      if (function_exists('trp_translate')) {
-          echo trp_translate('Последние новости', 'textdomain');
-      } else {
-          echo 'Последние новости';
-      }
-    ?></h2>
-    
-    <div class="news-page__row">
-      <?php while ($latest_news_query->have_posts()) : $latest_news_query->the_post(); ?>
-        <?php get_template_part('templates/new_prev', null, get_post()); ?>
-      <?php endwhile; ?>
-    </div>
-  </div>
-</section>
-<?php } 
-wp_reset_postdata(); ?>
 
 <?php
 /**
