@@ -399,11 +399,13 @@ wp_reset_postdata(); ?>
 
 <?php 
 // --- СЕКЦИЯ "НОВОСТИ" ---
-query_posts([
+$news_query = new WP_Query([
   'posts_per_page' => 4,
   'post_type'      => 'news',
+  'post_status'    => 'publish'
 ]);
-if (have_posts()) { ?>
+
+if ($news_query->have_posts()) { ?>
 <section class="news">
   <div class="news__container">
     <h2 class="news__title title"><?php 
@@ -413,48 +415,57 @@ if (have_posts()) { ?>
           echo 'Новости';
       }
     ?></h2>
-    <?php $k = 0; ?>
-    <?php while (have_posts()) : the_post(); $k++; ?>
-      <?php
-      if ($k == 1) {
+    
+    <?php 
+    // Получаем все посты в массив для повторного использования
+    $news_posts = [];
+    while ($news_query->have_posts()) {
+        $news_query->the_post();
+        $news_posts[] = get_post();
+    }
+    wp_reset_postdata();
+    
+    // Выводим первую новость (большую)
+    if (!empty($news_posts)) {
+        $GLOBALS['post'] = $news_posts[0];
+        setup_postdata($news_posts[0]);
         get_template_part('templates/newbig');
-      } else {
-        get_template_part('templates/null');
-      }
-      ?>
-    <?php endwhile; ?>
+        wp_reset_postdata();
+    }
+    ?>
 
-    <!-- Слайдер новостей -->
+    <!-- Слайдер новостей (остальные новости) -->
+    <?php if (count($news_posts) > 1) : ?>
     <div class="news__slidercont slidercont">
       <div class="news__slider swiper">
         <div class="news__wrapper swiper-wrapper">
           <?php
-          $k = 0;
-          while (have_posts()) : the_post(); $k++;
-            if ($k > 1) {
+          for ($i = 1; $i < count($news_posts); $i++) {
+              $GLOBALS['post'] = $news_posts[$i];
+              setup_postdata($news_posts[$i]);
               get_template_part('templates/new_prev');
-            } else {
-              get_template_part('templates/null');
-            }
-          endwhile;
+          }
+          wp_reset_postdata();
           ?>
         </div>
       </div>
       <button class="news__swiper-button-prev swiper-button icon-arrow-d-b"></button>
       <button class="news__swiper-button-next swiper-button icon-arrow-d-b"></button>
     </div>
+    <?php endif; ?>
   </div>
 </section>
-<?php } wp_reset_query(); ?>
+<?php } ?>
 
 <?php 
-// --- НОВАЯ СЕКЦИЯ "ПОСЛЕДНИЕ СТАТЬИ" ---
-query_posts([
+// --- СЕКЦИЯ "ПОСЛЕДНИЕ СТАТЬИ" ---
+$articles_query = new WP_Query([
   'posts_per_page' => 3,
   'post_type'      => 'stati',
   'post_status'    => 'publish'
 ]);
-if (have_posts()) { ?>
+
+if ($articles_query->have_posts()) { ?>
 <section class="news articles">
   <div class="news__container">
     <h2 class="news__title title"><?php 
@@ -469,9 +480,11 @@ if (have_posts()) { ?>
     <div class="news__slidercont slidercont">
       <div class="news__slider swiper">
         <div class="news__wrapper swiper-wrapper">
-          <?php while (have_posts()) : the_post(); ?>
+          <?php while ($articles_query->have_posts()) : 
+              $articles_query->the_post(); ?>
             <?php get_template_part('templates/article_prev'); ?>
-          <?php endwhile; ?>
+          <?php endwhile; 
+          wp_reset_postdata(); ?>
         </div>
       </div>
       <button class="news__swiper-button-prev swiper-button icon-arrow-d-b"></button>
@@ -489,7 +502,7 @@ if (have_posts()) { ?>
     </div>
   </div>
 </section>
-<?php } wp_reset_query(); ?>
+<?php } ?>
 
 <?php 
 // --- СЕКЦИЯ "БАЗА ЗНАНИЙ" ---

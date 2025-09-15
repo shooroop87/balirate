@@ -2045,7 +2045,7 @@ body::after{
   padding:2.5rem 0
 }
 .first{
-  padding-bottom:2.5rem
+  padding-bottom:0rem;
 }
 .first__body{
   display:flex;
@@ -6689,4 +6689,41 @@ button, a{
 @keyframes popupFadeUp {
   from { transform: translateY(-46%); opacity: 0; }
   to   { transform: translateY(-50%); opacity: 1; }
+}
+.investment-2025 {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: #f2f1f0; /* фон как на примере */
+    border-radius: 12px;
+    padding: 16px 24px;
+    margin: 30px 0;
+}
+
+.investment-text {
+    font-size: 16px;
+    color: #5a514b;
+}
+
+.investment-btn {
+    display: flex;
+    align-items: center;
+    background: #5a514b;
+    color: #fff;
+    font-size: 16px;
+    font-weight: 500;
+    padding: 10px 20px;
+    border-radius: 30px;
+    text-decoration: none;
+    transition: background 0.3s ease;
+}
+
+.investment-btn .arrow {
+    display: inline-block;
+    margin-left: 8px;
+    font-size: 18px;
+}
+
+.investment-btn:hover {
+    background: #44403d;
 }
