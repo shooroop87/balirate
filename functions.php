@@ -1298,3 +1298,34 @@ add_filter('trp_scan_gettext_strings', 'custom_translatepress_scan_strings');
 // Включаем динамический перевод
 add_filter('trp_enable_dynamic_translation', '__return_true');
 add_filter('trp_allow_tp_to_run', '__return_true');
+
+
+// Регистрация типа записи "Управляющие компании"
+register_post_type('propertymanagement', [
+    'labels' => [
+        'name'               => 'Управляющие компании',
+        'singular_name'      => 'Управляющая компания',
+        'add_new'            => 'Добавить новую',
+        'add_new_item'       => 'Добавить управляющую компанию',
+        'edit_item'          => 'Редактировать УК',
+        'new_item'           => 'Новая УК',
+        'view_item'          => 'Просмотреть УК',
+        'search_items'       => 'Найти УК',
+        'not_found'          => 'УК не найдены',
+        'not_found_in_trash' => 'УК не найдены в корзине',
+        'menu_name'          => 'Управляющие компании'
+    ],
+    'public'              => true,
+    'publicly_queryable'  => true,
+    'show_ui'             => true,
+    'show_in_menu'        => true,
+    'query_var'           => true,
+    'rewrite'             => ['slug' => 'property-management'],
+    'capability_type'     => 'post',
+    'has_archive'         => true,
+    'hierarchical'        => false,
+    'menu_position'       => 28,
+    'menu_icon'           => 'dashicons-building',
+    'supports'            => ['title', 'editor', 'thumbnail'],
+    'show_in_rest'        => true
+]);
