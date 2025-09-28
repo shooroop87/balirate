@@ -1,4 +1,4 @@
-<?
+<?php
 
 if(!$args) return;
 
@@ -24,12 +24,12 @@ $rate = getRate($filds['developer']->ID);
   <div class="offer-item__content">
     <a href="<?= get_permalink($id) ?>" class="offer-item__name"><?= $args->post_title ?></a>
     <div class="offer-item__info">
-      <div class="offer-item__infoname <? if ($fildsD['verif']): ?> offer-item__infoname--check <? endif ?>">
+      <div class="offer-item__infoname <?php if ($fildsD['verif']): ?> offer-item__infoname--check <?php endif ?>">
         <span><?= get_the_title($filds['developer']->ID) ?></span>
       </div>
-      <? if ($rate > 0): ?>
+      <?php if ($rate > 0): ?>
         <div class="offer-item__inforating"><?= $rate ?></div>
-      <? endif ?>
+      <?php endif ?>
     </div>
     <div class="offer-item__deadline">
       <span>Дата сдачи: <?= $filds['date'] ?></span>

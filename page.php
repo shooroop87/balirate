@@ -30,22 +30,22 @@ if (isset($page_fields['main'])){
 ?>
 <div class="crumbs">
 	<div class="crumbs__container">
-		<a href="<?= get_home_url(); ?>" class="crumbs__link"><?php pll_e('Главная'); ?></a>
-		<span class="crumbs__link"><?= the_title() ?></span>
+		<a href="<?php echo get_home_url(); ?>" class="crumbs__link"><?php pll_e('Главная'); ?></a>
+		<span class="crumbs__link"><?php the_title(); ?></span>
 	</div>
 </div>
 
 <section class="knowledge-page">
 	<div class="knowledge-page__container">
-		<h1 class="knowledge-page__title title"><?= the_title() ?></h1>
+		<h1 class="knowledge-page__title title"><?php the_title(); ?></h1>
 
-		<? get_template_part('templates/advertising_banner', null, $page_fields); ?>
+		<?php get_template_part('templates/advertising_banner', null, $page_fields); ?>
 
 		<div class="knowledge-page__bottom">
-			<? the_content(); ?>
+			<?php the_content(); ?>
 		</div>
 
-		<? get_template_part( 'templates/bottom_advertising_banner', null, $page_fields ); ?>
+		<?php get_template_part( 'templates/bottom_advertising_banner', null, $page_fields ); ?>
 
 	</div>
 </section>

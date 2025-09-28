@@ -63,14 +63,14 @@ query_posts($args);
 
 <div class="crumbs">
     <div class="crumbs__container">
-        <a href="<?= get_home_url(); ?>" class="crumbs__link">Главная</a>
-        <span class="crumbs__link"><?= get_the_title() ?></span>
+        <a href="<?php echo get_home_url(); ?>" class="crumbs__link">Главная</a>
+        <span class="crumbs__link"><?php echo get_the_title(); ?></span>
     </div>
 </div>
 
 <section class="first">
     <div class="first__container">
-        <h1 class="first__title title"><?= get_the_title() ?></h1>
+        <h1 class="first__title title"><?php echo get_the_title(); ?></h1>
         <?php get_template_part('templates/advertising_banner', null, $page_fields); ?>
         <div class="first__body">
             <div class="first__left">
@@ -93,7 +93,6 @@ query_posts($args);
         </div>
     </div>
 </section>
-
 <?php
 $reviews_query = new WP_Query([
     'post_type'      => 'review',
@@ -112,7 +111,7 @@ if ($reviews_query->have_posts()): ?>
         <div class="devscomments__container">
             <div class="devscomments__top">
                 <h2 class="devscomments__title title">Отзывы на девелоперов</h2>
-                <div class="devscomments__toptiv"><?= wp_count_posts('review')->publish ?></div>
+                <div class="devscomments__toptiv"><?php echo wp_count_posts('review')->publish; ?></div>
             </div>
 
             <div class="devscomments__slidercont slidercont">
@@ -138,7 +137,7 @@ $page = get_post(get_queried_object_id());
 if (!empty($page->post_content)) : ?>
     <section class="offers">
         <div class="offers__container">
-            <?= apply_filters('the_content', $page->post_content); ?>
+            <?php echo apply_filters('the_content', $page->post_content); ?>
         </div>
     </section>
 <?php endif; ?>

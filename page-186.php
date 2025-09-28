@@ -23,14 +23,14 @@ $page_fields = get_fields($page_id);
 
 <div class="crumbs">
 	<div class="crumbs__container">
-		<a href="<?= get_home_url(); ?>" class="crumbs__link">Главная</a>
-		<span class="crumbs__link"><?= the_title() ?></span>
+		<a href="<?php echo get_home_url(); ?>" class="crumbs__link">Главная</a>
+		<span class="crumbs__link"><?php the_title(); ?></span>
 	</div>
 </div>
 
 <section class="news-page">
 	<div class="news-page__container">
-		<h1 class="news-page__title title"><?= the_title() ?></h1>
+		<h1 class="news-page__title title"><?php the_title(); ?></h1>
 
 		<?php get_template_part('templates/advertising_banner', null, $page_fields); ?>
 
@@ -80,7 +80,6 @@ $page_fields = get_fields($page_id);
 		        wp_reset_postdata();
 		        ?>
 		    </div>
-		    
 		    <?php
 		    // Пагинация для новостей
 		    if ($news_query->max_num_pages > 1) : ?>

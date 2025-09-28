@@ -40,37 +40,37 @@ if ($lang=='en') { $catid=339;} else {$catid=195;}
 					<div class="object-page__body">
 						<div class="object-page__left">
 							<div class="object-page__rows">
-								<? if ($page_fields['komleks']) { ?>
+								<?php if ($page_fields['komleks']) { ?>
 								<div class="object-page__row">
 									<span>Жилой комплекс</span>
 									<span><?=$page_fields['komleks']?></span>
 								</div>
-								<? } ?>
-								<? if ($page_fields['city']) { ?>
+								<?php } ?>
+								<?php if ($page_fields['city']) { ?>
 								<div class="object-page__row">
 									<span>Город</span>
 									<span><?=$page_fields['city']?></span>
 								</div>
-								<? } ?>
-								<? if ($page_fields['adress']) { ?>
+								<?php } ?>
+								<?php if ($page_fields['adress']) { ?>
 								<div class="object-page__row">
 									<span>Адрес</span>
 									<span><?=$page_fields['adress']?></span>
 								</div>
-								<? } ?>
-								<? if ($page_fields['type']) { ?>
+								<?php } ?>
+								<?php if ($page_fields['type']) { ?>
 								<div class="object-page__row">
 									<span>Тип жилья</span>
 									<span><?=$page_fields['type']?></span>
 								</div>
-								<? } ?>
-								<? if ($page_fields['rooms']) { ?>
+								<?php } ?>
+								<?php if ($page_fields['rooms']) { ?>
 								<div class="object-page__row">
 									<span>Комнат</span>
 									<span><?=$page_fields['rooms']?></span>
 								</div>
-								<? } ?>
-								<? if ($page_fields['sq']) { ?>
+								<?php } ?>
+								<?php if ($page_fields['sq']) { ?>
 								<div class="object-page__row">
 									<span>
 									<?php 
@@ -80,51 +80,51 @@ if ($lang=='en') { $catid=339;} else {$catid=195;}
 									</span>
 									<span><?=$page_fields['sq']?></span>
 								</div>
-								<? } ?>
-								<? if ($page_fields['okean']) { ?>
+								<?php } ?>
+								<?php if ($page_fields['okean']) { ?>
 								<div class="object-page__row">
 									<span><?php the_field('text_ocean_'.$lang, 'options'); ?></span>
 									<span><?=$page_fields['okean']?></span>
 								</div>
-								<? } ?>
-								<? if ($page_fields['date']) { ?>
+								<?php } ?>
+								<?php if ($page_fields['date']) { ?>
 								<div class="object-page__row">
 									<span><?php the_field('date_ob_'.$lang, 'options'); ?></span>
 									<span><?=$page_fields['date']?></span>
 								</div>
-								<? } ?>
+								<?php } ?>
 							</div>
 							<div class="object-page__bottom">
 								<div class="object-page__bottomimage">
-									<? if ($page_fields['image']) { ?> 
+									<?php if ($page_fields['image']) { ?> 
 									<img src="<?=$page_fields['image']['sizes']['event_big']?>" class="ibg ibg--contain" alt="<?=the_title()?>">
-									<? } ?>
+									<?php } ?>
 								 
 								</div>
-								<? if ($developer) { ?>
+								<?php if ($developer) { ?>
 								<div class="object-page__bottomcontent">
 
 									<div class="object-page__name"><?=$developer->post_title;?></div>
 									<button type="button" class="object-page__popuplink button icon-message" data-popup="#popup-feed"><span>Получить презентацию</span></button>
 									<a href="<?=get_permalink($developer_ID);?>" class="object-page__link"><?php the_field('test_also_'.$lang, 'options'); ?> <?=$developer_fields['sdano']+$developer_fields['stroitsya']-1?> <?=get_field('text_obj3_'.$lang, 'options')?></a>
 								</div>
-									<? } ?>
+									<?php } ?>
 							</div>
 						</div>
 						<div class="object-page__right">
 							<div class="object-page__bigslider swiper">
 								<div class="object-page__bigwrapper swiper-wrapper" data-gallery>
 									<a href="<?=$page_fields['image']['sizes']['event_big']?>" class="object-page__bigslide swiper-slide">
-										<? if ($page_fields['image']) { ?> 
+										<?php if ($page_fields['image']) { ?> 
 									<img src="<?=$page_fields['image']['sizes']['event_big']?>" class="ibg ibg--contain" alt="<?=the_title()?>">
-									<? } ?>
+									<?php } ?>
 									</a>
 								 
 									 <?php foreach($page_fields['images'] as $c_num => $slider) {?>
 										 	<a href="<?=$slider['sizes']['event_big']?>" class="object-page__bigslide swiper-slide">
 											<img src="<?=$slider['sizes']['event_big']?>" alt="<?php the_title()?>" class="ibg ibg--contain">
 										</a> 
-									<? } ?>
+									<?php } ?>
 								</div>
 							</div>
 							<div class="object-page__smallslidercont">
@@ -148,30 +148,28 @@ if ($lang=='en') { $catid=339;} else {$catid=195;}
 							</div>
 						</div>
 					</div>
-					<? if (get_the_content()) { ?>
+					<?php if (get_the_content()) { ?>
 					<div class="object-page__block">
 						<h2 class="object-page__blocktitle title-s"><?=get_field('text_descob_'.$lang, 'options')?></h2>
 						<div class="object-page__blocktext">
-							<? the_content();?>
+							<?php the_content();?>
 						</div>
 					</div>
-					<? } ?>
-						<? if ($page_fields['adress']) { ?>
+					<?php } ?>
+						<?php if ($page_fields['adress']) { ?>
 					<div class="object-page__block">
 						<h2 class="object-page__blocktitle title-s"><?=get_field('text_map_'.$lang, 'options')?></h2>
-						<? if ($page_fields['map']) { ?>
+						<?php if ($page_fields['map']) { ?>
 						<div class="object-page__blockmap">
 							 <?=get_field('map')?> 
 						</div>
-						<? } ?>
+						<?php } ?>
 						<div class="object-page__blockaddress"><?=$page_fields['adress'];?></div>
 					</div>
-					<? } ?>
+					<?php } ?>
 				</div>
 			</section>
-
-
-<?php if ( have_posts() ) : query_posts(array(
+			<?php if ( have_posts() ) : query_posts(array(
                 'posts_per_page' => 20,
                 'post_type' => array( 'review'),
 								'meta_query'    => array(
@@ -183,7 +181,7 @@ if ($lang=='en') { $catid=339;} else {$catid=195;}
 												  )
 											  )
                   )); ?>
-      <? if (have_posts()) { ?>
+      <?php if (have_posts()) { ?>
       <section class="devscomments">
 				<div class="devscomments__container">
 					<div class="devscomments__top">
@@ -195,7 +193,7 @@ if ($lang=='en') { $catid=339;} else {$catid=195;}
 							<div class="devscomments__wrapper swiper-wrapper">
               
                 <?php while (have_posts()) : ?>
-                  <? get_template_part( 'templates/review',null,the_post() ); ?>
+                  <?php get_template_part( 'templates/review',null,the_post() ); ?>
                 <?php endwhile; ?>
                
              </div>
@@ -205,7 +203,7 @@ if ($lang=='en') { $catid=339;} else {$catid=195;}
           </div>
         </div>
       </section>
-    <?  } ?>
+    <?php  } ?>
  <?php endif; wp_reset_query(); ?>
 
 <?php if ( have_posts() ) : query_posts(array(
@@ -221,7 +219,7 @@ if ($lang=='en') { $catid=339;} else {$catid=195;}
 												  )
 											  )
                   )); ?>
-      <? if (have_posts()) { ?>
+      <?php if (have_posts()) { ?>
 <section class="offers">
 				<div class="offers__container">
 					<h2 class="offers__title title">Другие предложения</h2>
@@ -230,7 +228,7 @@ if ($lang=='en') { $catid=339;} else {$catid=195;}
 						<div class="offers__slider swiper">
 							<div class="offers__wrapper swiper-wrapper">
 								<?php while (have_posts()) : ?>
-                  <? get_template_part( 'templates/offer',null,the_post() ); ?>
+                  <?php get_template_part( 'templates/offer',null,the_post() ); ?>
                 <?php endwhile; ?>
 							</div>
 						</div>
@@ -239,7 +237,7 @@ if ($lang=='en') { $catid=339;} else {$catid=195;}
 					</div>
 				</div>
 			</section>
-    <?  } ?>
+    <?php  } ?>
  <?php endif; wp_reset_query(); ?>
 
 	<div id="popup-comment" aria-hidden="true" class="popup popup-comment">
@@ -249,7 +247,7 @@ if ($lang=='en') { $catid=339;} else {$catid=195;}
 				</button>
 				<div class="popup__body">
 					<div class="popup__title">Написать отзыв</div>
-					<? if ( is_user_logged_in() ) { ?> 
+					<?php if ( is_user_logged_in() ) { ?> 
 					<form class="popup__form"  method="POST" id="add_review">
 						 <input type="hidden" name="post_id" value="<?=get_the_ID();?>">
 						<div class="popup__lines">
@@ -271,9 +269,9 @@ if ($lang=='en') { $catid=339;} else {$catid=195;}
 								данных</a> в
 							соответствии с <a href="#">политикой конфиденциальности</a></div>
 					</form>
-					<? } else { ?>
+					<?php } else { ?>
 					<div class="popup__linetop">Авторизуйтесь чтобы оставить отзыв</div>
-					<? } ?>
+					<?php } ?>
 				</div>
 			</div>
 		</div>

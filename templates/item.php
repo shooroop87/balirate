@@ -21,14 +21,14 @@ $rate = $filds['rating'];
 
     <!-- Логотип девелопера -->
     <?php if ($filds['f_logo']) : ?>
-        <a href="<?= get_permalink($id); ?>" aria-label="Ссылка на страницу застройщика" class="first-row__image">
-            <img src="<?= $filds['f_logo']['sizes']['logo_small'] ?>" class="ibg ibg--contain2" alt="<?= $args->post_title ?>" loading="lazy">
+        <a href="<?php echo get_permalink($id); ?>" aria-label="Ссылка на страницу застройщика" class="first-row__image">
+            <img src="<?php echo $filds['f_logo']['sizes']['logo_small'] ?>" class="ibg ibg--contain2" alt="<?php echo $args->post_title ?>" loading="lazy">
         </a>
     <?php endif; ?>
 
 <!-- Название девелопера + проверка -->
-<a href="<?= get_permalink($id); ?>" class="first-row__name">
-    <?= $args->post_title ?>
+<a href="<?php echo get_permalink($id); ?>" class="first-row__name">
+    <?php echo $args->post_title ?>
     <?php if ($filds['verif']) : ?>
         <span class="first-row__name first-row__name--check"></span>
     <?php endif; ?>
@@ -39,10 +39,10 @@ $rate = $filds['rating'];
 
     <!-- Правая панель: рейтинг, сайт, стрелка -->
     <div class="first-row__right">
-        <div data-rating data-rating-show data-rating-value="<?= $rate ?>" class="rating"></div>
+        <div data-rating data-rating-show data-rating-value="<?php echo $rate ?>" class="rating"></div>
 
         <?php if ($filds['sait']) : ?>
-            <a href="<?= $filds['sait'] ?>" class="first-row__site first-row__site--top icon-arrow-r-t" target="_blank" rel="nofollow">
+            <a href="<?php echo $filds['sait'] ?>" class="first-row__site first-row__site--top icon-arrow-r-t" target="_blank" rel="nofollow">
                 <?php the_field('text_sait_' . $lang, 'options'); ?>
             </a>
         <?php endif; ?>
@@ -57,7 +57,7 @@ $rate = $filds['rating'];
         <?php if (!empty($filds['advantages'])) : ?>
             <div class="first-row__descsitems">
                 <?php foreach ($filds['advantages'] as $advantage) : ?>
-                    <div class="first-row__descsitem"><?= $advantage['name'] ?></div>
+                    <div class="first-row__descsitem"><?php echo $advantage['name'] ?></div>
                 <?php endforeach; ?>
             </div>
         <?php endif; ?>
@@ -69,9 +69,9 @@ $rate = $filds['rating'];
                     <div class="first-row__descsrowleft">Срок сдачи</div>
                     <div class="first-row__descsrowright">
                         <div class="first-row__descsrowline">
-                            <div class="first-row__descsrowlinevalue" style="width: <?= getMark($page_id, 'mark1') / 5 * 100 ?>%"></div>
+                            <div class="first-row__descsrowlinevalue" style="width: <?php echo getMark($page_id, 'mark1') / 5 * 100 ?>%"></div>
                         </div>
-                        <div class="first-row__descsrowrating"><?= getMark($page_id, 'mark1') ?>/5</div>
+                        <div class="first-row__descsrowrating"><?php echo getMark($page_id, 'mark1') ?>/5</div>
                     </div>
                 </div>
             <?php endif; ?>
@@ -81,9 +81,9 @@ $rate = $filds['rating'];
                     <div class="first-row__descsrowleft">Премиальность</div>
                     <div class="first-row__descsrowright">
                         <div class="first-row__descsrowline">
-                            <div class="first-row__descsrowlinevalue" style="width: <?= getMark($page_id, 'mark2') / 5 * 100 ?>%"></div>
+                            <div class="first-row__descsrowlinevalue" style="width: <?php echo getMark($page_id, 'mark2') / 5 * 100 ?>%"></div>
                         </div>
-                        <div class="first-row__descsrowrating"><?= getMark($page_id, 'mark2') ?>/5</div>
+                        <div class="first-row__descsrowrating"><?php echo getMark($page_id, 'mark2') ?>/5</div>
                     </div>
                 </div>
             <?php endif; ?>
@@ -93,9 +93,9 @@ $rate = $filds['rating'];
                     <div class="first-row__descsrowleft">Поддержка</div>
                     <div class="first-row__descsrowright">
                         <div class="first-row__descsrowline">
-                            <div class="first-row__descsrowlinevalue" style="width: <?= getMark($page_id, 'mark3') / 5 * 100 ?>%"></div>
+                            <div class="first-row__descsrowlinevalue" style="width: <?php echo getMark($page_id, 'mark3') / 5 * 100 ?>%"></div>
                         </div>
-                        <div class="first-row__descsrowrating"><?= getMark($page_id, 'mark3') ?>/5</div>
+                        <div class="first-row__descsrowrating"><?php echo getMark($page_id, 'mark3') ?>/5</div>
                     </div>
                 </div>
             <?php endif; ?>
@@ -105,9 +105,9 @@ $rate = $filds['rating'];
                     <div class="first-row__descsrowleft">Качество строительства</div>
                     <div class="first-row__descsrowright">
                         <div class="first-row__descsrowline">
-                            <div class="first-row__descsrowlinevalue" style="width: <?= getMark($page_id, 'mark4') / 5 * 100 ?>%"></div>
+                            <div class="first-row__descsrowlinevalue" style="width: <?php echo getMark($page_id, 'mark4') / 5 * 100 ?>%"></div>
                         </div>
-                        <div class="first-row__descsrowrating"><?= getMark($page_id, 'mark4') ?>/5</div>
+                        <div class="first-row__descsrowrating"><?php echo getMark($page_id, 'mark4') ?>/5</div>
                     </div>
                 </div>
             <?php endif; ?>
@@ -123,8 +123,8 @@ $rate = $filds['rating'];
                 <div class="first-row__bottominfo">
                     <span><?php the_field('text_submitted_' . $lang, 'options'); ?>:</span>
                     <span>
-                        <?= $filds['sdano'] ?>
-                        <?= num_word($filds['sdano'], [
+                        <?php echo $filds['sdano'] ?>
+                        <?php echo num_word($filds['sdano'], [
                             get_field('text_obj1_' . $lang, 'options'),
                             get_field('text_obj2_' . $lang, 'options'),
                             get_field('text_obj3_' . $lang, 'options')
@@ -138,8 +138,8 @@ $rate = $filds['rating'];
                 <div class="first-row__bottominfo">
                     <span><?php the_field('text_under_' . $lang, 'options'); ?>:</span>
                     <span>
-                        <?= $filds['stroitsya'] ?>
-                        <?= num_word($filds['stroitsya'], [
+                        <?php echo $filds['stroitsya'] ?>
+                        <?php echo num_word($filds['stroitsya'], [
                             get_field('text_obj1_' . $lang, 'options'),
                             get_field('text_obj2_' . $lang, 'options'),
                             get_field('text_obj3_' . $lang, 'options')
@@ -153,8 +153,8 @@ $rate = $filds['rating'];
                 <div class="first-row__bottominfo">
                     <span><?php the_field('text_total_' . $lang, 'options'); ?>:</span>
                     <span>
-                        <?= $filds['sdano'] + $filds['stroitsya'] ?>
-                        <?= num_word($filds['sdano'] + $filds['stroitsya'], [
+                        <?php echo $filds['sdano'] + $filds['stroitsya'] ?>
+                        <?php echo num_word($filds['sdano'] + $filds['stroitsya'], [
                             get_field('text_obj1_' . $lang, 'options'),
                             get_field('text_obj2_' . $lang, 'options'),
                             get_field('text_obj3_' . $lang, 'options')
@@ -166,9 +166,9 @@ $rate = $filds['rating'];
 
         <!-- Отзывы -->
         <?php if ($total_rev > 0) : ?>
-            <a href="<?= get_permalink($id); ?>" target="_blank" rel="nofollow" class="first-row__comments icon-comments">
-                <?= $total_rev ?>
-                <?= num_word($total_rev, [
+            <a href="<?php echo get_permalink($id); ?>" target="_blank" rel="nofollow" class="first-row__comments icon-comments">
+                <?php echo $total_rev ?>
+                <?php echo num_word($total_rev, [
                     get_field('_text_rev1_' . $lang, 'options'),
                     get_field('_text_rev2_' . $lang, 'options'),
                     get_field('_text_rev3_' . $lang, 'options')
@@ -178,7 +178,7 @@ $rate = $filds['rating'];
 
         <!-- Повтор ссылки на сайт -->
         <?php if ($filds['sait']) : ?>
-            <a href="<?= $filds['sait'] ?>" class="first-row__site first-row__site--bottom icon-arrow-r-t" target="_blank" rel="nofollow">
+            <a href="<?php echo $filds['sait'] ?>" class="first-row__site first-row__site--bottom icon-arrow-r-t" target="_blank" rel="nofollow">
                 <?php the_field('text_sait_' . $lang, 'options'); ?>
             </a>
         <?php endif; ?>

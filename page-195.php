@@ -229,15 +229,15 @@ if (isset($_POST['sq_min'])) {
 ?>
 <div class="crumbs">
 	<div class="crumbs__container">
-		<a href="<?= get_home_url(); ?>" class="crumbs__link">Главная</a>
-		<span class="crumbs__link"><?= the_title() ?></span>
+		<a href="<?php echo get_home_url(); ?>" class="crumbs__link">Главная</a>
+		<span class="crumbs__link"><?php the_title(); ?></span>
 	</div>
 </div>
 <section class="first">
 	<div class="first__container">
-		<h1 class="first__title title"><?= the_title() ?></h1>
+		<h1 class="first__title title"><?php the_title(); ?></h1>
 
-		<? get_template_part('templates/advertising_banner', null, $page_fields); ?>
+		<?php get_template_part('templates/advertising_banner', null, $page_fields); ?>
 
 		<div class="first__body first__body--reverce first__body--full">
 			<div class="first__left">
@@ -253,45 +253,44 @@ if (isset($_POST['sq_min'])) {
 							'paged' => $paged
 						)); ?>
 						<?php while (have_posts()): ?>
-							<? get_template_part('templates/offer-list', null, the_post()); ?>
+							<?php get_template_part('templates/offer-list', null, the_post()); ?>
 						<?php endwhile; ?>
 					</div>
-					<? if (have_posts()) { ?>
+					<?php if (have_posts()) { ?>
 						<div class="pagging">
-							<? wp_pagenavi(); ?>
+							<?php wp_pagenavi(); ?>
 						</div>
-					<? } else { ?>
+					<?php } else { ?>
 						<h3 class="norezult">Ничего не найдено</h3>
-					<? } ?>
+					<?php } ?>
 				<?php endif;
 					wp_reset_query(); ?>
 			</div>
 			
 		</div>
 
-		<? get_template_part('templates/bottom_advertising_banner', null, $page_fields); ?>
+		<?php get_template_part('templates/bottom_advertising_banner', null, $page_fields); ?>
 
 	</div>
 </section>
-
 <?php if (have_posts()):
 	query_posts(array(
 		'posts_per_page' => 20,
 		'post_type' => array('review')
 	)); ?>
-	<? if (have_posts()) { ?>
+	<?php if (have_posts()) { ?>
 		<section class="devscomments">
 			<div class="devscomments__container">
 				<div class="devscomments__top">
 					<h2 class="devscomments__title title">Отзывы на девелоперов</h2>
-					<div class="devscomments__toptiv"><?= wp_count_posts('review')->publish ?></div>
+					<div class="devscomments__toptiv"><?php echo wp_count_posts('review')->publish; ?></div>
 				</div>
 				<div class="devscomments__slidercont slidercont">
 					<div class="devscomments__slider swiper">
 						<div class="devscomments__wrapper swiper-wrapper">
 
 							<?php while (have_posts()): ?>
-								<? get_template_part('templates/review', null, the_post()); ?>
+								<?php get_template_part('templates/review', null, the_post()); ?>
 							<?php endwhile; ?>
 
 						</div>
@@ -303,7 +302,7 @@ if (isset($_POST['sq_min'])) {
 				</div>
 			</div>
 		</section>
-	<? } ?>
+	<?php } ?>
 <?php endif;
 wp_reset_query(); ?>
 <?php

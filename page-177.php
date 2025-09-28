@@ -25,23 +25,23 @@ $itemmain = get_fields($idmain);
 ?>
 <div class="crumbs">
 	<div class="crumbs__container">
-		<a href="<?= get_home_url(); ?>" class="crumbs__link">Главная</a>
-		<span class="crumbs__link"><?= the_title() ?></span>
+		<a href="<?php echo get_home_url(); ?>" class="crumbs__link">Главная</a>
+		<span class="crumbs__link"><?php the_title(); ?></span>
 	</div>
 </div>
 <section class="knowledge-page">
 	<div class="knowledge-page__container">
-		<h1 class="knowledge-page__title title"><?= the_title() ?></h1>
+		<h1 class="knowledge-page__title title"><?php the_title(); ?></h1>
 
-		<? get_template_part('templates/advertising_banner', null, $page_fields); ?>
+		<?php get_template_part('templates/advertising_banner', null, $page_fields); ?>
 
 		<div class="news-topitem knowledge-page__topitem">
-			<? if ($itemmain['image']) { ?><img src="<?= $itemmain['image']['sizes']['news_big'] ?>"
-					alt="<?php the_title(); ?>" loading="lazy"><? } ?>
+			<?php if ($itemmain['image']) { ?><img src="<?php echo $itemmain['image']['sizes']['news_big']; ?>"
+					alt="<?php the_title(); ?>" loading="lazy"><?php } ?>
 			<div class="news-topitem__content">
-				<div class="news-topitem__date"><?= get_the_date(); ?></div>
-				<a href="<?php the_permalink(); ?>" class="news-topitem__name"><?= $topbaza->post_title ?></a>
-				<div class="news-topitem__text"><?= $itemmain['text_mini'] ?> </div>
+				<div class="news-topitem__date"><?php echo get_the_date(); ?></div>
+				<a href="<?php the_permalink(); ?>" class="news-topitem__name"><?php echo $topbaza->post_title; ?></a>
+				<div class="news-topitem__text"><?php echo $itemmain['text_mini']; ?> </div>
 				<a href="<?php the_permalink(); ?>"
 					class="news-topitem__link icon-arrow-r-t"><?php pll_e('more_btn'); ?></a>
 			</div>
@@ -118,7 +118,7 @@ $itemmain = get_fields($idmain);
 		wp_reset_postdata();
 		?>
 
-		<? get_template_part('templates/bottom_advertising_banner', null, $page_fields); ?>
+		<?php get_template_part('templates/bottom_advertising_banner', null, $page_fields); ?>
 
 	</div>
 </section>

@@ -1,5 +1,5 @@
 </main>
-<?
+<?php
  $lang= pll_current_language();
  if ($lang=='en') {$topmenu_id =51; } else {$topmenu_id =6;}
            $menu_info = wp_get_nav_menu_items($topmenu_id);
@@ -16,22 +16,22 @@ if ($lang=='en') {$menurealt_id =49; } else {$menurealt_id =7;}
 					<div class="footer__menublock">
 						<div class="footer__menulistname"><?php the_field('text_info_'.$lang, 'options'); ?></div>
 						<ul class="footer__menulist">
-							<? foreach ($menu_info as $menu) { ?>
+							<?php foreach ($menu_info as $menu) { ?>
 							<li class="footer__menuitem">
-								<a href="<?=$menu->url?>" class="footer__menulink"><?=$menu->title?></a>
+								<a href="<?php echo $menu->url?>" class="footer__menulink"><?php echo $menu->title?></a>
 							</li>
-							<? } ?>
+							<?php } ?>
 							 
 						</ul>
 					</div>
 					<div class="footer__menublock">
 						<div class="footer__menulistname"><?php the_field('text_realt_'.$lang, 'options'); ?></div>
 						<ul class="footer__menulist">
-							<? foreach ($menu_realt as $menu) { ?>
+							<?php foreach ($menu_realt as $menu) { ?>
 							<li class="footer__menuitem">
-								<a href="<?=$menu->url?>" class="footer__menulink"><?=$menu->title?></a>
+								<a href="<?php echo $menu->url?>" class="footer__menulink"><?php echo $menu->title?></a>
 							</li>
-							<? } ?>
+							<?php } ?>
 						</ul>
 					</div>
 				</nav>
@@ -115,7 +115,7 @@ if ($lang=='en') {$menurealt_id =49; } else {$menurealt_id =7;}
 				<div class="popup__body">
 					<div class="popup__title"><?php the_field('text_btn_'.$lang, 'options'); ?></div>
 					<div class="popup__text">Заполните контактную информацию, и наш специалист свяжется с вами в кратчайшие сроки</div>
-						<? echo do_shortcode( '[contact-form-7 id="80efce5" title="Связаться - Объект недвижимости" html_class="popup__form"]' ); ?>
+						<?php echo do_shortcode( '[contact-form-7 id="80efce5" title="Связаться - Объект недвижимости" html_class="popup__form"]' ); ?>
 					
 				</div>
 			</div>
@@ -129,7 +129,7 @@ if ($lang=='en') {$menurealt_id =49; } else {$menurealt_id =7;}
 				<div class="popup__body">
 					<div class="popup__title"><?php the_field('text_btn_'.$lang, 'options'); ?></div>
 					<div class="popup__text">Оставьте свои контакты, мы свяжемся с вами в ближайшее время</div>
-						<? echo do_shortcode( '[contact-form-7 id="498dd46" title="Cвязаться - Застройщик" html_class="popup__form"]' ); ?>
+						<?php echo do_shortcode( '[contact-form-7 id="498dd46" title="Cвязаться - Застройщик" html_class="popup__form"]' ); ?>
 				</div>
 			</div>
 		</div>
@@ -142,7 +142,7 @@ if ($lang=='en') {$menurealt_id =49; } else {$menurealt_id =7;}
 				<div class="popup__body">
 					<div class="popup__title"><?php the_field('text_btn_'.$lang, 'options'); ?></div>
 					<div class="popup__text">Оставьте контакты — свяжемся с вами и вышлем инвестиционные объекты 2025</div>
-						<? echo do_shortcode( '[contact-form-7 id="f85f5b7" title="Инвестиционные объекты 2025 года"]' ); ?>
+						<?php echo do_shortcode( '[contact-form-7 id="f85f5b7" title="Инвестиционные объекты 2025 года"]' ); ?>
 				</div>
 			</div>
 		</div>
@@ -155,7 +155,7 @@ if ($lang=='en') {$menurealt_id =49; } else {$menurealt_id =7;}
 				<div class="popup__body">
 					<div class="popup__title"><?php the_field('text_btn_'.$lang, 'options'); ?></div>
 					<div class="popup__text">Эксклюзивный каталог лучших застройщиков Бали — получите в WhatsApp прямо сейчас</div>
-						<? echo do_shortcode( '[contact-form-7 id="0783fb9" title="Cвязаться - Агентство" html_class="popup__form"]' ); ?>
+						<?php echo do_shortcode( '[contact-form-7 id="0783fb9" title="Cвязаться - Агентство" html_class="popup__form"]' ); ?>
 				</div>
 			</div>
 		</div>
@@ -180,8 +180,8 @@ if ($lang=='en') {$menurealt_id =49; } else {$menurealt_id =7;}
 		</div>
 	</div>
 </div>
-	<script  defer src="<?=get_template_directory_uri()?>/js/common.js?ver=<?=wp_get_theme()->get( 'Version' );?><?=time();?>"></script>
-	<script  defer src="<?=get_template_directory_uri()?>/js/app.min.js?ver=<?=wp_get_theme()->get( 'Version' );?><?=time();?>"></script>
+	<script  defer src="<?php echo get_template_directory_uri()?>/js/common.js?ver=<?php echo wp_get_theme()->get( 'Version' );?><?php echo time();?>"></script>
+	<script  defer src="<?php echo get_template_directory_uri()?>/js/app.min.js?ver=<?php echo wp_get_theme()->get( 'Version' );?><?php echo time();?>"></script>
 
 <script>
 // Добавьте этот скрипт в footer.php или в отдельный JS файл

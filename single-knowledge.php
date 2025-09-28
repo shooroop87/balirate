@@ -34,30 +34,30 @@ get_header(); ?>
 									</div>
 								</div>
 								<h1 class="article__title title"><?=the_title()?></h1>
-								<? if ($page_fields['text_list']) { ?>
+								<?php if ($page_fields['text_list']) { ?>
 								<div class="article__top">
 									<div class="article__toptitle">В данной статье</div>
 									<div class="article__toplinks">
-										<? foreach ($page_fields['text_list'] as $key => $value) { ?>
+										<?php foreach ($page_fields['text_list'] as $key => $value) { ?>
 										<a href="#" data-goto=".tab<?=$key?>" class="article__toplink"><?=$value['title']?></a>
-										<? } ?>
+										<?php } ?>
 									</div>
 								</div>
-								<? } ?>
+								<?php } ?>
 								<div class="article__content">
 									<?=the_content()?>
-									<? foreach ($page_fields['text_list'] as $key => $value) { ?>
+									<?php foreach ($page_fields['text_list'] as $key => $value) { ?>
 									<h2 class="tab<?=$key?>"><?=$value['title']?></h2>
 									<?=$value['text']?>
-									<? if ($value['image']) { ?><img src="<?=$value['image']['sizes']['event_big']?>"  alt="<?=$args->post_title?>" loading="lazy"><? } ?>
-										<? } ?>
+									<?php if ($value['image']) { ?><img src="<?=$value['image']['sizes']['event_big']?>"  alt="<?=$args->post_title?>" loading="lazy"><?php } ?>
+										<?php } ?>
 								</div>
 							</div>
 						</div>
 						<div class="first__right">
 							<div class="first__rightitems adsitems">
-								<? foreach (get_field('banners_left', 'options') as $banner) { ?>
-								   <? get_template_part( 'templates/banner',null,$banner ); ?>
+								<?php foreach (get_field('banners_left', 'options') as $banner) { ?>
+								   <?php get_template_part( 'templates/banner',null,$banner ); ?>
 				                 <?php } ?>
 								
 							</div>
@@ -65,8 +65,7 @@ get_header(); ?>
 					</div>
 				</div>
 			</section>
- 
-		<?php if ( have_posts() ) : query_posts(array(
+			<?php if ( have_posts() ) : query_posts(array(
                 'posts_per_page' => 4,
                 'post__not_in' => [$page_id],
                 'post_type' => array( 'news')
@@ -74,16 +73,16 @@ get_header(); ?>
         <section class="news">
         <div class="news__container">
           <h2 class="news__title title">Новости</h2>
-          <? $k=0;?>
+          <?php $k=0;?>
                 <?php while (have_posts()) : ?>
-                  <? $k++; if ($k==1) {  get_template_part( 'templates/newbig',null,the_post() ); }  else  { get_template_part( 'templates/null',null,the_post() ); }?>
+                  <?php $k++; if ($k==1) {  get_template_part( 'templates/newbig',null,the_post() ); }  else  { get_template_part( 'templates/null',null,the_post() ); }?>
                    <?php endwhile; ?>
-           <? $k=0;?>
+           <?php $k=0;?>
            <div class="news__slidercont slidercont">
             <div class="news__slider swiper">
               <div class="news__wrapper swiper-wrapper">
                 <?php while (have_posts()) : ?>
-                  <? $k++; if ($k>1) {  get_template_part( 'templates/new_prev',null,the_post() ); }  else  { get_template_part( 'templates/null',null,the_post() ); }?>
+                  <?php $k++; if ($k>1) {  get_template_part( 'templates/new_prev',null,the_post() ); }  else  { get_template_part( 'templates/null',null,the_post() ); }?>
                    <?php endwhile; ?>
                 </div>
             </div>
@@ -94,7 +93,7 @@ get_header(); ?>
       </section>
  <?php endif; wp_reset_query(); ?>
 
-<?$page_fields_home= get_fields(2);?>
+<?php $page_fields_home= get_fields(2);?>
 <section class="knowledge">
         <div class="knowledge__container">
           <div class="knowledge__left">
@@ -112,7 +111,7 @@ get_header(); ?>
                 'post_type' => array( 'knowledge')
                   )); ?>
                    <?php while (have_posts()) : ?>
-                  <? get_template_part( 'templates/baza_prev',null,the_post() ); ?>
+                  <?php get_template_part( 'templates/baza_prev',null,the_post() ); ?>
                    <?php endwhile; ?>
              <?php endif; wp_reset_query(); ?>
           </div>

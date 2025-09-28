@@ -33,43 +33,42 @@ get_header(); ?>
 						</div>
 					</div>
 					<h1 class="article__title title"><?=the_title()?></h1>
-					<? if ($page_fields['text_list']) { ?>
+					<?php if ($page_fields['text_list']) { ?>
 					<div class="article__top">
 						<div class="article__toptitle">В данной статье</div>
 						<div class="article__toplinks">
-							<? foreach ($page_fields['text_list'] as $key => $value) { ?>
+							<?php foreach ($page_fields['text_list'] as $key => $value) { ?>
 							<a href="#" data-goto=".tab<?=$key?>" class="article__toplink"><?=$value['title']?></a>
-							<? } ?>
+							<?php } ?>
 						</div>
 					</div>
-					<? } ?>
+					<?php } ?>
 					<div class="article__content">
 						<?=the_content()?>
-						<? if (!empty($page_fields['text_list'])) {
+						<?php if (!empty($page_fields['text_list'])) {
 							foreach ($page_fields['text_list'] as $key => $value) { ?>
 						<h2 class="tab<?=$key?>"><?=$value['title']?></h2>
 						<?=$value['text']?>
-						<? if ($value['image']) { ?><img src="<?=$value['image']['sizes']['event_big']?>"  alt="<?=$args->post_title?>" loading="lazy"><? } ?>
-							<? } 
+						<?php if ($value['image']) { ?><img src="<?=$value['image']['sizes']['event_big']?>"  alt="<?=$args->post_title?>" loading="lazy"><?php } ?>
+							<?php } 
 						} ?>
 					</div>
 				</div>
 			</div>
 			<div class="first__right">
 				<div class="first__rightitems adsitems">
-					<? 
+					<?php 
 					$banners = get_field('banners_left', 'options');
 					if ($banners) {
 						foreach ($banners as $banner) { ?>
-						   <? get_template_part( 'templates/banner',null,$banner ); ?>
-					   <? }
+						   <?php get_template_part( 'templates/banner',null,$banner ); ?>
+					   <?php }
 					} ?>
 				</div>
 			</div>
 		</div>
 	</div>
 </section>
- 
 <?php
 // Получаем текущую страницу для пагинации
 $current_page = max(1, isset($_GET['pg']) ? intval($_GET['pg']) : 1);
@@ -158,7 +157,6 @@ if ($news_query->have_posts()) : ?>
         </div>
     </section>
 <?php endif; ?>
-
 <?php
 $page_fields_home = get_fields(2);
 if ($page_fields_home) : ?>

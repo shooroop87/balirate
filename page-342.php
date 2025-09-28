@@ -225,15 +225,15 @@ if (isset($_POST['rating5'])) {
 ?>
 <div class="crumbs">
 	<div class="crumbs__container">
-		<a href="<?= get_home_url(); ?>" class="crumbs__link">Home</a>
-		<span class="crumbs__link"><?= the_title() ?></span>
+		<a href="<?php echo get_home_url(); ?>" class="crumbs__link">Home</a>
+		<span class="crumbs__link"><?php the_title(); ?></span>
 	</div>
 </div>
 <section class="first">
 	<div class="first__container">
-		<h1 class="first__title title"><?= the_title() ?></h1>
+		<h1 class="first__title title"><?php the_title(); ?></h1>
 
-		<? get_template_part('templates/advertising_banner', null, $page_fields); ?>
+		<?php get_template_part('templates/advertising_banner', null, $page_fields); ?>
 
 		<div class="first__body first__body--reverce">
 			<div class="first__left">
@@ -256,16 +256,16 @@ if (isset($_POST['rating5'])) {
 							'paged' => $paged
 						)); ?>
 						<?php while (have_posts()): ?>
-							<? get_template_part('templates/item-list', null, the_post()); ?>
+							<?php get_template_part('templates/item-list', null, the_post()); ?>
 						<?php endwhile; ?>
 					</div>
-					<? if (have_posts()) { ?>
+					<?php if (have_posts()) { ?>
 						<div class="pagging">
-							<? wp_pagenavi(); ?>
+							<?php wp_pagenavi(); ?>
 						</div>
-					<? } else { ?>
+					<?php } else { ?>
 						<h3 class="norezult">not found</h3>
-					<? } ?>
+					<?php } ?>
 				<?php endif;
 					wp_reset_query(); ?>
 
@@ -281,32 +281,32 @@ if (isset($_POST['rating5'])) {
 								<div class="first-filter__blockname">Rating</div>
 								<div class="first-filter__checks">
 									<label class="checkbox__label">
-										<input class="checkbox__input" aria-label="Рейтинг 5 звезд" <? if (isset($_POST['rating5'])) { ?>checked<? } ?> type="checkbox" value="1"
+										<input class="checkbox__input" aria-label="Рейтинг 5 звезд" <?php if (isset($_POST['rating5'])) { ?>checked<?php } ?> type="checkbox" value="1"
 											name="rating5">
 										<span class="checkbox__text checkbox__rating">
 											<img src="/img/rating-5.svg" alt="Image">
 										</span>
 									</label>
 									<label class="checkbox__label">
-										<input class="checkbox__input" <? if (isset($_POST['rating4'])) { ?>checked<? } ?> aria-label="Рейтинг 4 звезды" type="checkbox" value="1" name="rating4">
+										<input class="checkbox__input" <?php if (isset($_POST['rating4'])) { ?>checked<?php } ?> aria-label="Рейтинг 4 звезды" type="checkbox" value="1" name="rating4">
 										<span class="checkbox__text checkbox__rating">
 											<img src="/img/rating-4.svg" alt="Image">
 										</span>
 									</label>
 									<label class="checkbox__label">
-										<input class="checkbox__input" <? if (isset($_POST['rating3'])) { ?>checked<? } ?> aria-label="Рейтинг 3 звезды" type="checkbox" value="1" name="rating3">
+										<input class="checkbox__input" <?php if (isset($_POST['rating3'])) { ?>checked<?php } ?> aria-label="Рейтинг 3 звезды" type="checkbox" value="1" name="rating3">
 										<span class="checkbox__text checkbox__rating">
 											<img src="/img/rating-3.svg" alt="Image">
 										</span>
 									</label>
 									<label class="checkbox__label">
-										<input class="checkbox__input" <? if (isset($_POST['rating2'])) { ?>checked<? } ?> aria-label="Рейтинг 2 звезды" type="checkbox" value="1" name="rating2">
+										<input class="checkbox__input" <?php if (isset($_POST['rating2'])) { ?>checked<?php } ?> aria-label="Рейтинг 2 звезды" type="checkbox" value="1" name="rating2">
 										<span class="checkbox__text checkbox__rating">
 											<img src="/img/rating-2.svg" alt="Image">
 										</span>
 									</label>
 									<label class="checkbox__label">
-										<input class="checkbox__input" <? if (isset($_POST['rating1'])) { ?>checked<? } ?> aria-label="Рейтинг 1 звезда" type="checkbox" value="1" name="rating1">
+										<input class="checkbox__input" <?php if (isset($_POST['rating1'])) { ?>checked<?php } ?> aria-label="Рейтинг 1 звезда" type="checkbox" value="1" name="rating1">
 										<span class="checkbox__text checkbox__rating">
 											<img src="/img/rating-1.svg" alt="Image">
 										</span>
@@ -317,27 +317,27 @@ if (isset($_POST['rating5'])) {
 								<div class="first-filter__blockname">Number of reviews</div>
 								<div class="first-filter__checks">
 									<label class="checkbox__label">
-										<input class="checkbox__input" <? if (isset($_POST['total1'])) { ?>checked<? } ?>
+										<input class="checkbox__input" <?php if (isset($_POST['total1'])) { ?>checked<?php } ?>
 											type="checkbox" value="50" name="total1">
 										<span class="checkbox__text">to 50</span>
 									</label>
 									<label class="checkbox__label">
-										<input class="checkbox__input" <? if (isset($_POST['total2'])) { ?>checked<? } ?>
+										<input class="checkbox__input" <?php if (isset($_POST['total2'])) { ?>checked<?php } ?>
 											type="checkbox" value="50-100" name="total2">
 										<span class="checkbox__text">from 50 to 100</span>
 									</label>
 									<label class="checkbox__label">
-										<input class="checkbox__input" <? if (isset($_POST['total3'])) { ?>checked<? } ?>
+										<input class="checkbox__input" <?php if (isset($_POST['total3'])) { ?>checked<?php } ?>
 											type="checkbox" value="100-500" name="total3">
 										<span class="checkbox__text">from 100 to 500</span>
 									</label>
 									<label class="checkbox__label">
-										<input class="checkbox__input" <? if (isset($_POST['total4'])) { ?>checked<? } ?>
+										<input class="checkbox__input" <?php if (isset($_POST['total4'])) { ?>checked<?php } ?>
 											type="checkbox" value="500-1000" name="total4">
 										<span class="checkbox__text">from 500 to 1 000</span>
 									</label>
 									<label class="checkbox__label">
-										<input class="checkbox__input" <? if (isset($_POST['total5'])) { ?>checked<? } ?>
+										<input class="checkbox__input" <?php if (isset($_POST['total5'])) { ?>checked<?php } ?>
 											type="checkbox" value="1000" name="total5">
 										<span class="checkbox__text">more 1 000</span>
 									</label>
@@ -347,19 +347,19 @@ if (isset($_POST['rating5'])) {
 								<div class="first-filter__blockname">Number of completed objects</div>
 								<div class="first-filter__checks">
 									<label class="checkbox__label">
-										<input class="checkbox__input" <? if (isset($_POST['offers1'])) { ?>checked<? } ?> type="checkbox" value="10-50" name="offers1">
+										<input class="checkbox__input" <?php if (isset($_POST['offers1'])) { ?>checked<?php } ?> type="checkbox" value="10-50" name="offers1">
 										<span class="checkbox__text">from 10 to 50</span>
 									</label>
 									<label class="checkbox__label">
-										<input class="checkbox__input" <? if (isset($_POST['offers2'])) { ?>checked<? } ?> type="checkbox" value="50-250" name="offers2">
+										<input class="checkbox__input" <?php if (isset($_POST['offers2'])) { ?>checked<?php } ?> type="checkbox" value="50-250" name="offers2">
 										<span class="checkbox__text">from 50 to 250</span>
 									</label>
 									<label class="checkbox__label">
-										<input class="checkbox__input" <? if (isset($_POST['offers3'])) { ?>checked<? } ?> type="checkbox" value="250-1000" name="offers3">
+										<input class="checkbox__input" <?php if (isset($_POST['offers3'])) { ?>checked<?php } ?> type="checkbox" value="250-1000" name="offers3">
 										<span class="checkbox__text">from 250 to 1 000</span>
 									</label>
 									<label class="checkbox__label">
-										<input class="checkbox__input" <? if (isset($_POST['offers4'])) { ?>checked<? } ?> type="checkbox" value="10000" name="offers4">
+										<input class="checkbox__input" <?php if (isset($_POST['offers4'])) { ?>checked<?php } ?> type="checkbox" value="10000" name="offers4">
 										<span class="checkbox__text">more 1 000</span>
 									</label>
 								</div>
@@ -368,16 +368,16 @@ if (isset($_POST['rating5'])) {
 								<div class="first-filter__blockname">Additionally</div>
 								<div class="first-filter__checks">
 									<label class="checkbox__label">
-										<input class="checkbox__input" type="checkbox" value="spec" <? if (isset($_POST['special'])) { ?>checked<? } ?> name="special">
+										<input class="checkbox__input" type="checkbox" value="spec" <?php if (isset($_POST['special'])) { ?>checked<?php } ?> name="special">
 										<span class="checkbox__text">Availability of shares</span>
 									</label>
 									<label class="checkbox__label">
-										<input class="checkbox__input" <? if (isset($_POST['uk'])) { ?>checked<? } ?>
+										<input class="checkbox__input" <?php if (isset($_POST['uk'])) { ?>checked<?php } ?>
 											type="checkbox" value="uk" name="uk">
 										<span class="checkbox__text">own management company</span>
 									</label>
 									<label class="checkbox__label">
-										<input class="checkbox__input" <? if (isset($_POST['vznos'])) { ?>checked<? } ?>
+										<input class="checkbox__input" <?php if (isset($_POST['vznos'])) { ?>checked<?php } ?>
 											type="checkbox" value="vznos" name="vznos">
 										<span class="checkbox__text">First installment 20%</span>
 									</label>
@@ -392,11 +392,10 @@ if (isset($_POST['rating5'])) {
 			</div>
 		</div>
 
-		<? get_template_part('templates/bottom_advertising_banner', null, $page_fields); ?>
+		<?php get_template_part('templates/bottom_advertising_banner', null, $page_fields); ?>
 		
 	</div>
 </section>
-
 <?php if (have_posts()):
 	query_posts(array(
 		'posts_per_page' => 200,
@@ -410,19 +409,19 @@ if (isset($_POST['rating5'])) {
 			)
 		),
 	)); ?>
-	<? if (have_posts()) { ?>
+	<?php if (have_posts()) { ?>
 		<section class="devscomments">
 			<div class="devscomments__container">
 				<div class="devscomments__top">
 					<h2 class="devscomments__title title">Reviews of agencies</h2>
-					<div class="devscomments__toptiv"><?= wp_count_posts('review')->publish ?></div>
+					<div class="devscomments__toptiv"><?php echo wp_count_posts('review')->publish; ?></div>
 				</div>
 				<div class="devscomments__slidercont slidercont">
 					<div class="devscomments__slider swiper">
 						<div class="devscomments__wrapper swiper-wrapper">
 
 							<?php while (have_posts()): ?>
-								<? get_template_part('templates/review', null, the_post()); ?>
+								<?php get_template_part('templates/review', null, the_post()); ?>
 							<?php endwhile; ?>
 
 						</div>
@@ -434,7 +433,7 @@ if (isset($_POST['rating5'])) {
 				</div>
 			</div>
 		</section>
-	<? } ?>
+	<?php } ?>
 <?php endif;
 wp_reset_query(); ?>
 <?php

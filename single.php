@@ -15,7 +15,7 @@ get_header();
 ?>
 <form id="add_review">
     <h3>Добавление отзыва</h3>
-    <input type="hidden" name="post_id" value="<?=get_the_ID();?>">
+    <input type="hidden" name="post_id" value="<?php echo get_the_ID();?>">
     <input type="text" name="name" placeholder="Ваше Имя" required>
     <textarea name="message" placeholder="Ваше сообщение" required></textarea>
     <div class="rating__group">
@@ -45,5 +45,5 @@ jQuery(document).ready(function($) {
 });
 });
 </script>
-<?
+<?php
 get_footer();

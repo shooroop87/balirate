@@ -22,9 +22,9 @@ $lang = pll_current_language();
 					<div class="first-filter__checks">
 						<?php for ($i = 5; $i >= 1; $i--): ?>
 							<label class="checkbox__label">
-								<input class="checkbox__input" type="checkbox" value="1" name="rating<?= $i ?>" <?php if (isset($_POST['rating' . $i])) echo 'checked'; ?>>
+								<input class="checkbox__input" type="checkbox" value="1" name="rating<?php echo $i; ?>" <?php if (isset($_POST['rating' . $i])) echo 'checked'; ?>>
 								<span class="checkbox__text checkbox__rating">
-									<img src="/img/rating-<?= $i ?>.svg" alt="Rating <?= $i ?>">
+									<img src="/img/rating-<?php echo $i; ?>.svg" alt="Rating <?php echo $i; ?>">
 								</span>
 							</label>
 						<?php endfor; ?>
@@ -47,8 +47,8 @@ $lang = pll_current_language();
 							[$name, $label] = $review;
 							?>
 							<label class="checkbox__label">
-								<input class="checkbox__input" type="checkbox" name="<?= $name ?>" <?php if (isset($_POST[$name])) echo 'checked'; ?>>
-								<span class="checkbox__text"><?= $label ?></span>
+								<input class="checkbox__input" type="checkbox" name="<?php echo $name; ?>" <?php if (isset($_POST[$name])) echo 'checked'; ?>>
+								<span class="checkbox__text"><?php echo $label; ?></span>
 							</label>
 						<?php endforeach; ?>
 					</div>
@@ -69,8 +69,8 @@ $lang = pll_current_language();
 							[$name, $label] = $offer;
 							?>
 							<label class="checkbox__label">
-								<input class="checkbox__input" type="checkbox" name="<?= $name ?>" <?php if (isset($_POST[$name])) echo 'checked'; ?>>
-								<span class="checkbox__text"><?= $label ?></span>
+								<input class="checkbox__input" type="checkbox" name="<?php echo $name; ?>" <?php if (isset($_POST[$name])) echo 'checked'; ?>>
+								<span class="checkbox__text"><?php echo $label; ?></span>
 							</label>
 						<?php endforeach; ?>
 					</div>
@@ -90,8 +90,8 @@ $lang = pll_current_language();
 							[$name, $label] = $extra;
 							?>
 							<label class="checkbox__label">
-								<input class="checkbox__input" type="checkbox" name="<?= $name ?>" <?php if (isset($_POST[$name])) echo 'checked'; ?>>
-								<span class="checkbox__text"><?= $label ?></span>
+								<input class="checkbox__input" type="checkbox" name="<?php echo $name; ?>" <?php if (isset($_POST[$name])) echo 'checked'; ?>>
+								<span class="checkbox__text"><?php echo $label; ?></span>
 							</label>
 						<?php endforeach; ?>
 					</div>

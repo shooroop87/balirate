@@ -23,15 +23,15 @@ $page_fields = get_fields($page_id);
 ?>
 <div class="crumbs">
 	<div class="crumbs__container">
-		<a href="<?= get_home_url(); ?>" class="crumbs__link">Home</a>
-		<span class="crumbs__link"><?= the_title() ?></span>
+		<a href="<?php echo get_home_url(); ?>" class="crumbs__link">Home</a>
+		<span class="crumbs__link"><?php the_title(); ?></span>
 	</div>
 </div>
 <section class="sales-page">
 	<div class="sales-page__container">
-		<h1 class="sales-page__title title" <?= the_title() ?></h1>
+		<h1 class="sales-page__title title"><?php the_title(); ?></h1>
 
-		<? get_template_part('templates/advertising_banner', null, $page_fields); ?>
+		<?php get_template_part('templates/advertising_banner', null, $page_fields); ?>
 
 		<?php
 		$paged = (get_query_var('paged')) ? get_query_var('paged') : 1;
@@ -41,10 +41,10 @@ $page_fields = get_fields($page_id);
 				'post_type' => array('sales'),
 				'paged' => $paged
 			)); ?>
-			<? if (have_posts()) { ?>
+			<?php if (have_posts()) { ?>
 				<div class="sales-page__row">
 					<?php while (have_posts()): ?>
-						<? get_template_part('templates/sale', null, the_post()); ?>
+						<?php get_template_part('templates/sale', null, the_post()); ?>
 					<?php endwhile; ?>
 
 
@@ -53,16 +53,16 @@ $page_fields = get_fields($page_id);
 				<div class="pagging">
 
 
-					<? wp_pagenavi(); ?>
+					<?php wp_pagenavi(); ?>
 
 				</div>
-			<? } else { ?>
+			<?php } else { ?>
 				<h3>Ничего не найдено</h3>
-			<? } ?>
+			<?php } ?>
 		<?php endif;
 		wp_reset_query(); ?>
 
-		<? get_template_part('templates/bottom_advertising_banner', null, $page_fields); ?>	
+		<?php get_template_part('templates/bottom_advertising_banner', null, $page_fields); ?>	
 
 	</div>
 </section>

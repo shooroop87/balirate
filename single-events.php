@@ -38,66 +38,64 @@ $date = $date[0].' '.pll__('in').' '.$date[1];
 								</div>
 								<h1 class="event-page__title title"><?=the_title()?></h1>
 								<div class="event-page__infos">
-									<? if ($page_fields['date']) { ?>
+									<?php if ($page_fields['date']) { ?>
 									<div class="event-page__info">
 										<span>Когда</span>
 										<span><?=$date?></span>
 									</div>
-									<? } ?>
-									<? if ($page_fields['where']) { ?>
+									<?php } ?>
+									<?php if ($page_fields['where']) { ?>
 									<div class="event-page__info">
 										<span>Где</span>
 										<span><?=$page_fields['where']?></span>
 									</div>
-									<? } ?>
+									<?php } ?>
 								</div>
 								<button type="button" class="event-page__button button button--blue">Забронировать
 									место</button>
 								<div class="event-page__content">
-									<? if ($page_fields['image']) { ?> 
+									<?php if ($page_fields['image']) { ?> 
 									<img src="<?=$value['image']['sizes']['event_big']?>"  alt="<?=$args->post_title?>" loading="lazy">
-									<? } ?>
+									<?php } ?>
 									<h2>Описание мероприятия</h2>
 									<?=the_content()?>
-									<? if ($page_fields['images']) { ?>
+									<?php if ($page_fields['images']) { ?>
 									<div class="event-page__imagerow" data-gallery>
 										 <?php foreach($page_fields['images'] as $c_num => $slider) {?>
 										 	<a href="<?=$slider['sizes']['event_big']?>" class="event-page__image">
 											<img src="<?=$slider['sizes']['event_small']?>" alt="<?php the_title()?>" loading="lazy">
 										</a>
 								             
-								          <? } ?>
+								          <?php } ?>
 									</div>
-									<? } ?>
+									<?php } ?>
 									<h2>Как добраться</h2>
 									<div class="event-page__map">
 										 <?=get_field('map')?> 
 										 
 									</div>
-										<? if ($page_fields['where']) { ?>
+										<?php if ($page_fields['where']) { ?>
 									<div class="event-page__address"><?=$page_fields['where']?></div>
-									<? } ?>
+									<?php } ?>
 								</div>
 							</div>
 						</div>
 						<div class="first__right">
 							<div class="first__rightitems adsitems">
-	<? foreach (get_field('banners_left', 'options') as $banner) { ?>
-								   <? get_template_part( 'templates/banner',null,$banner ); ?>
+	<?php foreach (get_field('banners_left', 'options') as $banner) { ?>
+								   <?php get_template_part( 'templates/banner',null,$banner ); ?>
 				                 <?php } ?>
 							</div>
 						</div>
 					</div>
 				</div>
 			</section>
-
- 
-<?php if ( have_posts() ) : query_posts(array(
+			<?php if ( have_posts() ) : query_posts(array(
                 'posts_per_page' => 4,
                 'post__not_in' => [$page_id],
                 'post_type' => array( 'events')
                   )); ?>
-                   <? if (have_posts()) { ?>
+                   <?php if (have_posts()) { ?>
         <section class="events">
         <div class="events__container">
         <h2 class="events__title title">Ближайшие мероприятия</h2> 
@@ -105,7 +103,7 @@ $date = $date[0].' '.pll__('in').' '.$date[1];
 			<div class="events__slider swiper">
 				<div class="events__wrapper swiper-wrapper">
                 <?php while (have_posts()) : ?>
-                  <?  get_template_part( 'templates/event-slide',null,the_post() ); ?>
+                  <?php  get_template_part( 'templates/event-slide',null,the_post() ); ?>
                    <?php endwhile; ?>
                 </div>
             </div>
@@ -114,9 +112,10 @@ $date = $date[0].' '.pll__('in').' '.$date[1];
           </div>
         </div>
       </section>
-      <? } ?>
+      <?php } ?>
  <?php endif; wp_reset_query(); ?>
  
 
 <?php
 get_footer();
+			

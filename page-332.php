@@ -29,19 +29,19 @@ if (isset($_GET['sort'])) {
 ?>
 <div class="crumbs">
 	<div class="crumbs__container">
-		<a href="<?= get_home_url(); ?>" class="crumbs__link">Home</a>
-		<span class="crumbs__link"><?= the_title() ?></span>
+		<a href="<?php echo get_home_url(); ?>" class="crumbs__link">Home</a>
+		<span class="crumbs__link"><?php the_title(); ?></span>
 	</div>
 </div>
 <section class="events-page">
 	<div class="events-page__container">
-		<h1 class="events-page__title title"><?= the_title() ?></h1>
+		<h1 class="events-page__title title"><?php the_title(); ?></h1>
 
-		<? get_template_part('templates/advertising_banner', null, $page_fields); ?>
+		<?php get_template_part('templates/advertising_banner', null, $page_fields); ?>
 
 			<nav data-tabs-titles="" class="events-page__tabsnavigation">
-				<a href="?sort=dateup"><button type="button" class="events-page__tabstitle <? if ($compare == '>') { ?>_tab-active<? } ?>" data-tabs-title="">Upcoming Events</button></a>
-				<a href="?sort=datedpown"><button type="button" class="events-page__tabstitle <? if ($compare == '<') { ?>_tab-active<? } ?>" data-tabs-title="">Past events</button></a>
+				<a href="?sort=dateup"><button type="button" class="events-page__tabstitle <?php if ($compare == '>') { ?>_tab-active<?php } ?>" data-tabs-title="">Upcoming Events</button></a>
+				<a href="?sort=datedpown"><button type="button" class="events-page__tabstitle <?php if ($compare == '<') { ?>_tab-active<?php } ?>" data-tabs-title="">Past events</button></a>
 			</nav>
 
 			<?php
@@ -61,10 +61,10 @@ if (isset($_GET['sort'])) {
 					),
 					'paged' => $paged
 				)); ?>
-				<? if (have_posts()) { ?>
+				<?php if (have_posts()) { ?>
 					<div class="events-page__row">
 						<?php while (have_posts()): ?>
-							<? get_template_part('templates/event', null, the_post()); ?>
+							<?php get_template_part('templates/event', null, the_post()); ?>
 						<?php endwhile; ?>
 
 
@@ -75,16 +75,16 @@ if (isset($_GET['sort'])) {
 					<div class="pagging">
 
 
-						<? wp_pagenavi(); ?>
+						<?php wp_pagenavi(); ?>
 
 					</div>
-				<? } else { ?>
+				<?php } else { ?>
 					<h3>Ничего не найдено</h3>
-				<? } ?>
+				<?php } ?>
 			<?php endif;
 			wp_reset_query(); ?>
 
-		<? get_template_part('templates/bottom_advertising_banner', null, $page_fields); ?>
+		<?php get_template_part('templates/bottom_advertising_banner', null, $page_fields); ?>
 
 	</div>
 </section>

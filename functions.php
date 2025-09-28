@@ -672,7 +672,7 @@ function rotate_banners_on_refresh() {
     $refresh_count++;
     
     if ($refresh_count >= 3) {
-        $current_banner_set = ($current_banner_set + 1) % 4;
+        $current_banner_set = ($current_banner_set + 1) % 5;
         $refresh_count = 0;
         
         update_option('current_banner_set', $current_banner_set);
@@ -1393,3 +1393,4 @@ add_action('wp_loaded', function() {
     flush_rewrite_rules(true);
 }, 999);
 */
+    

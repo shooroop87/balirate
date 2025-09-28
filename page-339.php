@@ -223,15 +223,15 @@ if (isset($_POST['sq_min'])) {
 ?>
 <div class="crumbs">
 	<div class="crumbs__container">
-		<a href="<?= get_home_url(); ?>" class="crumbs__link"><?php the_field('text_home_' . $lang, 'options'); ?></a>
-		<span class="crumbs__link"><?= the_title() ?></span>
+		<a href="<?php echo get_home_url(); ?>" class="crumbs__link"><?php the_field('text_home_' . $lang, 'options'); ?></a>
+		<span class="crumbs__link"><?php the_title(); ?></span>
 	</div>
 </div>
 <section class="first">
 	<div class="first__container">
-		<h1 class="first__title title"><?= the_title() ?></h1>
+		<h1 class="first__title title"><?php the_title(); ?></h1>
 
-		<? get_template_part('templates/advertising_banner', null, $page_fields); ?>
+		<?php get_template_part('templates/advertising_banner', null, $page_fields); ?>
 
 		<div class="first__body first__body--reverce">
 			<div class="first__left">
@@ -249,16 +249,16 @@ if (isset($_POST['sq_min'])) {
 							'paged' => $paged
 						)); ?>
 						<?php while (have_posts()): ?>
-							<? get_template_part('templates/offer', null, the_post()); ?>
+							<?php get_template_part('templates/offer', null, the_post()); ?>
 						<?php endwhile; ?>
 					</div>
-					<? if (have_posts()) { ?>
+					<?php if (have_posts()) { ?>
 						<div class="pagging">
-							<? wp_pagenavi(); ?>
+							<?php wp_pagenavi(); ?>
 						</div>
-					<? } else { ?>
+					<?php } else { ?>
 						<h3 class="norezult">Not found</h3>
-					<? } ?>
+					<?php } ?>
 				<?php endif;
 					wp_reset_query(); ?>
 			</div>
@@ -273,32 +273,32 @@ if (isset($_POST['sq_min'])) {
 								<div class="first-filter__blockname">Developer rating</div>
 								<div class="first-filter__checks">
 									<label class="checkbox__label">
-										<input class="checkbox__input" aria-label="Рейтинг 5 звезд" <? if (isset($_POST['rating5'])) { ?>checked<? } ?> type="checkbox" value="1"
+										<input class="checkbox__input" aria-label="Рейтинг 5 звезд" <?php if (isset($_POST['rating5'])) { ?>checked<?php } ?> type="checkbox" value="1"
 											name="rating5">
 										<span class="checkbox__text checkbox__rating">
 											<img src="/img/rating-5.svg" alt="Image">
 										</span>
 									</label>
 									<label class="checkbox__label">
-										<input class="checkbox__input" <? if (isset($_POST['rating4'])) { ?>checked<? } ?> aria-label="Рейтинг 4 звезды" type="checkbox" value="1" name="rating4">
+										<input class="checkbox__input" <?php if (isset($_POST['rating4'])) { ?>checked<?php } ?> aria-label="Рейтинг 4 звезды" type="checkbox" value="1" name="rating4">
 										<span class="checkbox__text checkbox__rating">
 											<img src="/img/rating-4.svg" alt="Image">
 										</span>
 									</label>
 									<label class="checkbox__label">
-										<input class="checkbox__input" <? if (isset($_POST['rating3'])) { ?>checked<? } ?> aria-label="Рейтинг 3 звезды" type="checkbox" value="1" name="rating3">
+										<input class="checkbox__input" <?php if (isset($_POST['rating3'])) { ?>checked<?php } ?> aria-label="Рейтинг 3 звезды" type="checkbox" value="1" name="rating3">
 										<span class="checkbox__text checkbox__rating">
 											<img src="/img/rating-3.svg" alt="Image">
 										</span>
 									</label>
 									<label class="checkbox__label">
-										<input class="checkbox__input" <? if (isset($_POST['rating2'])) { ?>checked<? } ?> aria-label="Рейтинг 2 звезды" type="checkbox" value="1" name="rating2">
+										<input class="checkbox__input" <?php if (isset($_POST['rating2'])) { ?>checked<?php } ?> aria-label="Рейтинг 2 звезды" type="checkbox" value="1" name="rating2">
 										<span class="checkbox__text checkbox__rating">
 											<img src="/img/rating-2.svg" alt="Image">
 										</span>
 									</label>
 									<label class="checkbox__label">
-										<input class="checkbox__input" <? if (isset($_POST['rating1'])) { ?>checked<? } ?> aria-label="Рейтинг 1 звезда" type="checkbox" value="1" name="rating1">
+										<input class="checkbox__input" <?php if (isset($_POST['rating1'])) { ?>checked<?php } ?> aria-label="Рейтинг 1 звезда" type="checkbox" value="1" name="rating1">
 										<span class="checkbox__text checkbox__rating">
 											<img src="/img/rating-1.svg" alt="Image">
 										</span>
@@ -306,108 +306,108 @@ if (isset($_POST['sq_min'])) {
 								</div>
 							</div>
 
-							<div class="first-filter__block">
-								<div class="first-filter__blockname">Location of the object</div>
-								<div class="first-filter__checks">
-									<div data-showmore="items" class="first-filter__show _showmore-active">
-										<div data-showmore-content="5" class="first-filter__showcontent">
-											<? foreach ($city_list as $item) { ?>
-												<label class="checkbox__label">
-													<input class="checkbox__input" <? if (in_array($item->meta_value, $array_city)) { ?> checked <? } ?>type="checkbox"
-														value="<?= $item->meta_value ?>" name="city[]">
-													<span class="checkbox__text"><?= $item->meta_value ?></span>
-												</label>
-											<? } ?>
-										</div>
-										<button data-showmore-button="" type="button"
-											class="first-filter__showmore"><span>more</span><span>hide</span></button>
-									</div>
-								</div>
-							</div>
-							<div class="first-filter__block">
-								<div class="first-filter__blockname">Cost</div>
-								<div class="first-filter__range-slider range-slider" data-range>
-									<input type="hidden" data-min="<?= $minprice ?>" value="<?= $minprice ?>">
-									<input type="hidden" data-max="<?= $maxprice ?>" value="<?= $maxprice ?>">
-									<div class="range-slider__values">
-										<div class="range-slider__inputcont"><span>from</span><input
-												data-range-min="<?= $minprice ?>" value="<?= $set_minprice ?>" type="text"
-												name="price_min" /><span>$</span></div>
-										<div class="range-slider__inputcont"><span>to</span><input
-												data-range-max="<?= $maxprice ?>" value="<?= $set_maxprice ?>" type="text"
-												name="price_max" /><span>$</span></div>
-									</div>
-									<div data-range-slider></div>
-								</div>
-							</div>
-							<div class="first-filter__block">
-								<div class="first-filter__blockname">Square</div>
-								<div class="first-filter__range-slider range-slider" data-range>
-									<input type="hidden" data-min value="<?= $minsq ?>">
-									<input type="hidden" data-max value="<?= $maxsq ?>">
-									<div class="range-slider__values">
-										<div class="range-slider__inputcont"><span>from</span><input data-range-min
-												value="<?= $set_minsq ?>" type="text" name="sq_min" /><span>m²</span>
-										</div>
-										<div class="range-slider__inputcont"><span>to</span><input data-range-max
-												value="<?= $set_maxsq ?>" type="text" name="sq_max" /><span>m²</span>
-										</div>
-									</div>
-									<div data-range-slider></div>
-								</div>
-							</div>
-							<div class="first-filter__block">
-								<div class="first-filter__blockname">Number of rooms</div>
-								<div class="first-filter__checks">
-									<? foreach ($rooms_list as $item) { ?>
-										<label class="checkbox__label">
-											<input class="checkbox__input" <? if (in_array($item->meta_value, $array_rooms)) { ?> checked <? } ?> type="checkbox" value="<?= $item->meta_value ?>"
-												name="rooms[]">
-											<span class="checkbox__text"><?= $item->meta_value ?></span>
-										</label>
-									<? } ?>
-								</div>
-							</div>
-							<div class="first-filter__block">
-								<div class="first-filter__blockname">Additionally</div>
-								<div class="first-filter__checks">
-									<label class="checkbox__label">
-										<input class="checkbox__input" <? if (isset($_POST['line1'])) { ?>checked<? } ?>
-											type="checkbox" value="1" name="line1">
-										<span class="checkbox__text">First line to the ocean</span>
-									</label>
-									<label class="checkbox__label">
-										<input class="checkbox__input" <? if (isset($_POST['line2'])) { ?>checked<? } ?>
-											type="checkbox" value="1" name="line2">
-										<span class="checkbox__text">Second line by the ocean</span>
-									</label>
-									<label class="checkbox__label">
-										<input class="checkbox__input" <? if (isset($_POST['terasa'])) { ?>checked<? } ?>
-											type="checkbox" value="1" name="terasa">
-										<span class="checkbox__text">Terrace</span>
-									</label>
-									<label class="checkbox__label">
-										<input class="checkbox__input" <? if (isset($_POST['bas'])) { ?>checked<? } ?>
-											type="checkbox" value="1" name="bas">
-										<span class="checkbox__text">Pool</span>
-									</label>
-									<label class="checkbox__label">
-										<input class="checkbox__input" <? if (isset($_POST['park'])) { ?>checked<? } ?>
-											type="checkbox" value="1" name="park">
-										<span class="checkbox__text">Parking</span>
-									</label>
-								</div>
-							</div>
+			<div class="first-filter__block">
+				<div class="first-filter__blockname">Location of the object</div>
+				<div class="first-filter__checks">
+					<div data-showmore="items" class="first-filter__show _showmore-active">
+						<div data-showmore-content="5" class="first-filter__showcontent">
+							<?php foreach ($city_list as $item) { ?>
+								<label class="checkbox__label">
+									<input class="checkbox__input" <?php if (in_array($item->meta_value, $array_city)) { ?> checked <?php } ?>type="checkbox"
+										value="<?php echo $item->meta_value; ?>" name="city[]">
+									<span class="checkbox__text"><?php echo $item->meta_value; ?></span>
+								</label>
+							<?php } ?>
 						</div>
-						<button type="submit" class="button button--blue first-filter__button button--fw">Apply</button>
-						<button type="reset" class="button button--white first-filter__button button--fw">Reset
-							Filters</button>
-					</form>
+						<button data-showmore-button="" type="button"
+							class="first-filter__showmore"><span>more</span><span>hide</span></button>
+					</div>
+				</div>
+			</div>
+			<div class="first-filter__block">
+				<div class="first-filter__blockname">Cost</div>
+				<div class="first-filter__range-slider range-slider" data-range>
+					<input type="hidden" data-min="<?php echo $minprice; ?>" value="<?php echo $minprice; ?>">
+					<input type="hidden" data-max="<?php echo $maxprice; ?>" value="<?php echo $maxprice; ?>">
+					<div class="range-slider__values">
+						<div class="range-slider__inputcont"><span>from</span><input
+								data-range-min="<?php echo $minprice; ?>" value="<?php echo $set_minprice; ?>" type="text"
+								name="price_min" /><span>$</span></div>
+						<div class="range-slider__inputcont"><span>to</span><input
+								data-range-max="<?php echo $maxprice; ?>" value="<?php echo $set_maxprice; ?>" type="text"
+								name="price_max" /><span>$</span></div>
+					</div>
+					<div data-range-slider></div>
+				</div>
+			</div>
+			<div class="first-filter__block">
+				<div class="first-filter__blockname">Square</div>
+				<div class="first-filter__range-slider range-slider" data-range>
+					<input type="hidden" data-min value="<?php echo $minsq; ?>">
+					<input type="hidden" data-max value="<?php echo $maxsq; ?>">
+					<div class="range-slider__values">
+						<div class="range-slider__inputcont"><span>from</span><input data-range-min
+								value="<?php echo $set_minsq; ?>" type="text" name="sq_min" /><span>m²</span>
+						</div>
+						<div class="range-slider__inputcont"><span>to</span><input data-range-max
+								value="<?php echo $set_maxsq; ?>" type="text" name="sq_max" /><span>m²</span>
+						</div>
+					</div>
+					<div data-range-slider></div>
+				</div>
+			</div>
+			<div class="first-filter__block">
+				<div class="first-filter__blockname">Number of rooms</div>
+				<div class="first-filter__checks">
+					<?php foreach ($rooms_list as $item) { ?>
+						<label class="checkbox__label">
+							<input class="checkbox__input" <?php if (in_array($item->meta_value, $array_rooms)) { ?> checked <?php } ?> type="checkbox" value="<?php echo $item->meta_value; ?>"
+								name="rooms[]">
+							<span class="checkbox__text"><?php echo $item->meta_value; ?></span>
+						</label>
+					<?php } ?>
+				</div>
+			</div>
+			<div class="first-filter__block">
+				<div class="first-filter__blockname">Additionally</div>
+				<div class="first-filter__checks">
+					<label class="checkbox__label">
+						<input class="checkbox__input" <?php if (isset($_POST['line1'])) { ?>checked<?php } ?>
+							type="checkbox" value="1" name="line1">
+						<span class="checkbox__text">First line to the ocean</span>
+					</label>
+					<label class="checkbox__label">
+						<input class="checkbox__input" <?php if (isset($_POST['line2'])) { ?>checked<?php } ?>
+							type="checkbox" value="1" name="line2">
+						<span class="checkbox__text">Second line by the ocean</span>
+					</label>
+					<label class="checkbox__label">
+						<input class="checkbox__input" <?php if (isset($_POST['terasa'])) { ?>checked<?php } ?>
+							type="checkbox" value="1" name="terasa">
+						<span class="checkbox__text">Terrace</span>
+					</label>
+					<label class="checkbox__label">
+						<input class="checkbox__input" <?php if (isset($_POST['bas'])) { ?>checked<?php } ?>
+							type="checkbox" value="1" name="bas">
+						<span class="checkbox__text">Pool</span>
+					</label>
+					<label class="checkbox__label">
+						<input class="checkbox__input" <?php if (isset($_POST['park'])) { ?>checked<?php } ?>
+							type="checkbox" value="1" name="park">
+						<span class="checkbox__text">Parking</span>
+					</label>
 				</div>
 			</div>
 		</div>
+		<button type="submit" class="button button--blue first-filter__button button--fw">Apply</button>
+		<button type="reset" class="button button--white first-filter__button button--fw">Reset
+			Filters</button>
+	</form>
+</div>
+</div>
+</div>
 
-		<? get_template_part('templates/bottom_advertising_banner', null, $page_fields); ?>
+		<?php get_template_part('templates/bottom_advertising_banner', null, $page_fields); ?>
 
 	</div>
 </section>
@@ -417,19 +417,19 @@ if (isset($_POST['sq_min'])) {
 		'posts_per_page' => 20,
 		'post_type' => array('review')
 	)); ?>
-	<? if (have_posts()) { ?>
+	<?php if (have_posts()) { ?>
 		<section class="devscomments">
 			<div class="devscomments__container">
 				<div class="devscomments__top">
 					<h2 class="devscomments__title title">Reviews of developers</h2>
-					<div class="devscomments__toptiv"><?= have_posts()->count ?></div>
+					<div class="devscomments__toptiv"><?php echo have_posts()->count; ?></div>
 				</div>
 				<div class="devscomments__slidercont slidercont">
 					<div class="devscomments__slider swiper">
 						<div class="devscomments__wrapper swiper-wrapper">
 
 							<?php while (have_posts()): ?>
-								<? get_template_part('templates/review', null, the_post()); ?>
+								<?php get_template_part('templates/review', null, the_post()); ?>
 							<?php endwhile; ?>
 
 						</div>
@@ -441,7 +441,7 @@ if (isset($_POST['sq_min'])) {
 				</div>
 			</div>
 		</section>
-	<? } ?>
+	<?php } ?>
 <?php endif;
 wp_reset_query(); ?>
 <?php

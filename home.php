@@ -15,5 +15,5 @@
  * Initialize Home Actions
  */
 ?>
-<?
+<?php
 actions_home();
