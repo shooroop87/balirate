@@ -230,7 +230,6 @@ if ($uk_query->have_posts()): ?>
 </section>
 <?php endif;
 wp_reset_postdata(); ?>
-
 <?php
 // === СЕКЦИЯ "ПОСЛЕДНИЕ СТАТЬИ" (после FAQ, перед SEO-текстом) ===
 $latest_news_query = new WP_Query([
@@ -509,7 +508,6 @@ if (have_posts()) { ?>
   </div>
 </section>
 <?php } wp_reset_query(); ?>
-    
 <?php 
 // --- СЕКЦИЯ "ОФИЦИАЛЬНЫЕ ПАРТНЕРЫ" ---
 $partners_query = new WP_Query([
