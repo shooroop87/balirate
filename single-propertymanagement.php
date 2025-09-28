@@ -53,15 +53,15 @@ if (!empty($page_fields['top_banner_pk'])) {
             <!-- Рекламный баннер сверху -->
             <div class="advertising-banner">
                 <?php if (!empty($page_fields['top_banner_pk'])) : ?>
-                    <?= !empty($page_fields['top_banner_url']) ? '<a href="' . $page_fields['top_banner_url'] . '" class="w-100">' : '' ?>
-                        <img src="<?= $page_fields['top_banner_pk']['sizes']['banner_desc'] ?>" class="banner-pk" alt="<?= $page_fields['top_banner_pk']['alt'] ?>">
-                    <?= !empty($page_fields['top_banner_url']) ? '</a>' : '' ?>
+                    <?php echo !empty($page_fields['top_banner_url']) ? '<a href="' . $page_fields['top_banner_url'] . '" class="w-100">' : ''; ?>
+                        <img src="<?php echo $page_fields['top_banner_pk']['sizes']['banner_desc']; ?>" class="banner-pk" alt="<?php echo $page_fields['top_banner_pk']['alt']; ?>">
+                    <?php echo !empty($page_fields['top_banner_url']) ? '</a>' : ''; ?>
                 <?php endif; ?>
                 
                 <?php if (!empty($page_fields['top_banner_mob'])) : ?>
-                    <?= !empty($page_fields['top_banner_url']) ? '<a href="' . $page_fields['top_banner_url'] . '" class="w-100">' : '' ?>
-                        <img src="<?= $page_fields['top_banner_mob']['sizes']['banner-vertical'] ?>" class="banner-mob" alt="<?= $page_fields['top_banner_mob']['alt'] ?>">
-                    <?= !empty($page_fields['top_banner_url']) ? '</a>' : '' ?>
+                    <?php echo !empty($page_fields['top_banner_url']) ? '<a href="' . $page_fields['top_banner_url'] . '" class="w-100">' : ''; ?>
+                        <img src="<?php echo $page_fields['top_banner_mob']['sizes']['banner-vertical']; ?>" class="banner-mob" alt="<?php echo $page_fields['top_banner_mob']['alt']; ?>">
+                    <?php echo !empty($page_fields['top_banner_url']) ? '</a>' : ''; ?>
                 <?php endif; ?>
             </div>
         </div>
@@ -72,16 +72,16 @@ if (!empty($page_fields['top_banner_pk'])) {
 
 <div class="crumbs">
 	<div class="crumbs__container">
-		<a href="<?=get_home_url();?>" class="crumbs__link"><?php pll_e('Главная'); ?></a>
+		<a href="<?php echo get_home_url();?>" class="crumbs__link"><?php pll_e('Главная'); ?></a>
 		<a href="/uk-rating/" class="crumbs__link">Управляющие компании</a>
-		<span class="crumbs__link"><?=the_title()?></span>
+		<span class="crumbs__link"><?php the_title();?></span>
 	</div>
 </div>
 
  <section class="developer-page">
 	<div class="developer-page__container">
 		<div class="developer-page__top">
-			<h1 class="developer-page__title title"><?= the_title(); ?>
+			<h1 class="developer-page__title title"><?php the_title(); ?>
 			<?php if ($page_fields['verif']) : ?>
     			<span class="developer-page__icon developer-page__icon--check"></span>
   			<?php endif; ?>
@@ -89,115 +89,115 @@ if (!empty($page_fields['top_banner_pk'])) {
     			<span class="developer-page__icon developer-page__icon--cup"></span>
   			<?php endif; ?>
 			</h1>
-			<? if ($rate>0) { ?>
+			<?php if ($rate>0) { ?>
 			<div class="developer-page__rating">
 				<span><?php pll_e('Рейтинг'); ?></span>
-				<div data-rating="" data-rating-show data-rating-value="<?=$rate?>" class="rating"></div>
+				<div data-rating="" data-rating-show data-rating-value="<?php echo $rate;?>" class="rating"></div>
 			</div>
-		<? } ?>
+		<?php } ?>
 		</div>
 		<div class="developer-page__content">
 			<div class="developer-page__image">
-				<? if ($page_fields['f_logo']) { ?> 
-					<img src="<?=$page_fields['f_logo']['url']?>" alt="<?=the_title()?>" loading="lazy">
-				<? } ?>
+				<?php if ($page_fields['f_logo']) { ?> 
+					<img src="<?php echo $page_fields['f_logo']['url'];?>" alt="<?php the_title();?>" loading="lazy">
+				<?php } ?>
 			</div>
 			<div class="developer-page__right">
-				<? if ($page_fields['harr']) { ?>
+				<?php if ($page_fields['harr']) { ?>
 					<div class="developer-page__infos">
-						<? foreach ($page_fields['harr'] as $advantage ) { ?>
-							<div class="developer-page__info"><?=$advantage['name']?></div>
-						<? } ?>	
+						<?php foreach ($page_fields['harr'] as $advantage ) { ?>
+							<div class="developer-page__info"><?php echo $advantage['name'];?></div>
+						<?php } ?>	
 					</div>
-				<? } ?>
+				<?php } ?>
 				<div class="first-row__descs">
-					<? if ($page_fields['advantages']) { ?>
+					<?php if ($page_fields['advantages']) { ?>
 						<div class="first-row__descsitems">
-							<? foreach ($page_fields['advantages'] as $advantage ) { ?>
-								<div class="first-row__descsitem"><?=$advantage['name']?></div>
-							<? } ?>
+							<?php foreach ($page_fields['advantages'] as $advantage ) { ?>
+								<div class="first-row__descsitem"><?php echo $advantage['name'];?></div>
+							<?php } ?>
 						</div>
-					<? } ?>
+					<?php } ?>
 					
 					<div class="first-row__descsrows">
-						<? if (getMark($page_id,'mark1')>0) { ?>
+						<?php if (getMark($page_id,'mark1')>0) { ?>
 						<div class="first-row__descsrow">
 							<div class="first-row__descsrowleft">Качество услуг</div>
 							<div class="first-row__descsrowright">
 								<div class="first-row__descsrowline">
-									<div class="first-row__descsrowlinevalue" style="background: linear-gradient(92.21deg, #11E226 -5.36%, #9CEDA4 25.53%, #11E226 51.27%, #9CEDA4 69.52%, #5AE868 88.24%); width: <?=getMark($page_id,'mark1')/5*100?>%">
+									<div class="first-row__descsrowlinevalue" style="background: linear-gradient(92.21deg, #11E226 -5.36%, #9CEDA4 25.53%, #11E226 51.27%, #9CEDA4 69.52%, #5AE868 88.24%); width: <?php echo getMark($page_id,'mark1')/5*100;?>%">
 									</div>
 								</div>
-								<div class="first-row__descsrowrating"><?=getMark($page_id,'mark1')?>/5</div>
+								<div class="first-row__descsrowrating"><?php echo getMark($page_id,'mark1');?>/5</div>
 							</div>
 						</div>
-						<? } ?>
-						<? if (getMark($page_id,'mark2')>0) { ?>
+						<?php } ?>
+						<?php if (getMark($page_id,'mark2')>0) { ?>
 						<div class="first-row__descsrow">
 							<div class="first-row__descsrowleft">Скорость реагирования</div>
 							<div class="first-row__descsrowright">
 								<div class="first-row__descsrowline">
-									<div class="first-row__descsrowlinevalue" style="background: linear-gradient(92.21deg, #11E226 -5.36%, #9CEDA4 25.53%, #11E226 51.27%, #9CEDA4 69.52%, #5AE868 88.24%); width: <?=getMark($page_id,'mark2')/5*100?>%">
+									<div class="first-row__descsrowlinevalue" style="background: linear-gradient(92.21deg, #11E226 -5.36%, #9CEDA4 25.53%, #11E226 51.27%, #9CEDA4 69.52%, #5AE868 88.24%); width: <?php echo getMark($page_id,'mark2')/5*100;?>%">
 									</div>
 								</div>
-								<div class="first-row__descsrowrating"><?=getMark($page_id,'mark2')?>/5</div>
+								<div class="first-row__descsrowrating"><?php echo getMark($page_id,'mark2');?>/5</div>
 							</div>
 						</div>
-						<? } ?>
-						<? if (getMark($page_id,'mark3')>0) { ?>
+						<?php } ?>
+						<?php if (getMark($page_id,'mark3')>0) { ?>
 						<div class="first-row__descsrow">
 							<div class="first-row__descsrowleft">Клиентский сервис</div>
 							<div class="first-row__descsrowright">
 								<div class="first-row__descsrowline">
-									<div class="first-row__descsrowlinevalue" style="background: linear-gradient(92.21deg, #11E226 -5.36%, #9CEDA4 25.53%, #11E226 51.27%, #9CEDA4 69.52%, #5AE868 88.24%); width: <?=getMark($page_id,'mark3')/5*100?>%">
+									<div class="first-row__descsrowlinevalue" style="background: linear-gradient(92.21deg, #11E226 -5.36%, #9CEDA4 25.53%, #11E226 51.27%, #9CEDA4 69.52%, #5AE868 88.24%); width: <?php echo getMark($page_id,'mark3')/5*100;?>%">
 									</div>
 								</div>
-								<div class="first-row__descsrowrating"><?=getMark($page_id,'mark3')?>/5</div>
+								<div class="first-row__descsrowrating"><?php echo getMark($page_id,'mark3');?>/5</div>
 							</div>
 						</div>
-						<? } ?>
-						<? if (getMark($page_id,'mark4')>0) { ?>
+						<?php } ?>
+						<?php if (getMark($page_id,'mark4')>0) { ?>
 						<div class="first-row__descsrow">
 							<div class="first-row__descsrowleft">Соотношение цена/качество</div>
 							<div class="first-row__descsrowright">
 								<div class="first-row__descsrowline">
-									<div class="first-row__descsrowlinevalue" style="background: linear-gradient(92.21deg, #11E226 -5.36%, #9CEDA4 25.53%, #11E226 51.27%, #9CEDA4 69.52%, #5AE868 88.24%); width: <?=getMark($page_id,'mark4')/5*100?>%">
+									<div class="first-row__descsrowlinevalue" style="background: linear-gradient(92.21deg, #11E226 -5.36%, #9CEDA4 25.53%, #11E226 51.27%, #9CEDA4 69.52%, #5AE868 88.24%); width: <?php echo getMark($page_id,'mark4')/5*100;?>%">
 									</div>
 								</div>
-								<div class="first-row__descsrowrating"><?=getMark($page_id,'mark4')?>/5</div>
+								<div class="first-row__descsrowrating"><?php echo getMark($page_id,'mark4');?>/5</div>
 							</div>
 						</div>
-						<? } ?>
+						<?php } ?>
 					</div>
 					
 				</div>
 				<div class="first-row__bottominfos">
-					<? if ($page_fields['objects_count']) { ?>
+					<?php if ($page_fields['objects_count']) { ?>
 					<div class="first-row__bottominfo">
-						<span>Управляет объектами:</span><span><?=$page_fields['objects_count']?> <? echo num_word($page_fields['objects_count'],  array(get_field('text_obj1_'.$lang, 'options'), get_field('text_obj2_'.$lang, 'options'), get_field('text_obj3_'.$lang, 'options')));?></span>
+						<span>Управляет объектами:</span><span><?php echo $page_fields['objects_count'];?> <?php echo num_word($page_fields['objects_count'],  array(get_field('text_obj1_'.$lang, 'options'), get_field('text_obj2_'.$lang, 'options'), get_field('text_obj3_'.$lang, 'options')));?></span>
 					</div>
-					<? } ?>
-					<? if ($page_fields['founded_year']) { ?>
+					<?php } ?>
+					<?php if ($page_fields['founded_year']) { ?>
 					<div class="first-row__bottominfo">
-						<span>На рынке с:</span><span><?=$page_fields['founded_year']?> года</span>
+						<span>На рынке с:</span><span><?php echo $page_fields['founded_year'];?> года</span>
 					</div>
-					<? } ?>
-					<? if ($page_fields['city']) { ?>
+					<?php } ?>
+					<?php if ($page_fields['city']) { ?>
 					<div class="first-row__bottominfo">
-						<span>Город:</span><span><?=$page_fields['city']?></span>
+						<span>Город:</span><span><?php echo $page_fields['city'];?></span>
 					</div>
-					<? } ?>
+					<?php } ?>
 				</div>
 				<div class="developer-page__footer">
-					<? if ( is_user_logged_in() ) { ?> 
+					<?php if ( is_user_logged_in() ) { ?> 
 					<button type="button" class="developer-page__popuplink icon-message" data-popup="#popup-comment"><span>Оставить отзыв</span></button>
-					<? } else  { ?>
+					<?php } else  { ?>
 					<button type="button" class="developer-page__popuplink icon-message" data-popup="#popup"><span>Оставить отзыв</span></button>
-					<? } ?>
+					<?php } ?>
                     <button type="button" class="object-page__popuplink2 button icon-message" data-popup="#popup-developer"><span>Связаться с УК</span></button>
-					<? if ($page_fields['website']) { ?>
-					<a href="<?=$page_fields['website']?>" class="developer-page__site icon-arrow-r-t" target="_blank" rel="nofollow">Сайт компании</a>
-					<? } ?>
+					<?php if ($page_fields['website']) { ?>
+					<a href="<?php echo $page_fields['website'];?>" class="developer-page__site icon-arrow-r-t" target="_blank" rel="nofollow">Сайт компании</a>
+					<?php } ?>
 				</div>
 			</div>
 		</div>
@@ -214,7 +214,6 @@ if (!empty($company_videos)) {
     ]);
 }
 ?>
-
 <?php if ( have_posts() ) : query_posts(array(
                 'posts_per_page' => 200,
                 'post_type' => array( 'review'),
@@ -227,22 +226,22 @@ if (!empty($company_videos)) {
 												  )
 											  )
                   )); ?>
-      <? if (have_posts()) { ?>
-	  <? global $wp_query;
+      <?php if (have_posts()) { ?>
+	  <?php global $wp_query;
 	  //print_r($wp_query->posts);
          $totalrev = $wp_query->found_posts;?>
       <section class="devscomments">
 				<div class="devscomments__container">
 					<div class="devscomments__top">
 						<h2 class="devscomments__title title">Отзывы об управляющей компании</h2>
-						<div class="devscomments__toptiv"><?=$totalrev?></div>
+						<div class="devscomments__toptiv"><?php echo $totalrev;?></div>
 					</div>
 					<div class="devscomments__slidercont slidercont">
 						<div class="devscomments__slider swiper">
 							<div class="devscomments__wrapper swiper-wrapper">
               
                 <?php while (have_posts()) : ?>
-                  <? get_template_part( 'templates/review',null,the_post() ); ?>
+                  <?php get_template_part( 'templates/review',null,the_post() ); ?>
                 <?php endwhile; ?>
                
              </div>
@@ -252,7 +251,7 @@ if (!empty($company_videos)) {
           </div>
         </div>
       </section>
-    <?  } ?>
+    <?php  } ?>
  	<?php endif; wp_reset_query(); ?>
 
 	<?php if ( have_posts() ) : query_posts(array(
@@ -267,16 +266,16 @@ if (!empty($company_videos)) {
 							)
 						)
 		)); ?>
-	<? if (have_posts()) { ?>
+	<?php if (have_posts()) { ?>
 	<section class="offers">
 				<div class="offers__container">
 					<h2 class="offers__title title">Управляемые объекты</h2>
-					<a href="<?=get_permalink(195);?>" class="offers__link button button--gray">Смотреть все объекты</a>
+					<a href="<?php echo get_permalink(195);?>" class="offers__link button button--gray">Смотреть все объекты</a>
 					<div class="offers__slidercont slidercont">
 						<div class="offers__slider swiper">
 							<div class="offers__wrapper swiper-wrapper">
 								<?php while (have_posts()) : ?>
-                  <? get_template_part( 'templates/offer-list',null,the_post() ); ?>
+                  <?php get_template_part( 'templates/offer-list',null,the_post() ); ?>
                 <?php endwhile; ?>
 							</div>
 						</div>
@@ -285,7 +284,7 @@ if (!empty($company_videos)) {
 					</div>
 				</div>
 			</section>
-    <?  } ?>
+    <?php  } ?>
 
  <?php endif; wp_reset_query(); ?>
 
@@ -296,9 +295,9 @@ if (!empty($company_videos)) {
 				</button>
 				<div class="popup__body">
 					<div class="popup__title">Оставить отзыв об управляющей компании</div>
-					<? if ( is_user_logged_in() ) { ?> 
+					<?php if ( is_user_logged_in() ) { ?> 
 					<form class="popup__form"  method="POST" id="add_review">
-						 <input type="hidden" name="post_id" value="<?=get_the_ID();?>">
+						 <input type="hidden" name="post_id" value="<?php echo get_the_ID();?>">
 						  <input type="hidden" name="type_rec" value="3">
 						<div class="popup__lines">
 							<div class="popup__line">
@@ -327,22 +326,22 @@ if (!empty($company_videos)) {
 							</div>
 						</div>
 						<button type="submit" class="popup__submit"><?php pll_e('Отправить отзыв'); ?></button>
-						<div class="popup__info"><?php pll_e('Нажимая кнопку вы даете согласие на обработку'); ?> <a href="<?=get_permalink($pers_id);?>"><?php pll_e('персональных	данных'); ?></a> <?php pll_e('в соответствии с'); ?> <a href="<?=get_permalink($conf_id);?>"><?php pll_e('политикой конфиденциальности'); ?></a></div>
+						<div class="popup__info"><?php pll_e('Нажимая кнопку вы даете согласие на обработку'); ?> <a href="<?php echo get_permalink($pers_id);?>"><?php pll_e('персональных	данных'); ?></a> <?php pll_e('в соответствии с'); ?> <a href="<?php echo get_permalink($conf_id);?>"><?php pll_e('политикой конфиденциальности'); ?></a></div>
 					</form>
-					<? } else { ?>
+					<?php } else { ?>
 					<div class="popup__linetop"><?php pll_e('Авторизуйтесь чтобы оставить отзыв'); ?></div>
-					<? } ?>
+					<?php } ?>
 				</div>
 			</div>
 		</div>
 	</div>
-	<? if (get_the_content()) { ?>
+	<?php if (get_the_content()) { ?>
 	<section class="offers">
 		<div class="offers__container2">
-			<?= get_the_content() ?>
+			<?php echo get_the_content(); ?>
 		</div>
 	</section>
-	<? } ?>
+	<?php } ?>
 <script type="text/javascript">
 jQuery(document).ready(function($) {
 	$("#add_review").submit(function (e) {

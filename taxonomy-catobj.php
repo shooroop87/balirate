@@ -204,15 +204,15 @@ $catid = ($lang == 'en') ? 339 : 195;
 <!-- HTML-разметка: хлебные крошки и заголовок -->
 <div class="crumbs">
     <div class="crumbs__container">
-        <a href="<?= get_home_url(); ?>" class="crumbs__link"><?php pll_e('Главная'); ?></a>
-        <a href="<?= get_permalink($catid); ?>" class="crumbs__link"><?= get_the_title($catid) ?></a>
-        <span class="crumbs__link"><?= $page_fields['h1'] ?></span>
+        <a href="<?php echo get_home_url(); ?>" class="crumbs__link"><?php pll_e('Главная'); ?></a>
+        <a href="<?php echo get_permalink($catid); ?>" class="crumbs__link"><?php echo get_the_title($catid); ?></a>
+        <span class="crumbs__link"><?php echo $page_fields['h1']; ?></span>
     </div>
 </div>
 
 <section class="first">
     <div class="first__container">
-        <h1 class="first__title title"><?= $page_fields['h1'] ?></h1>
+        <h1 class="first__title title"><?php echo $page_fields['h1']; ?></h1>
 
         <?php
         // Получаем список категорий (дочерние термины таксономии catobj)
@@ -230,8 +230,8 @@ $catid = ($lang == 'en') ? 339 : 195;
                 if ($category->term_id > 1) :
                     $url = get_term_link($category); ?>
                     <li class="tabs-def__item">
-                        <a class="tabs-def__link <?= ($page_id == $category->term_id) ? 'active' : '' ?>" href="<?= $url ?>">
-                            <?= $category->name ?>
+                        <a class="tabs-def__link <?php echo ($page_id == $category->term_id) ? 'active' : ''; ?>" href="<?php echo $url; ?>">
+                            <?php echo $category->name; ?>
                         </a>
                     </li>
             <?php endif; endforeach; ?>
@@ -292,7 +292,6 @@ $catid = ($lang == 'en') ? 339 : 195;
         </div>
     </div>
 </section>
-
 <?php
 // Блок отзывов на девелоперов
 if (have_posts()) :
@@ -306,7 +305,7 @@ if (have_posts()) :
             <div class="devscomments__container">
                 <div class="devscomments__top">
                     <h2 class="devscomments__title title">Отзывы на девелоперов</h2>
-                    <div class="devscomments__toptiv"><?= wp_count_posts('review')->publish ?></div>
+                    <div class="devscomments__toptiv"><?php echo wp_count_posts('review')->publish; ?></div>
                 </div>
                 <div class="devscomments__slidercont slidercont">
                     <div class="devscomments__slider swiper">

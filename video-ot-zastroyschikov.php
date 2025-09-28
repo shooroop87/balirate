@@ -37,12 +37,12 @@ $page_title = !empty($page_fields['video_title']) ? $page_fields['video_title'] 
             <div class="first__left">
                 <div class="crumbs">
                     <div class="crumbs__container">
-                        <a href="<?= esc_url(home_url()) ?>" class="crumbs__link">Главная</a>
-                        <span class="crumbs__link"><?= esc_html(get_the_title()) ?></span>
+                        <a href="<?php echo esc_url(home_url()); ?>" class="crumbs__link">Главная</a>
+                        <span class="crumbs__link"><?php echo esc_html(get_the_title()); ?></span>
                     </div>
                 </div>
                 
-                <h1 class="first__title title"><?= esc_html($page_title) ?></h1>
+                <h1 class="first__title title"><?php echo esc_html($page_title); ?></h1>
 
                 <?php if (!empty($current_videos)): ?>
                     <div class="news__content">
@@ -58,8 +58,8 @@ $page_title = !empty($page_fields['video_title']) ? $page_fields['video_title'] 
                                 $developer = $video['video_developer'] ?? null;
                             ?>
                                 <div class="news__slide news-item video-item-card">
-                                    <div class="news-item__image video-item__thumbnail" data-video-id="<?= esc_attr($video_id) ?>">
-                                        <img src="<?= esc_url($thumbnail) ?>" class="ibg" alt="<?= esc_attr($video['video_title']) ?>" loading="lazy">
+                                    <div class="news-item__image video-item__thumbnail" data-video-id="<?php echo esc_attr($video_id); ?>">
+                                        <img src="<?php echo esc_url($thumbnail); ?>" class="ibg" alt="<?php echo esc_attr($video['video_title']); ?>" loading="lazy">
                                         
                                         <div class="video-item__play-btn" aria-hidden="true">
                                             <svg width="60" height="60" viewBox="0 0 60 60" fill="none" aria-hidden="true" focusable="false">
@@ -72,19 +72,19 @@ $page_title = !empty($page_fields['video_title']) ? $page_fields['video_title'] 
                                     </div>
 
                                     <div class="news-item__content">
-                                        <div class="news-item__name"><?= esc_html($video['video_title']) ?></div>
+                                        <div class="news-item__name"><?php echo esc_html($video['video_title']); ?></div>
                                         
                                         <?php if ($developer): ?>
                                             <div class="news-item__info video-item__developer">
-                                                <a href="<?= get_permalink($developer->ID) ?>" class="video-item__developer-link">
-                                                    <?= esc_html($developer->post_title) ?>
+                                                <a href="<?php echo get_permalink($developer->ID); ?>" class="video-item__developer-link">
+                                                    <?php echo esc_html($developer->post_title); ?>
                                                 </a>
                                             </div>
                                         <?php endif; ?>
 
                                         <?php if (!empty($video['video_description'])): ?>
                                             <div class="news-item__info">
-                                                <?= esc_html(wp_trim_words($video['video_description'], 15)) ?>
+                                                <?php echo esc_html(wp_trim_words($video['video_description'], 15)); ?>
                                             </div>
                                         <?php endif; ?>
                                     </div>
@@ -97,19 +97,19 @@ $page_title = !empty($page_fields['video_title']) ? $page_fields['video_title'] 
                             <div class="news__pagination">
                                 <div class="pagination-links">
                                     <?php if ($current_page > 1): ?>
-                                        <a href="<?= get_permalink() ?>?pg=<?= $current_page - 1 ?>" class="prev-page">← Предыдущая</a>
+                                        <a href="<?php echo get_permalink(); ?>?pg=<?php echo $current_page - 1; ?>" class="prev-page">← Предыдущая</a>
                                     <?php endif; ?>
                                     
                                     <?php for ($i = 1; $i <= $total_pages; $i++): ?>
                                         <?php if ($i == $current_page): ?>
-                                            <span class="current"><?= $i ?></span>
+                                            <span class="current"><?php echo $i; ?></span>
                                         <?php else: ?>
-                                            <a href="<?= get_permalink() ?>?pg=<?= $i ?>"><?= $i ?></a>
+                                            <a href="<?php echo get_permalink(); ?>?pg=<?php echo $i; ?>"><?php echo $i; ?></a>
                                         <?php endif; ?>
                                     <?php endfor; ?>
                                     
                                     <?php if ($current_page < $total_pages): ?>
-                                        <a href="<?= get_permalink() ?>?pg=<?= $current_page + 1 ?>" class="next-page">Следующая →</a>
+                                        <a href="<?php echo get_permalink(); ?>?pg=<?php echo $current_page + 1; ?>" class="next-page">Следующая →</a>
                                     <?php endif; ?>
                                 </div>
                             </div>
@@ -139,7 +139,6 @@ $page_title = !empty($page_fields['video_title']) ? $page_fields['video_title'] 
         </div>
     </div>
 </section>
-
 <!-- Модальное окно для видео (такое же как на главной) -->
 <div class="video-modal" id="videoModal" hidden>
     <div class="video-modal__overlay"></div>
