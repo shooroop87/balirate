@@ -1,4 +1,4 @@
-v@font-face{
+@font-face{
   font-family:icomoon;
   font-display:swap;
   src:url(../fonts/icomoon.woff2) format("woff2");
@@ -646,7 +646,7 @@ body::after{
   width:1.125rem;
   height:1.125rem;
   font-size:.75rem;
-  transition:color .3s
+  transition:color .3s;
 }
 .popup__title{
   font-family: Raleway;
@@ -5479,7 +5479,7 @@ button, a{
 
 .popup__info {
 	font-size: 12px;
-	margin-top: 20px;
+	margin-top: 12px;
 }
 
 .popup__image-block {
@@ -6720,4 +6720,498 @@ button, a{
 
 .investment-btn:hover {
     background: #44403d;
+}
+/* Investment Popup Styles для catalogModal */
+#catalogModal .popup__content--investment {
+  width: 90%;
+  max-width: 880px;
+  background: url('https://andreyegorov.com/wp-content/uploads/2025/09/bg_1.png') no-repeat center center;
+  background-size: cover;
+  background-color: #000;
+  border-radius: 16px;
+  padding: 60px 40px 110px 40px;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+#catalogModal .popup__investment-header {
+  text-align: center;
+  margin-bottom: 0px!important;
+}
+
+#catalogModal .popup__investment-title {
+  font-size: 22px;
+  font-weight: 700;
+  color: #000000;
+  background: linear-gradient(90deg, #FFA500 0%, #FFD700 100%);
+  padding: 18px 40px;
+  border-radius: 20px;
+  display: inline-block;
+  margin-bottom: 25px;
+}
+
+#catalogModal .popup__investment-subtitle {
+  font-size: 18px;
+  color: #ffffff;
+  font-weight: 400;
+  line-height: 1.6;
+}
+
+#catalogModal .popup__investment-body {
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-end;
+}
+
+#catalogModal .popup__investment-form {
+  max-width: 380px;
+  width: 100%;
+}
+
+/* Стили для Contact Form 7 в catalogModal */
+#catalogModal .popup__investment-cf7 .popup__lines {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  margin-bottom: 6px;
+}
+
+#catalogModal .popup__investment-cf7 .popup__line {
+  display: flex;
+  flex-direction: column;
+}
+
+#catalogModal .popup__investment-cf7 .popup__linetop {
+  font-size: 15px;
+  color: #ffffff;
+  margin-bottom: 10px;
+  font-weight: 400;
+}
+
+#catalogModal .popup__investment-cf7 .popup__input {
+  width: 100%;
+  padding: 16px 28px;
+  border: 2px solid #FFA500;
+  border-radius: 50px;
+  background: transparent;
+  color: #ffffff;
+  font-size: 15px;
+  outline: none;
+  transition: all 0.3s ease;
+  box-sizing: border-box;
+  background-color: #000;
+}
+
+#catalogModal .popup__investment-cf7 .popup__input::placeholder {
+  color: rgba(255, 255, 255, 0.65);
+}
+
+#catalogModal .popup__investment-cf7 .popup__input:focus {
+  border-color: #FFD700;
+  box-shadow: 0 0 20px rgba(255, 165, 0, 0.4);
+}
+
+#catalogModal .popup__investment-cf7 .popup__submit {
+  width: 100%;
+  padding: 16px 28px;
+  background: linear-gradient(90deg, #FFA500 0%, #FFD700 100%);
+  border: none;
+  border-radius: 50px;
+  color: #000000;
+  font-size: 16px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin: 0px !important;
+}
+
+#catalogModal .popup__investment-cf7 .popup__submit:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 30px rgba(255, 165, 0, 0.5);
+}
+
+#catalogModal .popup__investment-cf7 .popup__info {
+  font-size: 10px;
+  color: rgba(255, 255, 255, 0.65);
+  line-height: 1.5;
+}
+
+#catalogModal .popup__investment-cf7 .popup__info a {
+  color: #FFA500;
+  text-decoration: underline;
+  transition: color 0.3s ease;
+}
+
+#catalogModal .popup__investment-cf7 .popup__info a:hover {
+  color: #FFD700;
+}
+
+#catalogModal .popup__investment-cf7 .wpcf7-not-valid-tip {
+  color: #ff6b6b;
+  font-size: 11px;
+  margin-top: 5px;
+}
+
+#catalogModal .popup__investment-cf7 .wpcf7-response-output {
+  font-size: 13px;
+  color: #ffffff;
+  margin-top: 15px;
+}
+
+/* Responsive для catalogModal */
+@media (max-width: 900px) {
+  #catalogModal .popup__content--investment {
+    max-width: 750px;
+    padding: 50px 60px;
+  }
+}
+
+@media (max-width: 768px) {
+  #catalogModal .popup__content--investment {
+    padding: 40px 30px;
+    min-height: 450px;
+  }
+  
+  #catalogModal .popup__investment-title {
+    font-size: 28px;
+    padding: 14px 35px;
+  }
+  
+  #catalogModal .popup__investment-subtitle {
+    font-size: 15px;
+  }
+  
+  #catalogModal .popup__investment-body {
+    padding-left: 0;
+  }
+  
+  #catalogModal .popup__investment-form {
+    max-width: 100%;
+  }
+}
+
+@media (max-width: 480px) {
+  #catalogModal .popup__content--investment {
+    padding: 30px 20px;
+    min-height: 400px;
+  }
+  #catalogModal .popup__content--investment {
+    background-size: cover;
+  }
+  #catalogModal .popup__investment-title {
+    font-size: 22px;
+    padding: 12px 25px;
+  }
+  #catalogModal .popup__investment-subtitle {
+    font-size: 14px;
+  }
+}
+
+#catalogModal .popup__investment-cf7 .popup__line {
+  display: flex;
+  flex-direction: column;
+}
+
+#catalogModal .popup__investment-cf7 .popup__linetop {
+  font-size: 14px;
+  color: #ffffff;
+  margin-bottom: 8px;
+  font-weight: 500;
+}
+
+#catalogModal .popup__investment-cf7 .popup__input {
+  width: 100%;
+  padding: 16px 24px;
+  border: 2px solid #FFA500;
+  border-radius: 50px;
+  background: transparent;
+  color: #ffffff;
+  font-size: 15px;
+  outline: none;
+  transition: all 0.3s ease;
+  box-sizing: border-box;
+}
+
+#catalogModal .popup__investment-cf7 .popup__input::placeholder {
+  color: rgba(255, 255, 255, 0.7);
+}
+
+#catalogModal .popup__investment-cf7 .popup__input:focus {
+  border-color: #FFD700;
+  box-shadow: 0 0 15px rgba(255, 165, 0, 0.3);
+}
+
+#catalogModal .popup__investment-cf7 .popup__submit {
+  width: 100%;
+  padding: 16px 24px;
+  background: linear-gradient(90deg, #FFA500 0%, #FFD700 100%);
+  border: none;
+  border-radius: 50px;
+  color: #000000;
+  font-size: 16px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-bottom: 12px;
+}
+
+#catalogModal .popup__investment-cf7 .popup__submit:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(255, 165, 0, 0.4);
+}
+
+#catalogModal .popup__investment-cf7 .popup__info {
+  font-size: 11px;
+  color: rgba(255, 255, 255, 0.7);
+  line-height: 1.4;
+  text-align: center;
+}
+
+#catalogModal .popup__investment-cf7 .popup__info a {
+  color: #FFA500;
+  text-decoration: underline;
+  transition: color 0.3s ease;
+}
+
+#catalogModal .popup__investment-cf7 .popup__info a:hover {
+  color: #FFD700;
+}
+
+#catalogModal .popup__investment-cf7 .wpcf7-not-valid-tip {
+  color: #ff6b6b;
+  font-size: 12px;
+  margin-top: 5px;
+}
+
+#catalogModal .popup__investment-cf7 .wpcf7-response-output {
+  font-size: 14px;
+  color: #ffffff;
+  margin-top: 15px;
+  text-align: center;
+}
+/* Investment Popup Styles для popup-lead */
+#popup-lead .popup__content--investment {
+  width: 90%;
+  max-width: 880px;
+  background: url('https://andreyegorov.com/wp-content/uploads/2025/09/bg_1.png') no-repeat center center;
+  background-size: cover;
+  background-color: #000;
+  border-radius: 16px;
+  padding: 60px 40px 110px 40px;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+#popup-lead .popup__investment-header {
+  text-align: center;
+  margin-bottom: 0px!important;
+}
+
+#popup-lead .popup__investment-title {
+  font-size: 22px;
+  font-weight: 700;
+  color: #000000;
+  background: linear-gradient(90deg, #FFA500 0%, #FFD700 100%);
+  padding: 18px 40px;
+  border-radius: 20px;
+  display: inline-block;
+  margin-bottom: 25px;
+}
+
+#popup-lead .popup__investment-subtitle {
+  font-size: 18px;
+  color: #ffffff;
+  font-weight: 400;
+  line-height: 1.6;
+}
+
+#popup-lead .popup__investment-body {
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-end;
+}
+
+#popup-lead .popup__investment-form {
+  max-width: 380px;
+  width: 100%;
+}
+
+/* Стили для Contact Form 7 в popup-lead */
+#popup-lead .popup__investment-cf7 .popup__lines {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  margin-bottom: 6px;
+}
+
+#popup-lead .popup__investment-cf7 .popup__line {
+  display: flex;
+  flex-direction: column;
+}
+
+#popup-lead .popup__investment-cf7 .popup__linetop {
+  font-size: 15px;
+  color: #ffffff;
+  margin-bottom: 10px;
+  font-weight: 400;
+}
+
+#popup-lead .popup__investment-cf7 .popup__input {
+  width: 100%;
+  padding: 16px 28px;
+  border: 2px solid #FFA500;
+  border-radius: 50px;
+  background: transparent;
+  color: #ffffff;
+  font-size: 15px;
+  outline: none;
+  transition: all 0.3s ease;
+  box-sizing: border-box;
+  background-color: #000;
+}
+
+#popup-lead .popup__investment-cf7 .popup__input::placeholder {
+  color: rgba(255, 255, 255, 0.65);
+}
+
+#popup-lead .popup__investment-cf7 .popup__input:focus {
+  border-color: #FFD700;
+  box-shadow: 0 0 20px rgba(255, 165, 0, 0.4);
+}
+
+#popup-lead .popup__investment-cf7 .popup__submit {
+  width: 100%;
+  padding: 16px 28px;
+  background: linear-gradient(90deg, #FFA500 0%, #FFD700 100%);
+  border: none;
+  border-radius: 50px;
+  color: #000000;
+  font-size: 16px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin: 0px !important;
+}
+
+#popup-lead .popup__investment-cf7 .popup__submit:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 30px rgba(255, 165, 0, 0.5);
+}
+
+#popup-lead .popup__investment-cf7 .popup__info {
+  font-size: 10px;
+  color: rgba(255, 255, 255, 0.65);
+  line-height: 1.5;
+}
+
+#popup-lead .popup__investment-cf7 .popup__info a {
+  color: #FFA500;
+  text-decoration: underline;
+  transition: color 0.3s ease;
+}
+
+#popup-lead .popup__investment-cf7 .popup__info a:hover {
+  color: #FFD700;
+}
+
+#popup-lead .popup__investment-cf7 .wpcf7-not-valid-tip {
+  color: #ff6b6b;
+  font-size: 11px;
+  margin-top: 5px;
+}
+
+#popup-lead .popup__investment-cf7 .wpcf7-response-output {
+  font-size: 13px;
+  color: #ffffff;
+  margin-top: 15px;
+}
+
+/* Responsive для popup-lead */
+@media (max-width: 900px) {
+  #popup-lead .popup__content--investment {
+    max-width: 750px;
+    padding: 50px 60px;
+  }
+}
+
+@media (max-width: 768px) {
+  #popup-lead .popup__content--investment {
+    padding: 40px 30px;
+    min-height: 450px;
+  }
+  
+  #popup-lead .popup__investment-title {
+    font-size: 28px;
+    padding: 14px 35px;
+  }
+  
+  #popup-lead .popup__investment-subtitle {
+    font-size: 15px;
+  }
+  
+  #popup-lead .popup__investment-body {
+    padding-left: 0;
+  }
+  
+  #popup-lead .popup__investment-form {
+    max-width: 100%;
+  }
+}
+
+@media (max-width: 480px) {
+  #popup-lead .popup__content--investment {
+    padding: 30px 20px;
+    min-height: 400px;
+  }
+  #popup-lead .popup__content--investment {
+    background-size: cover;
+  }
+  #popup-lead .popup__investment-title {
+    font-size: 22px;
+    padding: 12px 25px;
+  }
+  #popup-lead .popup__investment-subtitle {
+    font-size: 14px;
+  }
+}
+#popup-lead .popup__close{
+  color: #fff;
+}
+#catalogModal .popup__close{
+  color: #fff;
+}
+#catalogModal .input {
+  padding: .875rem;
+  font-size: 15px !important;
+}
+#popup-lead .input {
+  padding: .875rem;
+  font-size: 15px !important;
+}
+#popup-lead .wpcf7 form .wpcf7-response-output {
+  color: #fff;
+}
+#catalogModal .wpcf7 form .wpcf7-response-output {
+  color: #fff;
+}
+.popup__submit {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  line-height: 1; /* это важно для точного выравнивания */
+}
+.popup__submit svg {
+  flex-shrink: 0;
+  display: block;
 }

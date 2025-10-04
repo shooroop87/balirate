@@ -7,6 +7,38 @@ get_header();
 
 $page_id = get_queried_object_id();
 $page_fields = get_fields($page_id);
+
+// === ОТЛАДКА - НАЧАЛО ===
+echo '<div style="background: #f0f0f0; padding: 20px; margin: 20px; border: 2px solid red;">';
+echo '<h2>ОТЛАДКА ВКЛАДОК</h2>';
+echo '<p><strong>ID страницы:</strong> ' . $page_id . '</p>';
+echo '<p><strong>Всего вкладок:</strong> ' . (is_array($page_fields['tabs']) ? count($page_fields['tabs']) : 'НЕТ МАССИВА') . '</p>';
+
+if (!empty($page_fields['tabs'])) {
+    echo '<table border="1" cellpadding="5" style="background: white;">';
+    echo '<tr><th>#</th><th>Название</th><th>Элементов в list</th><th>Тип первого элемента</th></tr>';
+    
+    foreach ($page_fields['tabs'] as $num => $tab) {
+        echo '<tr>';
+        echo '<td>' . $num . '</td>';
+        echo '<td>' . ($tab['title'] ?? 'Без названия') . '</td>';
+        echo '<td>' . (is_array($tab['list']) ? count($tab['list']) : 'НЕТ') . '</td>';
+        
+        if (!empty($tab['list'][0])) {
+            echo '<td>' . get_post_type($tab['list'][0]) . '</td>';
+        } else {
+            echo '<td>-</td>';
+        }
+        echo '</tr>';
+    }
+    
+    echo '</table>';
+} else {
+    echo '<p style="color: red; font-weight: bold;">МАССИВ ВКЛАДОК ПУСТ ИЛИ НЕ СУЩЕСТВУЕТ!</p>';
+}
+
+echo '</div>';
+// === ОТЛАДКА - КОНЕЦ ===
 ?>
 
 <?php if (!empty($page_fields['tabs'])) { ?>
@@ -56,7 +88,7 @@ $page_fields = get_fields($page_id);
               'Девелоперы премиум сегмента' => 'https://balirate.com/wp-content/uploads/2025/06/group-5.png',
               'Девелоперы бизнес+ сегмента' => 'https://balirate.com/wp-content/uploads/2025/06/group-8.png',
               'Агентства недвижимости' => 'https://balirate.com/wp-content/uploads/2025/06/group-4-1.png',
-              'Управляющие компании' => 'https://balirate.com/wp-content/uploads/2025/06/group-4-1.png'
+              'Управляющие компании' => 'https://balirate.com/wp-content/uploads/2025/06/group-4.png'
           ];
           ?>
 

@@ -161,22 +161,24 @@ if ($lang=='en') {$menurealt_id =49; } else {$menurealt_id =7;}
 		</div>
 	</div>
 <div id="popup-lead" aria-hidden="true" class="popup popup-feed">
-  <div class="popup__wrapper">
-    <div class="popup__content popup__content--investment">
-      <button data-close type="button" class="popup__close icon-close"></button>
-      
-      <div class="popup__investment-header">
-        <h2 class="popup__investment-title">Закрытые <span style="color: #fff;">инвестиционные предложения</span></h2>
-        <p class="popup__investment-subtitle">Подборка закрытых инвестиционных предложений от девелоперов, эксклюзивно для BaliRate - со скидкой до 30%</p>
-      </div>
-      
-      <div class="popup__investment-body">
-        <div class="popup__investment-form">
-          <?php echo do_shortcode('[contact-form-7 id="1790" title="Pop-Up 10 секунд" html_class="popup__form"]'); ?>
-        </div>
-      </div>
-    </div>
-  </div>
+	<div class="popup__wrapper">
+		<div class="popup__content popup__content--wide">
+			<button data-close type="button" class="popup__close icon-close"></button>
+			<div class="popup__grid">
+				<!-- Левая колонка: форма -->
+				<div class="popup__form-block">
+					<h2 class="popup__title">Оставить заявку</h2>
+					<p class="popup__text">Эксклюзивный каталог лучших застройщиков Бали — получите в WhatsApp прямо сейчас</p>
+					<?php echo do_shortcode('[contact-form-7 id="1790" title="Pop-Up 10 секунд" html_class="popup__form"]'); ?>
+				</div>
+
+				<!-- Правая колонка: изображение -->
+				<div class="popup__image-block">
+                	<img src="<?php echo esc_url(get_option('popup_image_url', 'https://balirate.com/wp-content/uploads/2025/04/374x526-min.jpg')); ?>" alt="Изображение" class="popup__image"></div>
+			</div>
+
+		</div>
+	</div>
 </div>
 	<script  defer src="<?php echo get_template_directory_uri()?>/js/common.js?ver=<?php echo wp_get_theme()->get( 'Version' );?><?php echo time();?>"></script>
 	<script  defer src="<?php echo get_template_directory_uri()?>/js/app.min.js?ver=<?php echo wp_get_theme()->get( 'Version' );?><?php echo time();?>"></script>

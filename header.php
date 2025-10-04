@@ -308,24 +308,21 @@ if (function_exists('trp_get_languages')) {
 		</div>
 	</div>
 
-<!-- Catalog modal в стилях popup/popup-feed -->
-<div id="catalogModal" aria-hidden="true" class="popup popup-feed">
+<!-- Catalog modal с новым дизайном -->
+<div id="catalogModal" aria-hidden="true" class="popup popup-feed popup-catalog">
   <div class="popup__wrapper">
-    <div class="popup__content">
+    <div class="popup__content popup__content--investment">
       <button data-close type="button" class="popup__close icon-close"></button>
-
-      <div class="popup__body">
-        <div class="popup__title">Получить предложение месяца</div>
-
-        <div class="popup__text">
-          Хотите каталог с лучшими проектами на Бали?<br>
-          Оставьте WhatsApp — отправим в течение нескольких минут!
+      
+      <div class="popup__investment-header">
+        <h2 class="popup__investment-title">Закрытые <span style="color: #fff;">инвестиционные предложения</span></h2>
+        <p class="popup__investment-subtitle">Подборка закрытых инвестиционных предложений от девелоперов, эксклюзивно для BaliRate со скидкой до 30%</p>
+      </div>
+      
+      <div class="popup__investment-body">
+        <div class="popup__investment-form">
+          <?php echo do_shortcode('[contact-form-7 id="8726fff" html_class="popup__investment-cf7"]'); ?>
         </div>
-
-        <?php
-          // как в #popup-developer: пробрасываем класс формы, чтобы поля/кнопка были как в первом окне
-          echo do_shortcode('[contact-form-7 id="8726fff" title="PopUp Получить каталог (Header)" html_class="popup__form"]');
-        ?>
       </div>
     </div>
   </div>

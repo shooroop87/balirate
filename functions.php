@@ -1235,7 +1235,8 @@ function force_translatepress_strings() {
                 'Надежные девелоперы',
                 'Девелоперы премиум сегмента',
                 'Девелоперы бизнес+ сегмента',
-                'Агентства недвижимости'
+                'Агентства недвижимости',
+                'Управляющие компании'
             ];
             
             if (in_array($text, $strings_to_translate)) {
@@ -1266,7 +1267,8 @@ function custom_translatepress_scan_strings($strings) {
         'Надежные девелоперы',
         'Девелоперы премиум сегмента',
         'Девелоперы бизнес+ сегмента',
-        'Агентства недвижимости'
+        'Агентства недвижимости',
+        'Управляющие компании'
     ];
     
     foreach ($custom_strings as $string) {
@@ -1394,3 +1396,11 @@ add_action('wp_loaded', function() {
 }, 999);
 */
     
+// Скрытие уведомления ACF о раннем вызове переводов
+add_filter('doing_it_wrong_trigger_error', function($trigger, $function_name, $message, $version) {
+    if ($function_name === 'load_textdomain_just_in_time' && 
+        strpos($message, 'acf') !== false) {
+        return false;
+    }
+    return $trigger;
+}, 10, 4);
