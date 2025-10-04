@@ -594,8 +594,8 @@ function register_custom_post_types() {
         'hierarchical'        => false,
         'menu_position'       => 25,
         'menu_icon'           => 'dashicons-groups',
-        'supports'            => ['title', 'editor', 'thumbnail'],
-        'show_in_rest'        => true
+        'show_in_rest'        => true,
+        'supports' => ['title', 'editor', 'thumbnail', 'custom-fields'],
     ]);
 
     // Регистрация типа записи "Статьи"
@@ -1297,104 +1297,6 @@ if (!defined('PLL_REMOVE_ALL_DATA')) {
     define('PLL_REMOVE_ALL_DATA', true);
 }
 
-// Регистрация управляющих компаний
-add_action('init', function() {
-    register_post_type('propertymanagement', [
-        'labels' => [
-            'name'               => 'Управляющие компании',
-            'singular_name'      => 'Управляющая компания',
-            'add_new'            => 'Добавить новую',
-            'add_new_item'       => 'Добавить управляющую компанию',
-            'edit_item'          => 'Редактировать УК',
-            'new_item'           => 'Новая УК',
-            'view_item'          => 'Просмотреть УК',
-            'search_items'       => 'Найти УК',
-            'not_found'          => 'УК не найдены',
-            'not_found_in_trash' => 'УК не найдены в корзине',
-            'menu_name'          => 'Управляющие компании'
-        ],
-        'public'              => true,
-        'publicly_queryable'  => true,
-        'show_ui'             => true,
-        'show_in_menu'        => true,
-        'query_var'           => true,
-        'rewrite'             => [
-            'slug' => 'property-management', 
-            'with_front' => false
-        ],
-        'capability_type'     => 'post',
-        'has_archive'         => false,
-        'hierarchical'        => false,
-        'menu_position'       => 28,
-        'menu_icon'           => 'dashicons-building',
-        'supports'            => ['title', 'editor', 'thumbnail'],
-        'show_in_rest'        => true
-    ]);
-    
-    // Правила для uk-rating
-    add_rewrite_rule(
-        '^uk-rating/?([0-9]+)?/?$',
-        'index.php?pagename=uk-rating&paged=$matches[1]',
-        'top'
-    );
-}, 15);
-
-// Обработка шаблонов
-add_filter('template_include', function($template) {
-    if (is_singular('propertymanagement')) {
-        $new_template = locate_template(['single-propertymanagement.php']);
-        if ($new_template) return $new_template;
-    }
-    
-    global $wp_query;
-    if (isset($wp_query->query_vars['pagename']) && $wp_query->query_vars['pagename'] === 'uk-rating') {
-        $new_template = locate_template(['page-ukrating.php']);
-        if ($new_template) return $new_template;
-    }
-    
-    return $template;
-});
-
-// Виртуальная страница uk-rating
-add_filter('the_posts', function($posts, $query) {
-    if ($query->is_main_query() && 
-        isset($query->query_vars['pagename']) && 
-        $query->query_vars['pagename'] === 'uk-rating') {
-        
-        $virtual_post = new stdClass();
-        $virtual_post->ID = -999;
-        $virtual_post->post_title = 'Рейтинг управляющих компаний';
-        $virtual_post->post_content = '';
-        $virtual_post->post_status = 'publish';
-        $virtual_post->post_type = 'page';
-        $virtual_post->post_author = 1;
-        $virtual_post->post_date = current_time('mysql');
-        $virtual_post->post_name = 'uk-rating';
-        $virtual_post->guid = home_url('/uk-rating/');
-        $virtual_post->comment_status = 'closed';
-        $virtual_post->ping_status = 'closed';
-        
-        $virtual_post = new WP_Post($virtual_post);
-        $posts = [$virtual_post];
-        
-        $query->is_page = true;
-        $query->is_singular = true;
-        $query->is_home = false;
-        $query->is_archive = false;
-        $query->is_404 = false;
-        $query->found_posts = 1;
-        $query->post_count = 1;
-    }
-    
-    return $posts;
-}, 10, 2);
-
-// ВРЕМЕННО - раскомментировать на 1 минуту
-/*
-add_action('wp_loaded', function() {
-    flush_rewrite_rules(true);
-}, 999);
-*/
     
 // Скрытие уведомления ACF о раннем вызове переводов
 add_filter('doing_it_wrong_trigger_error', function($trigger, $function_name, $message, $version) {
