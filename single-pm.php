@@ -22,7 +22,12 @@ get_header(); ?>
 	$total_rev = gettotalrev($page_id);
 	$rate = $page_fields['rating'];
 	$lang= pll_current_language();
-if ($lang=='en') { $catid=344;} else {$catid=132;}
+// Стало:
+if ($lang=='en') { 
+    $catid = 2805; // или ID английской версии страницы УК
+} else {
+    $catid = 2805; // ID страницы page-ukrating.php
+}
 if ($lang=='en') { $conf_id=460;} else {$conf_id=248;} 
 if ($lang=='en') { $pers_id=464;} else {$pers_id=462;} 
  ?>
