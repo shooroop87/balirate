@@ -1306,3 +1306,22 @@ add_filter('doing_it_wrong_trigger_error', function($trigger, $function_name, $m
     }
     return $trigger;
 }, 10, 4);
+
+// Показывать все языки + гарантированно добавить нужные CPT в выбор
+add_filter('acf/fields/post_object/query/name=list', function($args, $field, $post_id){
+    // если что-то переопределяет post_type — поправим
+    $need = ['pm','agencies','stroys'];
+    $args['post_type'] = isset($args['post_type']) ? (array) $args['post_type'] : $need;
+    foreach ($need as $pt) {
+        if (!in_array($pt, $args['post_type'], true)) $args['post_type'][] = $pt;
+    }
+
+    // Polylang: показать записи всех языков
+    $args['lang'] = 'all';
+    // WPML и др.: подавить внешние фильтры
+    $args['suppress_filters'] = true;
+
+    // (опционально) ограничьте до опубликованных
+    $args['post_status'] = ['publish'];
+    return $args;
+}, 10, 3);

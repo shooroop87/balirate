@@ -18,44 +18,57 @@ $post_type = get_post_type($id);
 $total_rev = gettotalrev($id);
 
 // Рейтинг
-$rate = $filds['rating'];
+$rate = !empty($filds['rating']) ? $filds['rating'] : 0;
 
 // Определяем поле для сайта в зависимости от типа записи
-$site_field = ($post_type === 'propertymanagement') ? 'website' : 'sait';
+$site_field = ($post_type === 'propertymanagement' || $post_type === 'pm') ? 'website' : 'sait';
+$site_url = !empty($filds[$site_field]) ? $filds[$site_field] : '';
 ?>
 
 <!-- Элемент списка -->
-<div class="first__row first-row <?php if ($filds['premium']) echo 'vipitem'; ?>">
+<div class="first__row first-row <?php if (!empty($filds['premium'])) echo 'vipitem'; ?>">
 
     <!-- Логотип -->
-    <?php if ($filds['f_logo']) : ?>
-        <a href="<?php echo get_permalink($id); ?>" aria-label="Ссылка на страницу <?php echo $post_type === 'propertymanagement' ? 'управляющей компании' : 'застройщика'; ?>" class="first-row__image">
-            <img src="<?php echo $filds['f_logo']['sizes']['logo_small'] ?>" class="ibg ibg--contain2" alt="<?php echo $args->post_title ?>" loading="lazy">
+    <?php if (!empty($filds['f_logo'])) : ?>
+        <a href="<?= esc_url(get_permalink($id)) ?>" 
+           aria-label="Ссылка на страницу <?= $post_type === 'propertymanagement' ? 'управляющей компании' : 'застройщика' ?>" 
+           class="first-row__image">
+            <img src="<?= esc_url($filds['f_logo']['sizes']['logo_small']) ?>" 
+                 class="ibg ibg--contain2" 
+                 alt="<?= esc_attr($args->post_title) ?>" 
+                 loading="lazy">
         </a>
     <?php endif; ?>
 
     <!-- Название + значки -->
-    <a href="<?php echo get_permalink($id); ?>" class="first-row__name">
-        <?php echo $args->post_title ?>
-        <?php if ($filds['verif']) : ?>
+    <a href="<?= esc_url(get_permalink($id)) ?>" class="first-row__name">
+        <?= esc_html($args->post_title) ?>
+        <?php if (!empty($filds['verif'])) : ?>
             <span class="first-row__name first-row__name--check"></span>
         <?php endif; ?>
-        <?php if ($filds['cup']) : ?>
+        <?php if (!empty($filds['cup'])) : ?>
             <span class="first-row__name first-row__name--cup"></span>
         <?php endif; ?>
     </a>
 
     <!-- Правая панель: рейтинг, сайт, стрелка -->
     <div class="first-row__right">
-        <div data-rating data-rating-show data-rating-value="<?php echo $rate ?>" class="rating"></div>
+        <?php if ($rate > 0) : ?>
+            <div data-rating data-rating-show data-rating-value="<?= esc_attr($rate) ?>" class="rating"></div>
+        <?php endif; ?>
 
-        <?php if ($filds[$site_field]) : ?>
-            <a href="<?php echo $filds[$site_field] ?>" class="first-row__site first-row__site--top icon-arrow-r-t" target="_blank" rel="nofollow">
+        <?php if ($site_url) : ?>
+            <a href="<?= esc_url($site_url) ?>" 
+               class="first-row__site first-row__site--top icon-arrow-r-t" 
+               target="_blank" 
+               rel="nofollow">
                 <?php the_field('text_sait_' . $lang, 'options'); ?>
             </a>
         <?php endif; ?>
 
-        <button type="button" aria-label="Кнопка раскрытия блока с показателями" class="first-row__arrow icon-arrow-d-b"></button>
+        <button type="button" 
+                aria-label="Кнопка раскрытия блока с показателями" 
+                class="first-row__arrow icon-arrow-d-b"></button>
     </div>
 
     <!-- Скрытый блок: преимущества и оценки -->
@@ -65,112 +78,70 @@ $site_field = ($post_type === 'propertymanagement') ? 'website' : 'sait';
         <?php if (!empty($filds['advantages'])) : ?>
             <div class="first-row__descsitems">
                 <?php foreach ($filds['advantages'] as $advantage) : ?>
-                    <div class="first-row__descsitem"><?php echo $advantage['name'] ?></div>
+                    <div class="first-row__descsitem"><?= esc_html($advantage['name']) ?></div>
                 <?php endforeach; ?>
             </div>
         <?php endif; ?>
 
         <!-- Оценки по категориям -->
         <div class="first-row__descsrows">
-            <?php if ($post_type === 'propertymanagement'): ?>
+            <?php if ($post_type === 'propertymanagement' || $post_type === 'pm'): ?>
                 <!-- Оценки для управляющих компаний -->
-                <?php if (getMark($page_id, 'mark1') > 0) : ?>
+                <?php
+                $pm_marks = [
+                    'mark1' => 'Качество услуг',
+                    'mark2' => 'Скорость реагирования',
+                    'mark3' => 'Клиентский сервис',
+                    'mark4' => 'Соотношение цена/качество'
+                ];
+                
+                foreach ($pm_marks as $mark_key => $mark_label) :
+                    $mark_value = getMark($page_id, $mark_key);
+                    if ($mark_value > 0) :
+                ?>
                     <div class="first-row__descsrow">
-                        <div class="first-row__descsrowleft">Качество услуг</div>
+                        <div class="first-row__descsrowleft"><?= esc_html($mark_label) ?></div>
                         <div class="first-row__descsrowright">
                             <div class="first-row__descsrowline">
-                                <div class="first-row__descsrowlinevalue" style="width: <?php echo getMark($page_id, 'mark1') / 5 * 100 ?>%"></div>
+                                <div class="first-row__descsrowlinevalue" 
+                                     style="width: <?= ($mark_value / 5 * 100) ?>%"></div>
                             </div>
-                            <div class="first-row__descsrowrating"><?php echo getMark($page_id, 'mark1') ?>/5</div>
+                            <div class="first-row__descsrowrating"><?= esc_html($mark_value) ?>/5</div>
                         </div>
                     </div>
-                <?php endif; ?>
-
-                <?php if (getMark($page_id, 'mark2') > 0) : ?>
-                    <div class="first-row__descsrow">
-                        <div class="first-row__descsrowleft">Скорость реагирования</div>
-                        <div class="first-row__descsrowright">
-                            <div class="first-row__descsrowline">
-                                <div class="first-row__descsrowlinevalue" style="width: <?php echo getMark($page_id, 'mark2') / 5 * 100 ?>%"></div>
-                            </div>
-                            <div class="first-row__descsrowrating"><?php echo getMark($page_id, 'mark2') ?>/5</div>
-                        </div>
-                    </div>
-                <?php endif; ?>
-
-                <?php if (getMark($page_id, 'mark3') > 0) : ?>
-                    <div class="first-row__descsrow">
-                        <div class="first-row__descsrowleft">Клиентский сервис</div>
-                        <div class="first-row__descsrowright">
-                            <div class="first-row__descsrowline">
-                                <div class="first-row__descsrowlinevalue" style="width: <?php echo getMark($page_id, 'mark3') / 5 * 100 ?>%"></div>
-                            </div>
-                            <div class="first-row__descsrowrating"><?php echo getMark($page_id, 'mark3') ?>/5</div>
-                        </div>
-                    </div>
-                <?php endif; ?>
-
-                <?php if (getMark($page_id, 'mark4') > 0) : ?>
-                    <div class="first-row__descsrow">
-                        <div class="first-row__descsrowleft">Соотношение цена/качество</div>
-                        <div class="first-row__descsrowright">
-                            <div class="first-row__descsrowline">
-                                <div class="first-row__descsrowlinevalue" style="width: <?php echo getMark($page_id, 'mark4') / 5 * 100 ?>%"></div>
-                            </div>
-                            <div class="first-row__descsrowrating"><?php echo getMark($page_id, 'mark4') ?>/5</div>
-                        </div>
-                    </div>
-                <?php endif; ?>
+                <?php 
+                    endif;
+                endforeach;
+                ?>
 
             <?php else: ?>
                 <!-- Оценки для застройщиков/агентств -->
-                <?php if (getMark($page_id, 'mark1') > 0) : ?>
+                <?php
+                $dev_marks = [
+                    'mark1' => 'Срок сдачи',
+                    'mark2' => 'Премиальность',
+                    'mark3' => 'Поддержка',
+                    'mark4' => 'Качество строительства'
+                ];
+                
+                foreach ($dev_marks as $mark_key => $mark_label) :
+                    $mark_value = getMark($page_id, $mark_key);
+                    if ($mark_value > 0) :
+                ?>
                     <div class="first-row__descsrow">
-                        <div class="first-row__descsrowleft">Срок сдачи</div>
+                        <div class="first-row__descsrowleft"><?= esc_html($mark_label) ?></div>
                         <div class="first-row__descsrowright">
                             <div class="first-row__descsrowline">
-                                <div class="first-row__descsrowlinevalue" style="width: <?php echo getMark($page_id, 'mark1') / 5 * 100 ?>%"></div>
+                                <div class="first-row__descsrowlinevalue" 
+                                     style="width: <?= ($mark_value / 5 * 100) ?>%"></div>
                             </div>
-                            <div class="first-row__descsrowrating"><?php echo getMark($page_id, 'mark1') ?>/5</div>
+                            <div class="first-row__descsrowrating"><?= esc_html($mark_value) ?>/5</div>
                         </div>
                     </div>
-                <?php endif; ?>
-
-                <?php if (getMark($page_id, 'mark2') > 0) : ?>
-                    <div class="first-row__descsrow">
-                        <div class="first-row__descsrowleft">Премиальность</div>
-                        <div class="first-row__descsrowright">
-                            <div class="first-row__descsrowline">
-                                <div class="first-row__descsrowlinevalue" style="width: <?php echo getMark($page_id, 'mark2') / 5 * 100 ?>%"></div>
-                            </div>
-                            <div class="first-row__descsrowrating"><?php echo getMark($page_id, 'mark2') ?>/5</div>
-                        </div>
-                    </div>
-                <?php endif; ?>
-
-                <?php if (getMark($page_id, 'mark3') > 0) : ?>
-                    <div class="first-row__descsrow">
-                        <div class="first-row__descsrowleft">Поддержка</div>
-                        <div class="first-row__descsrowright">
-                            <div class="first-row__descsrowline">
-                                <div class="first-row__descsrowlinevalue" style="width: <?php echo getMark($page_id, 'mark3') / 5 * 100 ?>%"></div>
-                            </div>
-                            <div class="first-row__descsrowrating"><?php echo getMark($page_id, 'mark3') ?>/5</div>
-                        </div>
-                    </div>
-                <?php endif; ?>
-
-                <?php if (getMark($page_id, 'mark4') > 0) : ?>
-                    <div class="first-row__descsrow">
-                        <div class="first-row__descsrowleft">Качество строительства</div>
-                        <div class="first-row__descsrowright">
-                            <div class="first-row__descsrowline">
-                                <div class="first-row__descsrowlinevalue" style="width: <?php echo getMark($page_id, 'mark4') / 5 * 100 ?>%"></div>
-                            </div>
-                            <div class="first-row__descsrowrating"><?php echo getMark($page_id, 'mark4') ?>/5</div>
-                        </div>
-                    </div>
-                <?php endif; ?>
+                <?php 
+                    endif;
+                endforeach;
+                ?>
             <?php endif; ?>
         </div>
     </div>
@@ -179,41 +150,44 @@ $site_field = ($post_type === 'propertymanagement') ? 'website' : 'sait';
     <div class="first-row__bottom">
         <div class="first-row__bottominfos">
 
-            <?php if ($post_type === 'propertymanagement'): ?>
+            <?php if ($post_type === 'propertymanagement' || $post_type === 'pm'): ?>
                 <!-- Информация для управляющих компаний -->
-                <?php if ($filds['objects_count']) : ?>
+                <?php if (!empty($filds['objects_count'])) : ?>
                     <div class="first-row__bottominfo">
                         <span>Управляет объектами:</span>
-                        <span><?php echo $filds['objects_count'] ?> <?php echo num_word($filds['objects_count'], [
-                            get_field('text_obj1_' . $lang, 'options'),
-                            get_field('text_obj2_' . $lang, 'options'),
-                            get_field('text_obj3_' . $lang, 'options')
-                        ]) ?></span>
+                        <span>
+                            <?= absint($filds['objects_count']) ?>
+                            <?= num_word($filds['objects_count'], [
+                                get_field('text_obj1_' . $lang, 'options'),
+                                get_field('text_obj2_' . $lang, 'options'),
+                                get_field('text_obj3_' . $lang, 'options')
+                            ]) ?>
+                        </span>
                     </div>
                 <?php endif; ?>
 
-                <?php if ($filds['founded_year']) : ?>
+                <?php if (!empty($filds['founded_year'])) : ?>
                     <div class="first-row__bottominfo">
                         <span>На рынке с:</span>
-                        <span><?php echo $filds['founded_year'] ?> года</span>
+                        <span><?= absint($filds['founded_year']) ?> года</span>
                     </div>
                 <?php endif; ?>
 
-                <?php if ($filds['city']) : ?>
+                <?php if (!empty($filds['city'])) : ?>
                     <div class="first-row__bottominfo">
                         <span>Город:</span>
-                        <span><?php echo $filds['city'] ?></span>
+                        <span><?= esc_html($filds['city']) ?></span>
                     </div>
                 <?php endif; ?>
 
             <?php else: ?>
                 <!-- Информация для застройщиков/агентств -->
-                <?php if ($filds['sdano']) : ?>
+                <?php if (!empty($filds['sdano'])) : ?>
                     <div class="first-row__bottominfo">
                         <span><?php the_field('text_submitted_' . $lang, 'options'); ?>:</span>
                         <span>
-                            <?php echo $filds['sdano'] ?>
-                            <?php echo num_word($filds['sdano'], [
+                            <?= absint($filds['sdano']) ?>
+                            <?= num_word($filds['sdano'], [
                                 get_field('text_obj1_' . $lang, 'options'),
                                 get_field('text_obj2_' . $lang, 'options'),
                                 get_field('text_obj3_' . $lang, 'options')
@@ -222,12 +196,12 @@ $site_field = ($post_type === 'propertymanagement') ? 'website' : 'sait';
                     </div>
                 <?php endif; ?>
 
-                <?php if ($filds['stroitsya']) : ?>
+                <?php if (!empty($filds['stroitsya'])) : ?>
                     <div class="first-row__bottominfo">
                         <span><?php the_field('text_under_' . $lang, 'options'); ?>:</span>
                         <span>
-                            <?php echo $filds['stroitsya'] ?>
-                            <?php echo num_word($filds['stroitsya'], [
+                            <?= absint($filds['stroitsya']) ?>
+                            <?= num_word($filds['stroitsya'], [
                                 get_field('text_obj1_' . $lang, 'options'),
                                 get_field('text_obj2_' . $lang, 'options'),
                                 get_field('text_obj3_' . $lang, 'options')
@@ -236,12 +210,12 @@ $site_field = ($post_type === 'propertymanagement') ? 'website' : 'sait';
                     </div>
                 <?php endif; ?>
 
-                <?php if ($filds['sdano'] && $filds['stroitsya']) : ?>
+                <?php if (!empty($filds['sdano']) && !empty($filds['stroitsya'])) : ?>
                     <div class="first-row__bottominfo">
                         <span><?php the_field('text_total_' . $lang, 'options'); ?>:</span>
                         <span>
-                            <?php echo $filds['sdano'] + $filds['stroitsya'] ?>
-                            <?php echo num_word($filds['sdano'] + $filds['stroitsya'], [
+                            <?= absint($filds['sdano'] + $filds['stroitsya']) ?>
+                            <?= num_word($filds['sdano'] + $filds['stroitsya'], [
                                 get_field('text_obj1_' . $lang, 'options'),
                                 get_field('text_obj2_' . $lang, 'options'),
                                 get_field('text_obj3_' . $lang, 'options')
@@ -254,9 +228,12 @@ $site_field = ($post_type === 'propertymanagement') ? 'website' : 'sait';
 
         <!-- Отзывы -->
         <?php if ($total_rev > 0) : ?>
-            <a href="<?php echo get_permalink($id); ?>" target="_blank" rel="nofollow" class="first-row__comments icon-comments">
-                <?php echo $total_rev ?>
-                <?php echo num_word($total_rev, [
+            <a href="<?= esc_url(get_permalink($id)) ?>" 
+               target="_blank" 
+               rel="nofollow" 
+               class="first-row__comments icon-comments">
+                <?= absint($total_rev) ?>
+                <?= num_word($total_rev, [
                     get_field('_text_rev1_' . $lang, 'options'),
                     get_field('_text_rev2_' . $lang, 'options'),
                     get_field('_text_rev3_' . $lang, 'options')
@@ -265,8 +242,11 @@ $site_field = ($post_type === 'propertymanagement') ? 'website' : 'sait';
         <?php endif; ?>
 
         <!-- Ссылка на сайт -->
-        <?php if ($filds[$site_field]) : ?>
-            <a href="<?php echo $filds[$site_field] ?>" class="first-row__site first-row__site--bottom icon-arrow-r-t" target="_blank" rel="nofollow">
+        <?php if ($site_url) : ?>
+            <a href="<?= esc_url($site_url) ?>" 
+               class="first-row__site first-row__site--bottom icon-arrow-r-t" 
+               target="_blank" 
+               rel="nofollow">
                 <?php the_field('text_sait_' . $lang, 'options'); ?>
             </a>
         <?php endif; ?>

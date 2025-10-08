@@ -55,8 +55,7 @@ $page_fields = get_fields($page_id);
               'Надежные девелоперы' => 'https://balirate.com/wp-content/uploads/2025/06/group-4.png',
               'Девелоперы премиум сегмента' => 'https://balirate.com/wp-content/uploads/2025/06/group-5.png',
               'Девелоперы бизнес+ сегмента' => 'https://balirate.com/wp-content/uploads/2025/06/group-8.png',
-              'Агентства недвижимости' => 'https://balirate.com/wp-content/uploads/2025/06/group-4-1.png',
-              'Управляющие компании' => 'https://balirate.com/wp-content/uploads/2025/06/group-4-1.png'
+              'Агентства недвижимости' => 'https://balirate.com/wp-content/uploads/2025/06/group-4-1.png'
           ];
           ?>
 
@@ -197,6 +196,40 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 </script>
 <?php } ?>
+
+
+<?php
+// Управляющие компании
+$uk_query = new WP_Query([
+    'posts_per_page' => 10,
+    'post_type'      => 'propertymanagement',
+    'post_status'    => 'publish',
+    'orderby'        => 'menu_order',
+    'order'          => 'ASC'
+]);
+
+if ($uk_query->have_posts()): ?>
+<section class="first management-companies">
+    <div class="first__container">
+        <h2 class="first__title title">Управляющие компании</h2>
+        
+        <div class="first__body">
+            <div class="first__left">
+                <div class="first__rows">
+                    <?php while ($uk_query->have_posts()) : $uk_query->the_post(); ?>
+                        <?php get_template_part('templates/item-list', null, get_post()); ?>
+                    <?php endwhile; ?>
+                </div>
+                
+                <div class="first__leftbottom">
+                    <a href="/uk-rating/" class="first__leftlink button button--gray">Смотреть весь список</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<?php endif;
+wp_reset_postdata(); ?>
 
 <?php
 // === СЕКЦИЯ "ПОСЛЕДНИЕ СТАТЬИ" (после FAQ, перед SEO-текстом) ===

@@ -55,8 +55,7 @@ $page_fields = get_fields($page_id);
               'Надежные девелоперы' => 'https://balirate.com/wp-content/uploads/2025/06/group-4.png',
               'Девелоперы премиум сегмента' => 'https://balirate.com/wp-content/uploads/2025/06/group-5.png',
               'Девелоперы бизнес+ сегмента' => 'https://balirate.com/wp-content/uploads/2025/06/group-8.png',
-              'Агентства недвижимости' => 'https://balirate.com/wp-content/uploads/2025/06/group-4-1.png',
-              'Управляющие компании' => 'https://balirate.com/wp-content/uploads/2025/06/group-4-1.png'
+              'Агентства недвижимости' => 'https://balirate.com/wp-content/uploads/2025/06/group-4-1.png'
           ];
           ?>
 
@@ -198,36 +197,6 @@ document.addEventListener('DOMContentLoaded', function() {
 </script>
 <?php } ?>
 
-<?php
-// === СЕКЦИЯ "ПОСЛЕДНИЕ СТАТЬИ" (после FAQ, перед SEO-текстом) ===
-$latest_news_query = new WP_Query([
-  'posts_per_page' => 3,
-  'post_type'      => 'stati',
-  'orderby'        => 'date',
-  'order'          => 'DESC'
-]);
-
-if ($latest_news_query->have_posts()) { ?>
-<section class="news-page" style="padding-top: 2.5rem;">
-  <div class="news-page__container">
-    <h2 class="news-page__title title"><?php 
-      if (function_exists('trp_translate')) {
-          echo trp_translate('Последние статьи', 'textdomain');
-      } else {
-          echo 'Последние статьи';
-      }
-    ?></h2>
-    
-    <div class="news-page__row">
-      <?php while ($latest_news_query->have_posts()) : $latest_news_query->the_post(); ?>
-        <?php get_template_part('templates/new_prev', null, get_post()); ?>
-      <?php endwhile; ?>
-    </div>
-  </div>
-</section>
-<?php } 
-wp_reset_postdata(); ?>
-
 <?php 
 // --- СЕКЦИЯ "ПРЕДЛОЖЕНИЯ" (объекты) ---
 if (!empty($page_fields['offers'])) { ?>
@@ -337,6 +306,58 @@ if (have_posts()) { ?>
 <?php } wp_reset_query(); ?>
 
 <?php
+// --- НОВАЯ СЕКЦИЯ "УПРАВЛЯЮЩИЕ КОМПАНИИ" ---
+// Создаем массив с управляющими компаниями из постов типа "agencies" с меткой УК
+$uk_query = new WP_Query([
+  'posts_per_page' => 10,
+  'post_type'      => 'propertymanagement',
+  'meta_query'     => [
+    [
+      'key'     => 'uk',
+      'compare' => '!=',
+      'value'   => ''
+    ]
+  ],
+  'orderby'        => 'menu_order',
+  'order'          => 'ASC'
+]);
+
+if ($uk_query->have_posts()): ?>
+<section class="first management-companies">
+  <div class="first__container">
+    <h2 class="first__title title"><?php 
+      if (function_exists('trp_translate')) {
+          echo trp_translate('Управляющие компании', 'textdomain');
+      } else {
+          echo 'Управляющие компании';
+      }
+    ?></h2>
+    
+    <div class="first__body">
+      <div class="first__left">
+        <div class="first__rows">
+          <?php while ($uk_query->have_posts()) : $uk_query->the_post(); ?>
+            <?php get_template_part('templates/item-list', null, get_post()); ?>
+          <?php endwhile; ?>
+        </div>
+        
+        <div class="first__leftbottom">
+          <a href="<?= esc_url(get_permalink(191)) ?>" class="first__leftlink button button--gray"><?php 
+            if (function_exists('trp_translate')) {
+                echo trp_translate('Смотреть весь список', 'textdomain');
+            } else {
+                echo 'Смотреть весь список';
+            }
+          ?></a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<?php endif;
+wp_reset_postdata(); ?>
+
+<?php
 // --- СЕКЦИЯ "ОТЗЫВЫ" ---
 $reviews_query = new WP_Query([
   'posts_per_page' => 200,
@@ -378,45 +399,25 @@ wp_reset_postdata(); ?>
 
 <?php 
 // --- СЕКЦИЯ "НОВОСТИ" ---
-query_posts([
-  'posts_per_page' => 4,
+$news_query = new WP_Query([
+  'posts_per_page' => 3,
   'post_type'      => 'news',
+  'post_status'    => 'publish'
 ]);
-if (have_posts()) { ?>
+
+if ($news_query->have_posts()) { ?>
 <section class="news">
   <div class="news__container">
-    <h2 class="news__title title"><?php 
-      if (function_exists('trp_translate')) {
-          echo trp_translate('Последние статьи', 'textdomain');
-      } else {
-          echo 'Последние статьи';
-      }
-    ?></h2>
-    <?php $k = 0; ?>
-    <?php while (have_posts()) : the_post(); $k++; ?>
-      <?php
-      if ($k == 1) {
-        get_template_part('templates/article_big');
-      } else {
-        get_template_part('templates/null');
-      }
-      ?>
-    <?php endwhile; ?>
-
+    <h2 class="news__title title">Новости</h2>
+    
     <!-- Слайдер новостей -->
     <div class="news__slidercont slidercont">
       <div class="news__slider swiper">
         <div class="news__wrapper swiper-wrapper">
-          <?php
-          $k = 0;
-          while (have_posts()) : the_post(); $k++;
-            if ($k > 1) {
-              get_template_part('templates/article_prev');
-            } else {
-              get_template_part('templates/null');
-            }
-          endwhile;
-          ?>
+          <?php while ($news_query->have_posts()) : 
+              $news_query->the_post();
+              get_template_part('templates/new_prev', null, get_post());
+          endwhile; ?>
         </div>
       </div>
       <button class="news__swiper-button-prev swiper-button icon-arrow-d-b"></button>
@@ -424,10 +425,43 @@ if (have_posts()) { ?>
     </div>
   </div>
 </section>
-<?php } wp_reset_query(); ?>
+<?php } 
+wp_reset_postdata(); ?>
 
+<?php 
+// --- СЕКЦИЯ "ПОСЛЕДНИЕ СТАТЬИ" ---
+$articles_query = new WP_Query([
+  'posts_per_page' => 3,
+  'post_type'      => 'stati',
+  'post_status'    => 'publish'
+]);
 
+if ($articles_query->have_posts()) { ?>
+<section class="news articles">
+  <div class="news__container">
+    <h2 class="news__title title">Последние статьи</h2>
 
+    <!-- Слайдер статей -->
+    <div class="news__slidercont slidercont">
+      <div class="news__slider swiper">
+        <div class="news__wrapper swiper-wrapper">
+          <?php while ($articles_query->have_posts()) : 
+              $articles_query->the_post();
+              get_template_part('templates/article_prev', null, get_post());
+          endwhile; ?>
+        </div>
+      </div>
+      <button class="news__swiper-button-prev swiper-button icon-arrow-d-b"></button>
+      <button class="news__swiper-button-next swiper-button icon-arrow-d-b"></button>
+    </div>
+    
+    <div class="news__view-all" style="text-align: center; margin-top: 30px;">
+      <a href="<?= esc_url(get_permalink(2072)) ?>" class="button button--gray">Все статьи</a>
+    </div>
+  </div>
+</section>
+<?php } 
+wp_reset_postdata(); ?>
 
 <?php 
 // --- СЕКЦИЯ "БАЗА ЗНАНИЙ" ---
@@ -476,7 +510,7 @@ if (have_posts()) { ?>
   </div>
 </section>
 <?php } wp_reset_query(); ?>
-    
+
 <?php 
 // --- СЕКЦИЯ "ОФИЦИАЛЬНЫЕ ПАРТНЕРЫ" ---
 $partners_query = new WP_Query([
@@ -616,37 +650,6 @@ if ( $has_repeater || (!empty($single_q) && !empty($single_a)) ) : ?>
     </div>
   </section>
 <?php endif; ?>
-
-<?php
-// === СЕКЦИЯ "ПОСЛЕДНИЕ НОВОСТИ" (после FAQ, перед SEO-текстом) ===
-$latest_news_query = new WP_Query([
-  'posts_per_page' => 3,
-  'post_type'      => 'news',
-  'orderby'        => 'date',
-  'order'          => 'DESC'
-]);
-
-if ($latest_news_query->have_posts()) { ?>
-<section class="news-page" style="padding-top: 2.5rem;">
-  <div class="news-page__container">
-    <h2 class="news-page__title title"><?php 
-      if (function_exists('trp_translate')) {
-          echo trp_translate('Последние новости', 'textdomain');
-      } else {
-          echo 'Последние новости';
-      }
-    ?></h2>
-    
-    <div class="news-page__row">
-      <?php while ($latest_news_query->have_posts()) : $latest_news_query->the_post(); ?>
-        <?php get_template_part('templates/new_prev', null, get_post()); ?>
-      <?php endwhile; ?>
-    </div>
-  </div>
-</section>
-<?php } 
-wp_reset_postdata(); ?>
-
 
 <?php
 /**

@@ -135,17 +135,22 @@ if ($lang=='en') {$menurealt_id =49; } else {$menurealt_id =7;}
 		</div>
 	</div>
     <div id="popup-invest" aria-hidden="true" class="popup popup-feed">
-		<div class="popup__wrapper">
-			<div class="popup__content">
-				<button data-close type="button" class="popup__close icon-close">
-				</button>
-				<div class="popup__body">
-					<div class="popup__title"><?php the_field('text_btn_'.$lang, 'options'); ?></div>
-					<div class="popup__text">Оставьте контакты — свяжемся с вами и вышлем инвестиционные объекты 2025</div>
-						<?php echo do_shortcode( '[contact-form-7 id="f85f5b7" title="Инвестиционные объекты 2025 года"]' ); ?>
-				</div>
-			</div>
-		</div>
+          <div class="popup__wrapper">
+    <div class="popup__content popup__content--investment">
+      <button data-close type="button" class="popup__close icon-close"></button>
+      
+      <div class="popup__investment-header">
+        <h2 class="popup__investment-title">Закрытые <span style="color: #fff;">инвестиционные предложения</span></h2>
+        <p class="popup__investment-subtitle">Подборка закрытых инвестиционных предложений от девелоперов, эксклюзивно для BaliRate со скидкой до 30%</p>
+      </div>
+      
+      <div class="popup__investment-body">
+        <div class="popup__investment-form">
+          <?php echo do_shortcode('[contact-form-7 id="f85f5b7" title="Инвестиционные объекты 2025 года"]'); ?>
+        </div>
+      </div>
+    </div>
+  </div>
 	</div>
 	<div id="popup-agency" aria-hidden="true" class="popup popup-feed">
 		<div class="popup__wrapper">
@@ -161,13 +166,15 @@ if ($lang=='en') {$menurealt_id =49; } else {$menurealt_id =7;}
 		</div>
 	</div>
 <div id="popup-lead" aria-hidden="true" class="popup popup-feed">
-  <div class="popup__wrapper">
+    
+    
+    <div class="popup__wrapper">
     <div class="popup__content popup__content--investment">
       <button data-close type="button" class="popup__close icon-close"></button>
       
       <div class="popup__investment-header">
         <h2 class="popup__investment-title">Закрытые <span style="color: #fff;">инвестиционные предложения</span></h2>
-        <p class="popup__investment-subtitle">Подборка закрытых инвестиционных предложений от девелоперов, эксклюзивно для BaliRate - со скидкой до 30%</p>
+        <p class="popup__investment-subtitle">Подборка закрытых инвестиционных предложений от девелоперов, эксклюзивно для BaliRate со скидкой до 30%</p>
       </div>
       
       <div class="popup__investment-body">
@@ -278,6 +285,17 @@ document.addEventListener('DOMContentLoaded', function() {
             console.log('Обновлена ссылка на индонезийский:', indonesianUrl);
         }
     });
+});
+</script>
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  document.querySelector('.popup__submit').addEventListener('click', function(e) {
+    const input = document.querySelector('input[name="text-290"]');
+    if (!input.value.trim()) {
+      e.preventDefault();
+      input.focus();
+    }
+  });
 });
 </script>
 	<?php wp_footer(); ?>
