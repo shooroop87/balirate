@@ -289,13 +289,41 @@ document.addEventListener('DOMContentLoaded', function() {
 </script>
 <script>
 document.addEventListener('DOMContentLoaded', function() {
-  document.querySelector('.popup__submit').addEventListener('click', function(e) {
-    const input = document.querySelector('input[name="text-290"]');
-    if (!input.value.trim()) {
-      e.preventDefault();
-      input.focus();
-    }
-  });
+    // Предотвращаем закрытие попапа при submit формы
+    document.querySelectorAll('.popup__investment-cf7').forEach(function(form) {
+        form.addEventListener('submit', function(e) {
+            e.stopPropagation(); // Останавливаем всплытие события
+        });
+    });
+
+    // Закрываем попап только при успешной отправке
+    document.addEventListener('wpcf7mailsent', function(event) {
+        setTimeout(function() {
+            const popup = event.target.closest('.popup');
+            if (popup) {
+                popup.classList.remove('popup_show');
+                popup.setAttribute('aria-hidden', 'true');
+                document.body.classList.remove('popup-show');
+                
+                // Очищаем форму через 2 секунды после закрытия
+                setTimeout(function() {
+                    event.target.reset();
+                }, 2000);
+            }
+        }, 2000); // Закрываем через 2 сек после успешной отправки
+    });
+
+    // Закрытие только по крестику
+    document.querySelectorAll('[data-close]').forEach(function(btn) {
+        btn.addEventListener('click', function() {
+            const popup = this.closest('.popup');
+            if (popup) {
+                popup.classList.remove('popup_show');
+                popup.setAttribute('aria-hidden', 'true');
+                document.body.classList.remove('popup-show');
+            }
+        });
+    });
 });
 </script>
 	<?php wp_footer(); ?>
